@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Linux 系统命令 - jerry@wzj | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/article/Linux 系统命令/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                            
+                        </div>
+                        <h1>Linux 系统命令</h1>
+                        <h2 class="subheading">top free df-h.</h2>
+                        <span class="meta">
+                            Posted by jerry on
+                            2018-01-13
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">jerry·Wang</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h6 id="1磁盘">1.磁盘</h6>
+<p>==获取磁盘空间的使用情况==</p>
+<blockquote>
+<p>[root@bogon /]# df -h											<br>
+Filesystem               			Size  Used Avail Use% Mounted on<br>
+/dev/mapper/centos-root   	37G  993M   37G   3% /==系统盘==<br>
+devtmpfs                			 	901M     0  901M   0% /dev<br>
+tmpfs                    				912M     0  912M   0% /dev/shm<br>
+tmpfs                    				912M  8.6M  904M   1% /run<br>
+tmpfs                    				912M     0  912M   0% /sys/fs/cgroup<br>
+/dev/sda1               				1014M  143M  872M  15% /boot<br>
+tmpfs                    				183M     0  183M   0% /run/user/0</p>
+</blockquote>
+<h6 id="2内存">2.内存</h6>
+<p>Markdown<br>
+:            [root@bogon /]# free -m<br>
+		  total  used  free  shared  buff/cache   available<br>
+	Mem:   1823   141  1326    8       354          1461<br>
+	Swap:  2047    0   2047</p>
+<p>:            [root@bogon /]# free<br>
+			total        used        free      shared     buff/cache   available<br>
+Mem:        1867024      145236     1358804        8792      362984     1496512<br>
+Swap:       2097148           0     2097148</p>
+<blockquote>
+<p>延伸：<a href="http://blog.itpub.net/30089851/viewspace-2131678/" target="_blank" rel="noopener">link</a><br>
+Mem：表示物理内存统计<br>
+total: 表示系统总物理内存5993156kb(约5852M)<br>
+used: 表示总计分配给缓存（包含buffers 与cached）,但其中可能部分缓存未实际使用<br>
+free：表示未分配的内存<br>
+shared: 表示共享内存<br>
+buffers:表示系统分配但未被使用的buffers数量<br>
+cached:表示系统分配但未被使用的cache的数量</p>
+</blockquote>
+<p>==free数值不准==</p>
+<h6 id="3负载">3.负载</h6>
+<p>Markdown<br>
+[root@bogon /]# top<br>
+==top - 12:53:44 up  3:37,  2 users,  <strong>load average: 0.00, 0.01, 0.05</strong>==<br>
+Tasks:  91 total,   1 running,  89 sleeping,   1 stopped,   0 zombie<br>
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st<br>
+KiB Mem : 1867024 total,  1357036 free, 146348 used,363640 buff/cache<br>
+KiB Swap:  2097148 total,  2097148 free,  0 used.  1495384 avail Mem</p>
+<p>Markdown<br>
+:     	PID USER 	  PR  NI     VIRT    RES   SHR S %CPU %MEM TIME+COMMAND<br>
+		10302 root      20   0       0      0      0 S  0.3  0.0   0:02.76 kworker/0:3<br>
+	1     root      20   0  128164   6812   4048 S  0.0  0.4   0:04.96 systemd<br>
+	2     root      20   0       0      0      0 S  0.0  0.0   0:00.00 kthreadd<br>
+	3     root      20   0       0      0      0 S  0.0  0.0   0:00.29 ksoftirqd/0<br>
+	5     root       0 -20       0      0      0 S  0.0  0.0   0:00.00 kworker/0:0H<br>
+	6     root      20   0       0      0      0 S  0.0  0.0   0:00.73 kworker/u256:0</p>
+<blockquote>
+<p>注意问题：<br>
+1.load average: 0.00, 0.01, 0.05 注意观察此负载值，数值过大表示此服务器较为繁忙<br>
+2.cpu显示会出现超过百分之百的情况，如果偶尔则为正常，长时间居高不下需要去看此进程是否夯住，采取相应措施</p>
+</blockquote>
+<h6 id="4进程">4.进程</h6>
+<p>==<strong>ps -ef</strong>==</p>
+<blockquote>
+<p>[root@bogon /]# ps -ef|grep ssh<br>
+root        999      1  0 09:16 ?        00:00:00 /usr/sbin/sshd -D<br>
+root       1303    999  0 09:17 ?        00:00:01 sshd: root@pts/0<br>
+root      12717   1307  0 13:08 pts/0    00:00:00 grep --color=auto ssh<br>
+eg:root 进程用户; 999 进程的pid ;1 父id</p>
+</blockquote>
+<h6 id="5端口号">5.端口号</h6>
+<p>==<strong>netstat -nlp</strong>==</p>
+<blockquote>
+<p>[root@bogon /]# ps -ef|grep ssh<br>
+root        999      1  0 09:16 ?        00:00:00 /usr/sbin/sshd -D<br>
+root       1303    999  0 09:17 ?        00:00:01 sshd: root@pts/0<br>
+root      12717   1307  0 13:08 pts/0    00:00:00 grep --color=auto ssh<br>
+[root@bogon /]# netstat -nlp|grep 999<br>
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      999/sshd<br>
+tcp6       0      0 :::22                   :::                  LISTEN      999/sshd</p>
+</blockquote>
+<h6 id="6启动服务登陆web页面">6.启动服务,登陆web页面</h6>
+<p>==service httpd start      centos6.x 7.x<br>
+systemctl start httpd    centos7.x==</p>
+<blockquote>
+<p>[root@bogon /]# systemctl start httpd<br>
+[root@bogon /]# ps -ef |grep httpd<br>
+root      ==13136==      1  0 13:15 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13157  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13158  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13159  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13160  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13161  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+root      13165   1307  0 13:16 pts/0    00:00:00 grep --color=auto httpd<br>
+[root@bogon /]#</p>
+</blockquote>
+<blockquote>
+<p>[root@bogon /]# netstat -nlp|grep ==13136==<br>
+tcp6       0      0 :::<strong>80</strong>                   :::                   LISTEN      13136/httpd</p>
+</blockquote>
+<blockquote>
+<p>[root@bogon ~]# ifconfig<br>
+ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500<br>
+inet ==你的ip==  netmask 255.255.255.0  broadcast ==你的ip==.255<br>
+inet6 fe80::f507:c148:b565:facc  prefixlen 64  scopeid 0x20<link><br>
+ether 00:0c:29:2f:44:7f  txqueuelen 1000  (Ethernet)<br>
+RX packets 22236  bytes 15920055 (15.1 MiB)<br>
+RX errors 0  dropped 0  overruns 0  frame 0<br>
+TX packets 7973  bytes 2867328 (2.7 MiB)<br>
+TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0<br>
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536<br>
+inet 127.0.0.1  netmask 255.0.0.0<br>
+inet6 ::1  prefixlen 128  scopeid 0x10<host><br>
+loop  txqueuelen 1  (Local Loopback)<br>
+RX packets 0  bytes 0 (0.0 B)<br>
+RX errors 0  dropped 0  overruns 0  frame 0<br>
+TX packets 0  bytes 0 (0.0 B)<br>
+TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</host></p>
+</blockquote>
+<p>ip和端口号都有了  就可以去web端看一下了，如果页面出现无法访问从以下两个方面找问题：<br>
+<em>1.防火墙是否关闭,如果是running,则需要先关闭防火墙</em></p>
+<blockquote>
+<p>[root@bogon ~]# firewall-cmd --state<br>
+running</p>
+</blockquote>
+<blockquote>
+<p>[root@bogon ~]# systemctl stop firewalld.service ==关闭防火墙==</p>
+</blockquote>
+<p><em>2.查看端口</em></p>
+<blockquote>
+<p>[root@bogon ~]# netstat -nlp|grep http<br>
+tcp6       0      ==0 :::80==                   :::                    LISTEN      13136/httpd</p>
+</blockquote>
+<p>这三类都没有问题<br>
+0.0.0.0:80 当前的ip<br>
+:::08      当前的ip<br>
+ip:08 当前的ip<br>
+如果为以下两类，则需要去看下配置文件<br>
+127.0.0.1:80 本地自己访问自己  window和其他服务器无法进行访问<br>
+localhost:80</p>
+<h6 id="7杀进程">7.杀进程</h6>
+<p><strong>==kill -9 进程pid<br>
+kill -9 进程pid 进程pid 进程pid<br>
+kill -9 $(pgrep -f 匹配关键词)==</strong></p>
+<blockquote>
+<p>[root@bogon conf]# ps -ef|grep http<br>
+root      13136      1  0 13:15 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13157  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13158  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13159  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13160  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+[root@bogon conf]# ==kill -9 13157==<br>
+[root@bogon conf]# ps -ef|grep http<br>
+root      13136      1  0 13:15 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13158  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13159  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13160  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND</p>
+</blockquote>
+<blockquote>
+<p>[root@bogon conf]# ps -ef|grep http<br>
+root      13136      1  0 13:15 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13158  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13159  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13160  13136  0 13:16 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13311  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13312  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+[root@bogon conf]# ==kill -9 13158 13159 13160==<br>
+[root@bogon conf]# ps -ef|grep http<br>
+root      13136      1  0 13:15 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13311  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13312  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND</p>
+</blockquote>
+<blockquote>
+<p>[root@bogon conf]# ps -ef|grep http<br>
+root      13136      1  0 13:15 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13311  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13312  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13313  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13314  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13315  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+apache    13316  13136  0 13:36 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND<br>
+root      13357  13142  0 13:54 pts/1    00:00:00 grep --color=auto http<br>
+[root@bogon conf]# pgrep -f http<br>
+13136<br>
+13311<br>
+13312<br>
+13313<br>
+13314<br>
+13315<br>
+13316<br>
+[root@bogon conf]# echo $(pgrep -f http)<br>
+13136 13311 13312 13313 13314 13315 13316<br>
+[root@bogon conf]# ==kill -9 $(pgrep -f http)==<br>
+[root@bogon conf]# ps -ef|grep http<br>
+root      13368  13142  0 13:56 pts/1    00:00:00 grep --color=auto http ==#查询自身==<br>
+==！！！！此命令慎用==</p>
+</blockquote>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/Linux 用户用户组权限/" data-toggle="tooltip" data-placement="top" title="Linux 用户/用户组/权限">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/Linux 环境变量配置/" data-toggle="tooltip" data-placement="top" title="Linux 环境变量配置">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#1磁盘"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1.&#x78C1;&#x76D8;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#2内存"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2.&#x5185;&#x5B58;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#3负载"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">3.&#x8D1F;&#x8F7D;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#4进程"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">4.&#x8FDB;&#x7A0B;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#5端口号"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">5.&#x7AEF;&#x53E3;&#x53F7;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#6启动服务登陆web页面"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">6.&#x542F;&#x52A8;&#x670D;&#x52A1;,&#x767B;&#x9646;web&#x9875;&#x9762;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#7杀进程"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">7.&#x6740;&#x8FDB;&#x7A0B;</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.baidu.com" target="_blank">study</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; jerry 2020 
+
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.csdn.net/wzj_wp/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://blog.csdn.net/wzj_wp/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

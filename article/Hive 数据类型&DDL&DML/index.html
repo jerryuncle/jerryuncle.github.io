@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Hive 数据类型&amp;DDL&amp;DML - jerry@wzj | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/article/Hive 数据类型&amp;DDL&amp;DML/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Hive" title="Hive">Hive</a>
+                            
+                        </div>
+                        <h1>Hive 数据类型&amp;DDL&amp;DML</h1>
+                        <h2 class="subheading">DDL DML</h2>
+                        <span class="meta">
+                            Posted by jerry on
+                            2018-03-14
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">jerry·Wang</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="1-数据类型">1. 数据类型</h3>
+<p><a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types" target="_blank" rel="noopener">官网文档：https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types</a></p>
+<table>
+<thead>
+<tr>
+<th>Hive数据类型</th>
+<th>长度</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TINYINT</td>
+<td>-128 to 127</td>
+<td>20</td>
+</tr>
+<tr>
+<td>SMALINT</td>
+<td>-32,768 to 32,767</td>
+<td>20</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>-2,147,483,648 to 2,147,483,647</td>
+<td>20</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807</td>
+<td>20</td>
+</tr>
+<tr>
+<td>BOOLEAN</td>
+<td>布尔类型</td>
+<td>TRUE FALSE</td>
+</tr>
+<tr>
+<td>FLOAT</td>
+<td>4-byte single precision floating point number</td>
+<td>3.14159</td>
+</tr>
+<tr>
+<td>DOUBLE</td>
+<td>8-byte double precision floating point number</td>
+<td>3.14159</td>
+</tr>
+<tr>
+<td>STRING</td>
+<td>字符</td>
+<td>‘lalal”</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>时间</td>
+<td></td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>时间</td>
+<td></td>
+</tr>
+<tr>
+<td>BINARY</td>
+<td>字节数组</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>复杂类型数据：<br>
+arrays: ARRAY&lt;data_type&gt; (Note: negative values and non-constant expressions are allowed as of Hive 0.14.)<br>
+maps: MAP&lt;primitive_type, data_type&gt; (Note: negative values and non-constant expressions are allowed as of Hive 0.14.)<br>
+structs: STRUCT&lt;col_name : data_type [COMMENT col_comment], …&gt;</p>
+<h3 id="2-ddl">2. DDL</h3>
+<h5 id="21-create-table">2.1 create table</h5>
+<p><strong>创建的表和分区信息分别存储在元数据库的tbls和partitions中</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tbls;</span><br><span class="line">+--------+-------------+-------+------------------+-------+------------+-----------+-------+-----------------+----------------+--------------------+--------------------+</span><br><span class="line">| TBL_ID | CREATE_TIME | DB_ID | LAST_ACCESS_TIME | OWNER | OWNER_TYPE | RETENTION | SD_ID | TBL_NAME        | TBL_TYPE       | VIEW_EXPANDED_TEXT | VIEW_ORIGINAL_TEXT |</span><br><span class="line">+--------+-------------+-------+------------------+-------+------------+-----------+-------+-----------------+----------------+--------------------+--------------------+</span><br><span class="line">|      8 |  1577179125 |     6 |                0 | wzj   | USER       |         0 |     8 | test_w          | EXTERNAL_TABLE | NULL               | NULL               |</span><br><span class="line">|      9 |  1577179135 |     6 |                0 | wzj   | USER       |         0 |     9 | test_n          | EXTERNAL_TABLE | NULL               | NULL               |</span><br><span class="line">|     10 |  1577179616 |     6 |                0 | wzj   | USER       |         0 |    10 | test_cpy        | MANAGED_TABLE  | NULL               | NULL               |</span><br><span class="line">|     11 |  1577179667 |     6 |                0 | wzj   | USER       |         0 |    11 | test_copy       | MANAGED_TABLE  | NULL               | NULL               |</span><br><span class="line">|     12 |  1577181315 |     6 |                0 | wzj   | USER       |         0 |    12 | emp             | MANAGED_TABLE  | NULL               | NULL               |</span><br><span class="line">|     16 |  1577243920 |     6 |                0 | wzj   | USER       |         0 |    16 | partitiom_test  | MANAGED_TABLE  | NULL               | NULL               |</span><br><span class="line">|     17 |  1577252656 |     6 |                0 | wzj   | USER       |         0 |    18 | order_partition | MANAGED_TABLE  | NULL               | NULL               |</span><br><span class="line">+--------+-------------+-------+------------------+-------+------------+-----------+-------+-----------------+----------------+--------------------+--------------------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from partitions;</span><br><span class="line">+---------+-------------+------------------+--------------------------+-------+--------+</span><br><span class="line">| PART_ID | CREATE_TIME | LAST_ACCESS_TIME | PART_NAME                | SD_ID | TBL_ID |</span><br><span class="line">+---------+-------------+------------------+--------------------------+-------+--------+</span><br><span class="line">|       1 |  1577244373 |                0 | month=20191101/org=henan |    17 |     16 |</span><br><span class="line">|       2 |  1577252735 |                0 | event_month=2014-05      |    19 |     17 |</span><br><span class="line">+---------+-------------+------------------+--------------------------+-------+--------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>默认创建的是内部表</li>
+<li><strong>内部表删除时: HDFS + META 都被删除</strong></li>
+<li><strong>外部表删除时: HDFS不删除  仅META被删除</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">CREATE  [EXTERNAL（外部表）] TABLE [IF NOT EXISTS] [db_name.]table_name    -- (Note: TEMPORARY available in Hive 0.14.0 and later)</span><br><span class="line">  [(col_name data_type  # 列的名称及类型  [column_constraint_specification] # 列的约束  [COMMENT col_comment], ...# 列的注释</span><br><span class="line">  [constraint_specification])] # 表的约束</span><br><span class="line">  [COMMENT table_comment]表的注释</span><br><span class="line">  [PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]# 分区</span><br><span class="line">  [CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name [ASC|DESC], ...)] INTO num_buckets BUCKETS]#创建分桶表</span><br><span class="line">  [SKEWED BY (col_name, col_name, ...)                  -- (Note: Available in Hive 0.10.0 and later)]</span><br><span class="line">     ON ((col_value, col_value, ...), (col_value, col_value, ...), ...)</span><br><span class="line">     [STORED AS DIRECTORIES]</span><br><span class="line">  [</span><br><span class="line">   [ROW FORMAT row_format] #表中分隔符</span><br><span class="line">   [STORED AS file_format] #常用的存储文件类型：SEQUENCEFILE（二进制序列文件）、TEXTFILE（文本）、RCFILE（列式存储格式文件）</span><br><span class="line">如果文件数据是纯文本，可以使用STORED AS TEXTFILE。如果数据需要压缩，使用 STORED AS SEQUENCEFILE#</span><br><span class="line">     | STORED BY &apos;storage.handler.class.name&apos; [WITH SERDEPROPERTIES (...)]  -- (Note: Available in Hive 0.6.0 and later)</span><br><span class="line">  ]</span><br><span class="line">  [LOCATION hdfs_path]#指定表在hdfs上的位置</span><br><span class="line">  [TBLPROPERTIES (property_name=property_value, ...)]   -- (Note: Available in Hive 0.6.0 and later)</span><br><span class="line">  [AS select_statement];   -- (Note: Available in Hive 0.5.0 and later; not supported for external tables)</span><br></pre></td></tr></table></figure>
+<h6 id="211-内部表创建和删除">2.1.1 内部表创建和删除</h6>
+<blockquote>
+<p>hive (wzj)&gt; create table test(id int,name string);<br>
+OK<br>
+Time taken: 0.126 second<br>
+<img src="https://img-blog.csdnimg.cn/20191224170258212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d6al93cA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>hive (wzj)&gt; drop table test;<br>
+OK<br>
+Time taken: 0.27 seconds</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20191224170413912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d6al93cA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="212-外部表创建和删除">==2.1.2 外部表创建和删除==</h6>
+<blockquote>
+<p>hive (wzj)&gt; create external table test(id int,name string);<br>
+OK<br>
+Time taken: 0.143 seconds</p>
+</blockquote>
+<blockquote>
+<p>hive (wzj)&gt; drop table test;<br>
+OK<br>
+Time taken: 0.128 seconds<br>
+hive (wzj)&gt;</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20191224171423668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d6al93cA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+删除之后文件依然在！</p>
+<h6 id="213-内部表和外部表的转换">2.1.3 内部表和外部表的转换</h6>
+<blockquote>
+<p>hive (wzj)&gt; desc formatted test_n;	<br>
+Table Type:         	MANAGED_TABLE</p>
+</blockquote>
+<p>==修改类型==</p>
+<blockquote>
+<p>hive (wzj)&gt; alter table test_n set tblproperties(‘EXTERNAL’=‘TRUE’);<br>
+OK<br>
+Time taken: 0.142 seconds</p>
+</blockquote>
+<blockquote>
+<p>hive (wzj)&gt; desc formatted test_n;<br>
+Table Type:         	EXTERNAL_TABLE</p>
+</blockquote>
+<p><strong>==外部表转内部表：(‘EXTERNAL’=‘TRUE’)<br>
+(‘EXTERNAL’=’TRUE’)和(‘EXTERNAL’=’FALSE’)为固定写法，区分大小写==</strong></p>
+<h6 id="214-快速建表之仅复制表结构amp复制表结构和数据">2.1.4 快速建表之仅复制表结构&amp;复制表结构和数据</h6>
+<p>仅复制表结构</p>
+<blockquote>
+<p>hive (wzj)&gt; create table test_cpy like test_n;<br>
+OK<br>
+Time taken: 0.187 seconds</p>
+</blockquote>
+<p>复制表结构和数据</p>
+<blockquote>
+<p>hive (wzj)&gt; create table test_copy as select * from  test_n;<br>
+Query ID = wzj_20180314172727_a68c19a0-a2ad-492a-ae66-27b95cd9fcb7<br>
+Total jobs = 3<br>
+Launching Job 1 out of 3<br>
+Number of reduce tasks is set to 0 since there’s no reduce operator<br>
+Starting Job = job_1577150260007_0003, Tracking URL = <a href="http://hadoop001:38088/proxy/application_1577150260007_0003/" target="_blank" rel="noopener">http://hadoop001:38088/proxy/application_1577150260007_0003/</a><br>
+Kill Command = /home/wzj/app/hadoop/bin/hadoop job  -kill job_1577150260007_0003</p>
+</blockquote>
+<h5 id="22-分区表">2.2 分区表</h5>
+<p><strong>分区表  ： 分区其实对应的就是HDFS上的一个文件夹/目录<br>
+分区列并不是一个“真正的”表字段，其实是HDFS上表对应的文件夹下的一个==文件夹==</strong></p>
+<ul>
+<li>3.2.1 分区表创建，加载数据</li>
+</ul>
+<blockquote>
+<p>create table partitiom_test<br>
+(id int,<br>
+name string)<br>
+partitioned by (month string,org string)<br>
+row format delimited fields terminated by ‘,’</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20191225113421178.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>LOAD DATA LOCAL INPATH ‘/home/wzj/data/partitiontest.txt’ INTO TABLE partition_test PARTITION (month=‘20191101’,org=‘henan’)</p>
+</blockquote>
+<ul>
+<li>3.2.2 分区表注意事项：</li>
+<li>
+<ul>
+<li>分区表已经建好，直接建立一个分区目录，并上传数据<br>
+==此方式一定不要用，刷新的操作太重量级了==</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; create table order_partition(</span><br><span class="line">          &gt; order_no string,</span><br><span class="line">          &gt; event_time string</span><br><span class="line">          &gt; )</span><br><span class="line">          &gt; PARTITIONED BY (event_month string)</span><br><span class="line">          &gt; ROW FORMAT DELIMITED FIELDS TERMINATED BY &apos;\t&apos;;</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.151 seconds</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 data]$ hadoop fs -mkdir /user/hive/warehouse/wzj.db/order_partition/event_month=2014-06</span><br><span class="line">2018-03-14  13:54:36 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">[wzj@hadoop001 data]$ hadoop fs -put order_created.txt /user/hive/warehouse/wzj.db/order_partition/event_month=2014-06/</span><br><span class="line">2018-03-14  13:55:57 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; select * from order_partition where event_month=&apos;2014-06&apos;;</span><br><span class="line">OK</span><br><span class="line">order_partition.order_no	order_partition.event_time	order_partition.event_month</span><br><span class="line">Time taken: 0.088 seconds</span><br><span class="line">hive (wzj)&gt;</span><br></pre></td></tr></table></figure>
+<p>==此时发现查询不到数据==<br>
+是因为元数据库并没有我们此分区信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from partitions;</span><br><span class="line">+---------+-------------+------------------+--------------------------+-------+--------+</span><br><span class="line">| PART_ID | CREATE_TIME | LAST_ACCESS_TIME | PART_NAME                | SD_ID | TBL_ID |</span><br><span class="line">+---------+-------------+------------------+--------------------------+-------+--------+</span><br><span class="line">|       1 |  1577244373 |                0 | month=20191101/org=henan |    17 |     16 |</span><br><span class="line">|       2 |  1577252735 |                0 | event_month=2014-05      |    19 |     17 |</span><br><span class="line">+---------+-------------+------------------+--------------------------+-------+--------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>此时需要刷一下元数据,注意看刷新之后的信息显示‘2014-06’分区不存在，进行一个added的操作之后，去mysql查询，分区信息已经有了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; msck repair table order_partition;</span><br><span class="line">OK</span><br><span class="line">Partitions not in metastore:	order_partition:event_month=2014-06</span><br><span class="line">Repair: Added partition to metastore order_partition:event_month=2014-06</span><br><span class="line">Time taken: 0.31 seconds, Fetched: 2 row(s)</span><br><span class="line">----------------------------------------------------</span><br><span class="line">mysql&gt; select * from partitions;</span><br><span class="line">+---------+-------------+------------------+--------------------------+-------+--------+</span><br><span class="line">| PART_ID | CREATE_TIME | LAST_ACCESS_TIME | PART_NAME                | SD_ID | TBL_ID |</span><br><span class="line">+---------+-------------+------------------+--------------------------+-------+--------+</span><br><span class="line">|       1 |  1577244373 |                0 | month=20191101/org=henan |    17 |     16 |</span><br><span class="line">|       2 |  1577252735 |                0 | event_month=2014-05      |    19 |     17 |</span><br><span class="line">|       3 |  1577254372 |                0 | event_month=2014-06      |    20 |     17 |</span><br><span class="line">+---------+-------------+------------------+--------------------------+-------+--------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<p>再查一下hive中的数据已经有了：</p>
+<blockquote>
+<p>hive (wzj)&gt; select * from order_partition where event_month=‘2014-06’;<br>
+OK<br>
+order_partition.order_no	order_partition.event_time	order_partition.event_month<br>
+10703007267488	2014-05-01 06:01:12.334+01	2014-06<br>
+10101043505096	2014-05-01 07:28:12.342+01	2014-06<br>
+10103043509747	2014-05-01 07:50:12.33+01	2014-06<br>
+10103043501575	2014-05-01 09:27:12.33+01	2014-06<br>
+10104043514061	2014-05-01 09:03:12.324+01	2014-06<br>
+Time taken: 0.144 seconds, Fetched: 5 row(s)<br>
+hive (wzj)&gt;</p>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>数据上传之后，增加分区</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 data]$ hadoop fs -mkdir -p /user/hive/warehouse/wzj.db/order_partition/event_month=2014-07</span><br><span class="line">2018-03-14  14:19:37 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">[wzj@hadoop001 data]$ hadoop fs -put order_created.txt /user/hive/warehouse/wzj.db/order_partition/event_month=2014-07/</span><br><span class="line">2018-03-14  14:19:58 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">[wzj@hadoop001 data]$</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; ALTER TABLE order_partition ADD IF NOT EXISTS PARTITION(event_month=&apos;2014-07&apos;);</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.148 seconds </span><br><span class="line">hive (wzj)&gt; select * from order_partition where event_month=&apos;2014-07&apos;;</span><br><span class="line">OK</span><br><span class="line">order_partition.order_no	order_partition.event_time	order_partition.event_month</span><br><span class="line">10703007267488	2014-05-01 06:01:12.334+01	2014-07</span><br><span class="line">10101043505096	2014-05-01 07:28:12.342+01	2014-07</span><br><span class="line">10103043509747	2014-05-01 07:50:12.33+01	2014-07</span><br><span class="line">10103043501575	2014-05-01 09:27:12.33+01	2014-07</span><br><span class="line">10104043514061	2014-05-01 09:03:12.324+01	2014-07</span><br><span class="line">Time taken: 0.104 seconds, Fetched: 5 row(s)</span><br></pre></td></tr></table></figure>
+<p><strong>==单个分区，一层目录，多个分区，多层目录<br>
+使用分区表时，加载数据一定要指定我们的所有分区字段==</strong></p>
+<h6 id="23-修改-删除-查看常用命令">2.3 修改 删除 查看常用命令</h6>
+<blockquote>
+<p>显示所有数据库：show databases;<br>
+切换数据库：use dbname;<br>
+展示当前数据库下所有表：show tables;<br>
+创建数据库：create databases XXX;<br>
+==数据库默认路径：hdfs://hadoop001:9000/user/hive/warehouse/wzj.db==<br>
+删除数据库：drop database XXX;<br>
+创建表：create table table_name(id int,name string,)<br>
+查看表结构：desc table;<br>
+查看表结构和详细信息：desc formatted table;<br>
+表名重命名：ALTER TABLE table_name RENAME TO new_table_name<br>
+删除表数据：truncate table XXX;<br>
+删除表：drop table XXX;</p>
+</blockquote>
+<h3 id="3-dml">3. DML</h3>
+<h5 id="31-数据导入">3.1 数据导入</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA [LOCAL] INPATH &apos;filepath&apos; [OVERWRITE] INTO TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>load data: 表示加载数据<br>
+local: 表示从本地加载数据到hive表；否则从HDFS加载数据到hive表<br>
+inpath: 表示加载数据的路径<br>
+overwrite: 表示覆盖表中已有数据，否则表示追加<br>
+into table: 表示加载到哪张表<br>
+student: 表示具体的表<br>
+partition: 表示上传到指定分区</p>
+</blockquote>
+<ul>
+<li>从本地加载数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; load data local  inpath &apos;/home/wzj/data/emp.txt&apos; overwrite into table emp;</span><br><span class="line">Loading data to table wzj.emp</span><br><span class="line">Table wzj.emp stats: [numFiles=1, numRows=0, totalSize=699, rawDataSize=0]</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.338 seconds</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从HDFS加载数据<br>
+==需要注意的是，这种加载方式会把hdfs上原路径的文件加载到我们hive表的路径下，原数据就不存在了==<br>
+先上传一份数据：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 data]$ hadoop fs -mkdir -p /user/hive/warehouse/</span><br><span class="line">2018-03-14  15:42:00 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">[wzj@hadoop001 data]$ hadoop fs -put emp.txt /user/hive/warehouse/</span><br><span class="line">2018-03-14  15:42:23 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">[wzj@hadoop001 data]$</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; truncate table emp;</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.196 seconds</span><br><span class="line">hive (wzj)&gt; select * from emp;</span><br><span class="line">OK</span><br><span class="line">emp.empno	emp.ename	emp.job	emp.mgr	emp.hiredate	emp.sal	emp.comm	emp.deptno</span><br><span class="line">Time taken: 0.074 seconds</span><br><span class="line">hive (wzj)&gt; load data inpath &apos;/user/hive/warehouse/emp.txt&apos; into table emp;</span><br><span class="line">Loading data to table wzj.emp</span><br><span class="line">Table wzj.emp stats: [numFiles=1, numRows=0, totalSize=699, rawDataSize=0]</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.359 seconds</span><br><span class="line">hive (wzj)&gt; select * from emp;</span><br><span class="line">OK</span><br><span class="line">emp.empno	emp.ename	emp.job	emp.mgr	emp.hiredate	emp.sal	emp.comm	emp.deptno</span><br><span class="line">7369	SMITH	CLERK	7902	1980-12-17	800.0	NULL	20</span><br><span class="line">7499	ALLEN	SALESMAN	7698	1981-2-20	1600.0	300.0	30</span><br><span class="line">7521	WARD	SALESMAN	7698	1981-2-22	1250.0	500.0	30</span><br><span class="line">7566	JONES	MANAGER	7839	1981-4-2	2975.0	NULL	20</span><br><span class="line">7654	MARTIN	SALESMAN	7698	1981-9-28	1250.0	1400.0	30</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过复制表创建数据<br>
+create table xxx as select …<br>
+表不能事先存在</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; create table emp2 as select empno,enname from emp;</span><br><span class="line">FAILED: SemanticException [Error 10004]: Line 1:34 Invalid table alias or column reference &apos;enname&apos;: (possible column names are: empno, ename, job, mgr, hiredate, sal, comm, deptno)</span><br><span class="line">hive (wzj)&gt; create table emp2 as select empno,ename from emp;</span><br><span class="line">Query ID = wzj_20180314155656_8e6d321d-720c-4b9e-b0ea-34542775d580</span><br><span class="line">Total jobs = 3</span><br><span class="line">Launching Job 1 out of 3</span><br><span class="line">Number of reduce tasks is set to 0 since there&apos;s no reduce operator</span><br><span class="line">Starting Job = job_1577150260007_0007, Tracking URL = http://hadoop001:38088/proxy/application_1577150260007_0007/</span><br><span class="line">Kill Command = /home/wzj/app/hadoop/bin/hadoop job  -kill job_1577150260007_0007</span><br><span class="line"></span><br><span class="line">hive (wzj)&gt; select * from emp2;</span><br><span class="line">OK</span><br><span class="line">emp2.empno	emp2.ename</span><br><span class="line">7369	SMITH</span><br><span class="line">7499	ALLEN</span><br><span class="line">7521	WARD</span><br><span class="line">7566	JONES</span><br><span class="line">7654	MARTIN</span><br></pre></td></tr></table></figure>
+<ul>
+<li>insert 插入数据<br>
+跟create不同的是这个必须表是事先存在的！</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; create table emp3 like emp;</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.18 seconds</span><br><span class="line">hive (wzj)&gt; insert overwrite table emp3 select * from emp;</span><br><span class="line">Query ID = wzj_20180314160101_f204f01b-697a-4d02-9afd-0dc03d650f61</span><br><span class="line">Total jobs = 3</span><br><span class="line">Launching Job 1 out of 3</span><br><span class="line">Number of reduce tasks is set to 0 since there&apos;s no reduce operator</span><br><span class="line">Starting Job = job_1577150260007_0008, Tracking URL = http://hadoop001:38088/proxy/application_1577150260007_0008/</span><br><span class="line">Kill Command = /home/wzj/app/hadoop/bin/hadoop job  -kill job_1577150260007_0008</span><br><span class="line">Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0</span><br><span class="line">2018-03-14  16:01:29,965 Stage-1 map = 0%,  reduce = 0%</span><br><span class="line">2018-03-14  16:01:38,886 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.56 sec</span><br><span class="line">MapReduce Total cumulative CPU time: 1 seconds 560 msec</span><br><span class="line">Ended Job = job_1577150260007_0008</span><br><span class="line">Stage-4 is selected by condition resolver.</span><br><span class="line">Stage-3 is filtered out by condition resolver.</span><br><span class="line">Stage-5 is filtered out by condition resolver.</span><br><span class="line">Moving data to: hdfs://hadoop001:9000/user/hive/warehouse/wzj.db/emp3/.hive-staging_hive_2018-03-14_16-01-18_839_6498955607377706277-1/-ext-10000</span><br><span class="line">Loading data to table wzj.emp3</span><br><span class="line">Table wzj.emp3 stats: [numFiles=1, numRows=15, totalSize=708, rawDataSize=693]</span><br><span class="line">MapReduce Jobs Launched: </span><br><span class="line">Stage-Stage-1: Map: 1   Cumulative CPU: 1.56 sec   HDFS Read: 5093 HDFS Write: 773 SUCCESS</span><br><span class="line">Total MapReduce CPU Time Spent: 1 seconds 560 msec</span><br><span class="line">OK</span><br><span class="line">emp.empno	emp.ename	emp.job	emp.mgr	emp.hiredate	emp.sal	emp.comm	emp.deptno</span><br><span class="line">Time taken: 21.454 seconds</span><br><span class="line">hive (wzj)&gt; select * from emp3;</span><br><span class="line">OK</span><br><span class="line">emp3.empno	emp3.ename	emp3.job	emp3.mgr	emp3.hiredate	emp3.sal	emp3.comm	emp3.deptno</span><br><span class="line">7369	SMITH	CLERK	7902	1980-12-17	800.0	NULL	20</span><br><span class="line">7499	ALLEN	SALESMAN	7698	1981-2-20	1600.0	300.0	30</span><br><span class="line">7521	WARD	SALESMAN	7698	1981-2-22	1250.0	500.0	30</span><br><span class="line">7566	JONES	MANAGER	7839	1981-4-2	2975.0	NULL	20</span><br><span class="line">7654	MARTIN	SALESMAN	7698	1981-9-28	1250.0	1400.0	30</span><br></pre></td></tr></table></figure>
+<h5 id="31-数据导出">3.1 数据导出</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT OVERWRITE [LOCAL] DIRECTORY directory1</span><br><span class="line">  [ROW FORMAT row_format] [STORED AS file_format] (Note: Only available starting with Hive 0.11.0)</span><br><span class="line">  SELECT ... FROM ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>写入本地<br>
+不指定分隔符：<br>
+INSERT OVERWRITE LOCAL DIRECTORY ‘xxx’ select * from table;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; INSERT OVERWRITE LOCAL DIRECTORY &apos;/home/wzj/data/hivetmp&apos; select * from emp;</span><br><span class="line">Query ID = wzj_20180314161919_6ae40b9d-e77a-4b91-b62b-366f31f2d828</span><br><span class="line">Total jobs = 1</span><br><span class="line">Launching Job 1 out of 1</span><br><span class="line">Number of reduce tasks is set to 0 since there&apos;s no reduce operator</span><br><span class="line">Starting Job = job_1577150260007_0009, Tracking URL = http://hadoop001:38088/proxy/application_1577150260007_0009/</span><br><span class="line">Kill Command = /home/wzj/app/hadoop/bin/hadoop job  -kill job_1577150260007_0009</span><br><span class="line">Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0</span><br><span class="line">2018-03-14  16:19:46,889 Stage-1 map = 0%,  reduce = 0%</span><br><span class="line">2018-03-14  16:19:54,803 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.23 sec</span><br><span class="line">MapReduce Total cumulative CPU time: 1 seconds 230 msec</span><br><span class="line">Ended Job = job_1577150260007_0009</span><br><span class="line">Copying data to local directory /home/wzj/data/hivetmp</span><br><span class="line">MapReduce Jobs Launched: </span><br><span class="line">Stage-Stage-1: Map: 1   Cumulative CPU: 1.23 sec   HDFS Read: 4851 HDFS Write: 708 SUCCESS</span><br><span class="line">Total MapReduce CPU Time Spent: 1 seconds 230 msec</span><br><span class="line">OK</span><br><span class="line">emp.empno	emp.ename	emp.job	emp.mgr	emp.hiredate	emp.sal	emp.comm	emp.deptno</span><br><span class="line">Time taken: 19.162 seconds</span><br><span class="line">hive (wzj)&gt; </span><br><span class="line"></span><br><span class="line">[wzj@hadoop001 data]$ ll</span><br><span class="line">total 16</span><br><span class="line">-rw-r--r--. 1 wzj wzj 699 Dec 20 14:43 emp.txt</span><br><span class="line">drwxrwxr-x. 2 wzj wzj  43 Dec 25 16:19 hivetmp</span><br><span class="line">-rw-rw-r--. 1 wzj wzj  93 Dec  2 18:03 name.log</span><br><span class="line">-rw-r--r--. 1 wzj wzj 213 Dec 20 14:43 order_created.txt</span><br><span class="line">-rw-r--r--. 1 wzj wzj  94 Dec 25 11:22 partitiontest.txt</span><br><span class="line">[wzj@hadoop001 data]$ cd hivetmp</span><br><span class="line">[wzj@hadoop001 hivetmp]$ ll</span><br><span class="line">total 4</span><br><span class="line">-rw-r--r--. 1 wzj wzj 708 Dec 25 16:19 000000_0</span><br><span class="line">[wzj@hadoop001 hivetmp]$</span><br></pre></td></tr></table></figure>
+<p>如果不指定分隔符，则为默认：<br>
+<img src="https://img-blog.csdnimg.cn/20191225162201476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d6al93cA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>指定分隔符：<br>
+INSERT OVERWRITE LOCAL DIRECTORY ‘xxx’ ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘\t’ SELECT * FROM emp;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; INSERT OVERWRITE DIRECTORY &apos;/home/wzj/data/hivetmp&apos; ROW FORMAT DELIMITED FIELDS TERMINATED BY &apos;\t&apos; SELECT * FROM emp;</span><br><span class="line">Query ID = wzj_20180314162323_6075017c-4351-49a9-95b9-e1931ed2ff93</span><br><span class="line">Total jobs = 3</span><br><span class="line">Launching Job 1 out of 3</span><br><span class="line">Number of reduce tasks is set to 0 since there&apos;s no reduce operator</span><br><span class="line">Starting Job = job_1577150260007_0010, Tracking URL = http://hadoop001:38088/proxy/application_1577150260007_0010/</span><br><span class="line">Kill Command = /home/wzj/app/hadoop/bin/hadoop job  -kill job_1577150260007_0010</span><br></pre></td></tr></table></figure>
+<ul>
+<li>写入HDFS<br>
+就是去掉local就可以</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hive (wzj)&gt; INSERT OVERWRITE DIRECTORY &apos;/home/wzj/data&apos; ROW FORMAT DELIMITED FIELDS TERMINATED BY &apos;\t&apos; SELECT * FROM emp;</span><br><span class="line">[wzj@hadoop001 data]$ hadoop fs -ls /home/wzj/data</span><br><span class="line">2018-03-14  16:30:40 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">Found 1 items</span><br><span class="line">-rwxr-xr-x   1 wzj supergroup        708  /home/wzj/data/000000_0</span><br><span class="line">[wzj@hadoop001 data]$ hadoop fs -text /home/wzj/data/000000_0</span><br><span class="line">2018-03-14  16:31:26 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">7369	SMITH	CLERK	7902	1980-12-17	800.0	\N	20</span><br><span class="line">7499	ALLEN	SALESMAN	7698	1981-2-20	1600.0	300.0	30</span><br><span class="line">7521	WARD	SALESMAN	7698	1981-2-22	1250.0	500.0	30</span><br><span class="line">7566	JONES	MANAGER	7839	1981-4-2	2975.0	\N	20</span><br></pre></td></tr></table></figure>
+<p>get 到本地看一眼</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 hivetmp]$ hadoop fs -get /home/wzj/data/000000_0 hivetmp</span><br><span class="line">2018-03-14  16:37:09 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">[wzj@hadoop001 hivetmp]$ ll</span><br><span class="line">total 8</span><br><span class="line">-rw-r--r--. 1 wzj wzj 708 Dec 25 16:32 000000_0</span><br><span class="line">-rw-r--r--. 1 wzj wzj 708 Dec 25 16:37 hivetmp</span><br><span class="line">[wzj@hadoop001 hivetmp]$ cat hivetmp </span><br><span class="line">7369	SMITH	CLERK	7902	1980-12-17	800.0	\N	20</span><br><span class="line">7499	ALLEN	SALESMAN	7698	1981-2-20	1600.0	300.0	30</span><br><span class="line">7521	WARD	SALESMAN	7698	1981-2-22	1250.0	500.0	30</span><br></pre></td></tr></table></figure>
+<ul>
+<li>hive命令导出</li>
+</ul>
+<blockquote>
+<p>hive -e ‘select * from dbname;’ &gt; filepath</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 hivetmp]$ hive -e &apos;select * from wzj.emp;&apos; &gt; /home/wzj/data/hivetmp/ce.txt</span><br><span class="line">which: no hbase in (/home/wzj/app/sqoop/bin:/home/wzj/app/hive/bin:/home/wzj/app/hadoop/bin:/home/wzj/app/hadoop/sbin:/usr/java/jdk1.8.0_45/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/wzj/.local/bin:/home/wzj/bin)</span><br><span class="line">2018-03-14  16:42:17 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line"></span><br><span class="line">Logging initialized using configuration in jar:file:/home/wzj/app/hive-1.1.0-cdh5.16.2/lib/hive-common-1.1.0-cdh5.16.2.jar!/hive-log4j.properties</span><br><span class="line">OK</span><br><span class="line">Time taken: 9.734 seconds, Fetched: 15 row(s)</span><br><span class="line">[wzj@hadoop001 hivetmp]$ ll</span><br><span class="line">total 12</span><br><span class="line">-rw-r--r--. 1 wzj wzj 708 Dec 25 16:32 000000_0</span><br><span class="line">-rw-rw-r--. 1 wzj wzj 811 Dec 25 16:42 ce.txt</span><br><span class="line">-rw-r--r--. 1 wzj wzj 708 Dec 25 16:37 hivetmp</span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/Hive复杂数据类型/" data-toggle="tooltip" data-placement="top" title="Hive复杂数据类型">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/Hive 静态分区&动态分区(含常见错误)/" data-toggle="tooltip" data-placement="top" title="Hive 静态分区&动态分区（含常见错误）">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-数据类型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. &#x6570;&#x636E;&#x7C7B;&#x578B;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-ddl"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. DDL</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#21-create-table"><span class="toc-nav-number">2.0.1.</span> <span class="toc-nav-text">2.1 create table</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#211-内部表创建和删除"><span class="toc-nav-number">2.0.1.1.</span> <span class="toc-nav-text">2.1.1 &#x5185;&#x90E8;&#x8868;&#x521B;&#x5EFA;&#x548C;&#x5220;&#x9664;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#212-外部表创建和删除"><span class="toc-nav-number">2.0.1.2.</span> <span class="toc-nav-text">==2.1.2 &#x5916;&#x90E8;&#x8868;&#x521B;&#x5EFA;&#x548C;&#x5220;&#x9664;==</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#213-内部表和外部表的转换"><span class="toc-nav-number">2.0.1.3.</span> <span class="toc-nav-text">2.1.3 &#x5185;&#x90E8;&#x8868;&#x548C;&#x5916;&#x90E8;&#x8868;&#x7684;&#x8F6C;&#x6362;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#214-快速建表之仅复制表结构amp复制表结构和数据"><span class="toc-nav-number">2.0.1.4.</span> <span class="toc-nav-text">2.1.4 &#x5FEB;&#x901F;&#x5EFA;&#x8868;&#x4E4B;&#x4EC5;&#x590D;&#x5236;&#x8868;&#x7ED3;&#x6784;&amp;&#x590D;&#x5236;&#x8868;&#x7ED3;&#x6784;&#x548C;&#x6570;&#x636E;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#22-分区表"><span class="toc-nav-number">2.0.2.</span> <span class="toc-nav-text">2.2 &#x5206;&#x533A;&#x8868;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#23-修改-删除-查看常用命令"><span class="toc-nav-number">2.0.2.1.</span> <span class="toc-nav-text">2.3 &#x4FEE;&#x6539; &#x5220;&#x9664; &#x67E5;&#x770B;&#x5E38;&#x7528;&#x547D;&#x4EE4;</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-dml"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">3. DML</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#31-数据导入"><span class="toc-nav-number">3.0.1.</span> <span class="toc-nav-text">3.1 &#x6570;&#x636E;&#x5BFC;&#x5165;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#31-数据导出"><span class="toc-nav-number">3.0.2.</span> <span class="toc-nav-text">3.1 &#x6570;&#x636E;&#x5BFC;&#x51FA;</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Hive" title="Hive">Hive</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.baidu.com" target="_blank">study</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; jerry 2020 
+
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.csdn.net/wzj_wp/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://blog.csdn.net/wzj_wp/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          jps命令&amp;Linux的oom-kill&amp;clean机制(含实践踩坑) - jerry@wzj | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/article/jps命令&amp;Linux的oom-kill&amp;clean机制(含实践踩坑)/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                            
+                        </div>
+                        <h1>jps命令&amp;Linux的oom-kill&amp;clean机制(含实践踩坑)</h1>
+                        <h2 class="subheading">jps Linux机制</h2>
+                        <span class="meta">
+                            Posted by jerry on
+                            2018-02-12
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">jerry·Wang</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p><em>jps(Java Virtual Machine Process Status Tool)是java提供的一个显示当前所有java进程pid的命令</em></p>
+<h5 id="1首先查询下jps的路径">1.首先查询下jps的路径</h5>
+<blockquote>
+<p>[root@hadoop001 /]# which jps<br>
+/usr/java/jdk1.8.0_45/bin/jps<br>
+==java路径下   所以需要先配置好jdk==</p>
+</blockquote>
+<h5 id="2-jps">2. jps</h5>
+<p><strong>抛出两个问题：<br>
+1.root用户是否能看到所有的进程信息<br>
+2.未显示的进程是否真的不存在</strong></p>
+<h5 id="21-查看进程">2.1 查看进程</h5>
+<p>==首先我在wzj用户下启动了hadoop的进程==</p>
+<blockquote>
+<p>[==wzj==@hadoop001 ~]$ jps<br>
+4384 ResourceManager<br>
+4737 Jps<br>
+4483 NodeManager<br>
+4238 SecondaryNameNode<br>
+3935 NameNode<br>
+4063 DataNode</p>
+</blockquote>
+<blockquote>
+<p>[==root==@hadoop001 /]# jps<br>
+4384 – process information unavailable<br>
+4483 – process information unavailable<br>
+4238 – process information unavailable<br>
+3935 – process information unavailable<br>
+4063 – process information unavailable<br>
+4815 Jps</p>
+</blockquote>
+<p>问题一：所以root能看到进程，但是看不到信息，每个用户只能看到由自己启动的进程</p>
+<h5 id="22-进程位置">2.2 进程位置</h5>
+<p>==pid信息默认存放在 /tmp/hsperfdata_username文件中==</p>
+<blockquote>
+<p>[wzj@hadoop001 tmp]$ cd hsperfdata_wzj<br>
+[wzj@hadoop001 hsperfdata_wzj]$ ll<br>
+total 160<br>
+-rw-------. 1 wzj wzj 32768  3935<br>
+-rw-------. 1 wzj wzj 32768  4063<br>
+-rw-------. 1 wzj wzj 32768  4238<br>
+-rw-------. 1 wzj wzj 32768  4384<br>
+-rw-------. 1 wzj wzj 32768  4483<br>
+[wzj@hadoop001 hsperfdata_wzj]$ pwd<br>
+/tmp/hsperfdata_wzj<br>
+[wzj@hadoop001 hsperfdata_wzj]$ jps<br>
+4384 ResourceManager<br>
+4483 NodeManager<br>
+4845 Jps<br>
+4238 SecondaryNameNode<br>
+3935 NameNode<br>
+4063 DataNode</p>
+</blockquote>
+<p><strong>近下来进行一个进程信息移除的操作</strong></p>
+<blockquote>
+<p>[wzj@hadoop001 hsperfdata_wzj]$ ll<br>
+total 160<br>
+-rw-------. 1 wzj wzj 32768  3935<br>
+-rw-------. 1 wzj wzj 32768  4063<br>
+-rw-------. 1 wzj wzj 32768  4238<br>
+-rw-------. 1 wzj wzj 32768  4384<br>
+-rw-------. 1 wzj wzj 32768  4483<br>
+[wzj@hadoop001 hsperfdata_wzj]$ mv 4238 …/<br>
+[wzj@hadoop001 hsperfdata_wzj]$ ll<br>
+total 128<br>
+-rw-------. 1 wzj wzj 32768  3935<br>
+-rw-------. 1 wzj wzj 32768  4063<br>
+-rw-------. 1 wzj wzj 32768  4384<br>
+-rw-------. 1 wzj wzj 32768  4483<br>
+[wzj@hadoop001 hsperfdata_wzj]$ jps<br>
+4384 ResourceManager<br>
+4483 NodeManager<br>
+4887 Jps<br>
+3935 NameNode<br>
+4063 DataNode<br>
+[wzj@hadoop001 hsperfdata_wzj]$</p>
+</blockquote>
+<p>==可以看到jps查看已经看不到4238的进程存在了，但是真的不存在吗？==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 hsperfdata_wzj]$ ps -ef|grep 4238 | grep -v grep | wc -l</span><br><span class="line">1</span><br><span class="line">[wzj@hadoop001 tmp]$ ll grep *.pid</span><br><span class="line">ls: cannot access grep: No such file or directory</span><br><span class="line">-rw-rw-r--. 1 wzj wzj 5  hadoop-wzj-datanode.pid</span><br><span class="line">-rw-rw-r--. 1 wzj wzj 5  hadoop-wzj-namenode.pid</span><br><span class="line">-rw-rw-r--. 1 wzj wzj 5  hadoop-wzj-secondarynamenode.pid</span><br><span class="line">-rw-rw-r--. 1 wzj wzj 5  yarn-wzj-nodemanager.pid</span><br><span class="line">-rw-rw-r--. 1 wzj wzj 5  yarn-wzj-resourcemanager.pid</span><br><span class="line">[wzj@hadoop001 tmp]$ cat hadoop-wzj-secondarynamenode.pid </span><br><span class="line">4238</span><br><span class="line">[wzj@hadoop001 tmp]$</span><br></pre></td></tr></table></figure>
+<p>查询4238进程的个数我们看到显示1，并且查询一下，确认是存在的，并且关闭进程也是正常的，所以需要注意，不论是shell脚本还是其它，减少使用jps，有时会有欺骗性，万能的ps -ef才是王道</p>
+<h5 id="3linux的两种机制">3.linux的两种机制</h5>
+<h6 id="31-oom-kill机制">3.1 oom-kill机制</h6>
+<p>介绍：OOM Killer的全称为Out of Memory (OOM) killer，它的作用简单点说就是，当系统的内存用光的时候，系统内核会自动的Kill掉一个或者一些进程，以使系统能继续的恢复到正常的运行状态</p>
+<p>如果我们的进程突然断了，首先查看日志找EROOR，有ERROR具体分析，没有ERROR但是INFO信息断了，很可能就是触发了oom-killer机制，使用free -h命令查看内存使用情况，再使用cat /var/log/messages | grep oom命令查看有没有类似于Killed process 的命令，如果有，就是触发了oom-killer机制</p>
+<blockquote>
+<p>[root@hadoop001 /]# cat /var/log/messages |grep oom</p>
+</blockquote>
+<h6 id="32-clean机制">3.2 clean机制</h6>
+<p>clean机制: Linux的/tmp目录是一个临时目录，Linux会把/tmp目录下的文件以一定规则来自动清理掉，而用户根目录下面的tmp目录不会自动清理，前面使用jps命令的时候就发现，hadoop的进程pid都存放在/tmp目录中，启动进程的时候去/tmp目录下创建对应的pid文件，结束进程的时候去/tmp目录下找到程序对应的pid用来结束进程并删除pid文件，那么引申出来一个问题，如果我们的hadoop组件进程启动时间超过了定期清理时间，pid文件被清理，结束命令找不到pid号，会再重新创建一个pid，结果就是pid号紊乱，进程无法正常结束</p>
+<p>所以两种方法，一种是设置为不清理，另一种是改变我们hadoop pid信息的存放位置</p>
+<p>==3.2.1查看清理规则==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 tmp]$ cat /usr/lib/tmpfiles.d/tmp.conf</span><br><span class="line">#  This file is part of systemd.</span><br><span class="line">#</span><br><span class="line">#  systemd is free software; you can redistribute it and/or modify it</span><br><span class="line">#  under the terms of the GNU Lesser General Public License as published by</span><br><span class="line">#  the Free Software Foundation; either version 2.1 of the License, or</span><br><span class="line">#  (at your option) any later version.</span><br><span class="line"></span><br><span class="line"># See tmpfiles.d(5) for details</span><br><span class="line"></span><br><span class="line"># Clear tmp directories separately, to make them easier to override</span><br><span class="line">v /tmp 1777 root root 10d</span><br><span class="line">v /var/tmp 1777 root root 30d</span><br><span class="line"></span><br><span class="line"># Exclude namespace mountpoints created with PrivateTmp=yes</span><br><span class="line">x /tmp/systemd-private-%b-*</span><br><span class="line">X /tmp/systemd-private-%b-*/tmp</span><br><span class="line">x /var/tmp/systemd-private-%b-*</span><br><span class="line">X /var/tmp/systemd-private-%b-*/tmp</span><br></pre></td></tr></table></figure>
+<p>v /tmp 1777 root root 10d 代表的是每十天会把/tmp自动清理掉</p>
+<p>v:代表的是按照一定规则清理的文件</p>
+<p>x:代表的是不会清理的文件</p>
+<p>如果希望/tmp/hadoop相关的文件不想被清理掉，就使用x添加相关的配置</p>
+<p>==3.2.2 改变hadoop pid信息存放位置==</p>
+<blockquote>
+<p>vi <a href="http://hadoop-env.sh" target="_blank" rel="noopener">hadoop-env.sh</a><br>
+export HADOOP_PID_DIR=/home/wzj/tmp</p>
+</blockquote>
+<blockquote>
+<p>vi <a href="http://yarn-env.sh" target="_blank" rel="noopener">yarn-env.sh</a><br>
+export YARN_PID_DIR=/home/hadoop/tmp</p>
+</blockquote>
+<h3 id="踩坑">==踩坑==</h3>
+<blockquote>
+<p>在写这篇博客的最后操作中踩了一个坑  导致搞了半个多小时<br>
+==起因：修改pid信息存储路径的时候忘记停掉hadoop的相关进程，导致改完路径后，jps查看少一个进程==<br>
+[wzj@hadoop001 ~]$ jps<br>
+10512 ResourceManager<br>
+10083 NameNode<br>
+10211 DataNode<br>
+10615 NodeManager<br>
+11166 Jps</p>
+</blockquote>
+<p>但是在修改之后的路径下神奇的看到了他,而且还查到了进程号</p>
+<blockquote>
+<p>[wzj@hadoop001 ~]$ cd tmp<br>
+[wzj@hadoop001 tmp]$ ll<br>
+total 20<br>
+-rw-rw-r–. 1 wzj wzj 6  hadoop-wzj-datanode.pid<br>
+-rw-rw-r–. 1 wzj wzj 6  hadoop-wzj-namenode.pid<br>
+-rw-rw-r–. 1 wzj wzj 6  ==hadoop-wzj-secondarynamenode.pid==<br>
+-rw-rw-r–. 1 wzj wzj 6  yarn-wzj-nodemanager.pid<br>
+-rw-rw-r–. 1 wzj wzj 6  yarn-wzj-resourcemanager.pid<br>
+[wzj@hadoop001 tmp]$ cat hadoop-wzj-secondarynamenode.pid<br>
+10369</p>
+</blockquote>
+<p>。。。。。。。。。。。。。。。。无语脸</p>
+<p>瞎试中，准备kill一下,重点来喽，告诉我不存在</p>
+<blockquote>
+<p>[wzj@hadoop001 tmp]$ kill -9 10369<br>
+-bash: kill: (10369) - No such process</p>
+</blockquote>
+<p>少了secondarynamenode，还是去看它的日志吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 logs]$ cat hadoop-wzj-secondarynamenode-hadoop001.log|grep ERROR</span><br><span class="line">2018-02-12 15:22:02,117 ERROR org.apache.hadoop.hdfs.server.common.Storage: Unable to acquire file lock on path /tmp/hadoop-wzj/dfs/namesecondary/in_use.lock</span><br><span class="line">2018-02-12 15:22:02,119 ERROR org.apache.hadoop.hdfs.server.common.Storage: It appears that another namenode 4238@hadoop001 has already locked the storage directory</span><br><span class="line">2018-02-12 15:27:23,075 ERROR org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode: Exception in doCheckpoint</span><br><span class="line">2018-02-12 15:28:19,310 ERROR org.apache.hadoop.hdfs.server.common.Storage: Unable to acquire file lock on path /tmp/hadoop-wzj/dfs/namesecondary/in_use.lock</span><br><span class="line">2018-02-12 15:28:19,311 ERROR org.apache.hadoop.hdfs.server.common.Storage: It appears that another namenode 4238@hadoop001 has already locked the storage directory</span><br></pre></td></tr></table></figure>
+<p>能看到存在一个4238的secondarynamenode进程locked</p>
+<p>top去看一下   kill  kill kill kill kill  就是这个东西搞了我半天</p>
+<p>重新启动，成功</p>
+<blockquote>
+<p>[wzj@hadoop001 ~]$ jps<br>
+12273 NodeManager<br>
+12433 Jps<br>
+12028 SecondaryNameNode<br>
+12172 ResourceManager<br>
+11742 NameNode<br>
+11870 DataNode<br>
+[wzj@hadoop001 ~]$ cd tmp<br>
+[wzj@hadoop001 tmp]$ ll<br>
+total 20<br>
+-rw-rw-r–. 1 wzj wzj 6  hadoop-wzj-datanode.pid<br>
+-rw-rw-r–. 1 wzj wzj 6  hadoop-wzj-namenode.pid<br>
+-rw-rw-r–. 1 wzj wzj 6  hadoop-wzj-secondarynamenode.pid<br>
+-rw-rw-r–. 1 wzj wzj 6  yarn-wzj-nodemanager.pid<br>
+-rw-rw-r–. 1 wzj wzj 6  yarn-wzj-resourcemanager.pid</p>
+</blockquote>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/HDFS副本放置策略和文件的读写流程/" data-toggle="tooltip" data-placement="top" title="HDFS副本放置策略和文件的读写流程">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/MapReduce之WordCount/" data-toggle="tooltip" data-placement="top" title="MapReduce之WordCount">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#1首先查询下jps的路径"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1.&#x9996;&#x5148;&#x67E5;&#x8BE2;&#x4E0B;jps&#x7684;&#x8DEF;&#x5F84;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#2-jps"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. jps</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#21-查看进程"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">2.1 &#x67E5;&#x770B;&#x8FDB;&#x7A0B;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#22-进程位置"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">2.2 &#x8FDB;&#x7A0B;&#x4F4D;&#x7F6E;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#3linux的两种机制"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">3.linux&#x7684;&#x4E24;&#x79CD;&#x673A;&#x5236;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#31-oom-kill机制"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">3.1 oom-kill&#x673A;&#x5236;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#32-clean机制"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">3.2 clean&#x673A;&#x5236;</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#踩坑"><span class="toc-nav-number"></span> <span class="toc-nav-text">==&#x8E29;&#x5751;==</span></a>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.baidu.com" target="_blank">study</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; jerry 2020 
+
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.csdn.net/wzj_wp/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://blog.csdn.net/wzj_wp/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

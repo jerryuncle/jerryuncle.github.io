@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Scala(三)   - jerry@wzj | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/article/Scala(三)/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Scala" title="Scala">Scala</a>
+                            
+                        </div>
+                        <h1>Scala(三)  </h1>
+                        <h2 class="subheading">Scala</h2>
+                        <span class="meta">
+                            Posted by jerry on
+                            2018-07-11
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">jerry·Wang</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h4 id="scala三">scala(三)</h4>
+<p>抽象类：</p>
+<p>在类中，一个方法或者多个方法只有定义没有实现：def xx()</p>
+<p>此时需要加abstract关键字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package wzj</span><br><span class="line"></span><br><span class="line">object abstractApp &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class Test&#123;</span><br><span class="line">  def name()</span><br><span class="line">  val like:String</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>抽象类需要通过子类去实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package wzj</span><br><span class="line"></span><br><span class="line">object abstractApp &#123;</span><br><span class="line"></span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line"></span><br><span class="line">    val test = new test1()</span><br><span class="line">    test.like()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class Test&#123;</span><br><span class="line">  def like()</span><br><span class="line">  val name:String</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class test1 extends Test&#123;</span><br><span class="line">  override def like(): Unit = &#123;</span><br><span class="line">    println(name+&quot;西瓜&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">  override val name: String = &quot;吃&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>伴生类&amp;伴生对象&amp;apply</p>
+<p>伴生对象的小结:</p>
+<p>1）Scala中伴生对的采用object关键字声明，伴生对象中声明的全是&quot;静态&quot;内容，可以通过伴生对象名称直接调用</p>
+<p>2）伴生对象对应的类称之为伴生类，伴生对象的名称应该和伴生类名一致。</p>
+<p>3）伴生对象中的属性和方法（包括私有方法）都可以通过伴生类直接调用访问。</p>
+<p>4）所谓的伴生对象其实就是类的静态方法和静态成员的集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">package wzj</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 类名() ==&gt; 进入伴生对象apply方法</span><br><span class="line"> * 类名().方法  (伴生对象中必须要有apply方法)==》 进入伴生对象的apply 和 伴生类的方法</span><br><span class="line"> * new出的对象() ==&gt; 进入伴生类的apply方法</span><br><span class="line"> */</span><br><span class="line">object ApplyDemo &#123;</span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">//    val test = ApplyTest()</span><br><span class="line">//    println(test) // 伴生类名() ==&gt; 进入伴生对象的apply方法</span><br><span class="line">//      ApplyTest.test() // 类.方法() ==&gt; 进入伴生对象方法</span><br><span class="line">//      ApplyTest().test() //类名().方法  (伴生对象中必须要有apply方法) ==》 进入伴生对象的apply 和 伴生类的方法</span><br><span class="line">//    val b = new ApplyTest</span><br><span class="line">//    println(b())  // new出来的对象() ==&gt; 进入伴生类 apply 方法</span><br><span class="line">//    b.test() //new出来的对象.方法() ==&gt; 进入伴生类方法</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ApplyTest &#123;</span><br><span class="line"></span><br><span class="line">  // </span><br><span class="line">  def apply() = &#123;</span><br><span class="line">    println(&quot;-----class ApplyTest invoked.....&quot;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def test(): Unit = &#123;</span><br><span class="line">    println(&quot;---------&gt; ApplyTest class test&quot;)</span><br><span class="line">    println(&quot;名字是：&quot;+ApplyTest.name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">object ApplyTest &#123;</span><br><span class="line"></span><br><span class="line">//  println(&quot;enter ApplyTest object...&quot;)</span><br><span class="line"></span><br><span class="line">  var index = 0</span><br><span class="line">  private var name=&quot;wzj&quot;</span><br><span class="line"></span><br><span class="line">  def apply() = &#123;</span><br><span class="line">    println(&quot;==========object ApplyTest apply invoked============&quot;)</span><br><span class="line">    new ApplyTest()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def test() = &#123;</span><br><span class="line">    index += 1</span><br><span class="line">    println(index)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">//  println(&quot;leave ApplyTest object...&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">==========object ApplyTest apply invoked============</span><br><span class="line">wzj.ApplyTest@246ae04d</span><br><span class="line">1</span><br><span class="line">==========object ApplyTest apply invoked============</span><br><span class="line">---------&gt; ApplyTest class test</span><br><span class="line">名字是：wzj</span><br><span class="line">-----class ApplyTest invoked.....</span><br><span class="line">()</span><br><span class="line">---------&gt; ApplyTest class test</span><br><span class="line">名字是：wzj</span><br></pre></td></tr></table></figure>
+<p>case class 和class 的区别</p>
+<p>case class 初始化的时候不需要new;默认实现了equls和hashcode和toString</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; class per(val name:String,val age:Int)</span><br><span class="line">defined class per</span><br><span class="line"></span><br><span class="line">scala&gt; val p1 = new per(&quot;wzj&quot;,18)</span><br><span class="line">p1: per = per@eec5a4a</span><br><span class="line"></span><br><span class="line">scala&gt; val p2 = new per(&quot;wzj&quot;,18)</span><br><span class="line">p2: per = per@5e853265</span><br><span class="line"></span><br><span class="line">scala&gt; </span><br><span class="line"></span><br><span class="line">scala&gt; case class per2(val name:String,val age:Int)</span><br><span class="line">defined class per2</span><br><span class="line"></span><br><span class="line">scala&gt; val p3 = per2(&quot;wzj&quot;,18)</span><br><span class="line">p3: per2 = per2(wzj,18)</span><br><span class="line"></span><br><span class="line">scala&gt; val p4 = per2(&quot;wzj&quot;,18)</span><br><span class="line">p4: per2 = per2(wzj,18)</span><br><span class="line"></span><br><span class="line">scala&gt; p1==p2</span><br><span class="line">res0: Boolean = false</span><br><span class="line"></span><br><span class="line">scala&gt; p3==p4</span><br><span class="line">res1: Boolean = true</span><br><span class="line">scala&gt; p3.hashCode</span><br><span class="line">res2: Int = 209736146</span><br><span class="line">scala&gt; p4.hashCode</span><br><span class="line">res4: Int = 209736146</span><br><span class="line">scala&gt; p3</span><br><span class="line">res3: per2 = per2(wzj,18)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>case class 和case object的区别</p>
+<p>case class 必须传入参数</p>
+<p>case object 可以不传参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; case class t1</span><br><span class="line">&lt;console&gt;:1: error: case classes without a parameter list are not allowed;</span><br><span class="line">use either case objects or case classes with an explicit `()&apos; as a parameter list.</span><br><span class="line">case class t1</span><br><span class="line">             ^</span><br><span class="line"></span><br><span class="line">scala&gt; case object t1</span><br><span class="line">defined object t1</span><br></pre></td></tr></table></figure>
+<hr>
+<p>接口：</p>
+<p>Java:  interface</p>
+<p>Scala: trait</p>
+<p>类似abstarct抽象类，需要通过继承去实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package wzj</span><br><span class="line"></span><br><span class="line">trait test &#123;</span><br><span class="line">  def fly()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class userTest extends test&#123;</span><br><span class="line">  override def fly(): Unit = &#123;</span><br><span class="line">    println(&quot;超人会飞&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package wzj</span><br><span class="line"></span><br><span class="line">object traitTest &#123;</span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">    val test = new userTest()</span><br><span class="line">    test.fly()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>集合：</p>
+<p>集合分为三大类：</p>
+<ul>
+<li>seq 一组有序的元素 eg:List Array Range</li>
+<li>Set 一组没有重复元素的集合 HashSet ListSet BitSet SortedSet</li>
+<li>Map 键值对的集合 HashMap ListMap</li>
+</ul>
+<p>==集合支持可变:mutable和不可变:immutable==</p>
+<p>不可变==》可变</p>
+<p>可变==》不可变</p>
+<p>tuple: 最多22个元素</p>
+<p>可以放不同类型</p>
+<p>val b =(1,2,3,4,“wzj”)<br>
+b._1 ==&gt;取第一个元素</p>
+<p>List:<br>
+::  ==&gt;追加的意思</p>
+<p>val l = 1::2::nil</p>
+<p>List(1,2)</p>
+<p>map &lt;==&gt; flatMap</p>
+<p>map:一一映射<br>
+flatMap:将嵌套的结构展开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val L = List(List(1,2),List(3,4),List(5,6))</span><br><span class="line">L: List[List[Int]] = List(List(1, 2), List(3, 4), List(5, 6))</span><br><span class="line"></span><br><span class="line">scala&gt; L.flat</span><br><span class="line">flatMap   flatten</span><br><span class="line"></span><br><span class="line">scala&gt; L.flatten</span><br><span class="line">res2: List[Int] = List(1, 2, 3, 4, 5, 6)</span><br><span class="line"></span><br><span class="line">scala&gt; L.flatMap(_.map(_*2))</span><br><span class="line">res6: List[Int] = List(2, 4, 6, 8, 10, 12)</span><br><span class="line"></span><br><span class="line">### L.flatMap(_.map(_*2)) 等价于 L.map(_.map(_*2)).flatten</span><br><span class="line"></span><br><span class="line">scala&gt; L.map(x =&gt;x.map(x=&gt;x*2))</span><br><span class="line">res7: List[List[Int]] = List(List(2, 4), List(6, 8), List(10, 12))</span><br><span class="line"></span><br><span class="line">scala&gt; L.map(_.map(_*2))</span><br><span class="line">res8: List[List[Int]] = List(List(2, 4), List(6, 8), List(10, 12))</span><br><span class="line"></span><br><span class="line">scala&gt;</span><br></pre></td></tr></table></figure>
+<p>Scala 实现wordcount</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package wzj</span><br><span class="line"></span><br><span class="line">object functionApp &#123;</span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">    </span><br><span class="line">    val world = List(&quot;hello world scala&quot;,&quot;hello world&quot;)</span><br><span class="line">    val worlds: List[String] = world.flatMap(_.split(&quot; &quot;))</span><br><span class="line">    val worldsWithOne = worlds.map(x =&gt; (x, 1))</span><br><span class="line">    val groupbyData: Map[String, List[(String, Int)]] = worldsWithOne.groupBy(_._1)</span><br><span class="line">    val result: Map[String, Int] = groupbyData.mapValues(_.map(_._2).sum)</span><br><span class="line">    println(result)</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">Map(scala -&gt; 1, world -&gt; 2, hello -&gt; 2)</span><br></pre></td></tr></table></figure>
+<p>union&amp;intersect(交集)&amp;diff</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val a1 = Array(1,2,3)</span><br><span class="line">a1: Array[Int] = Array(1, 2, 3)</span><br><span class="line"></span><br><span class="line">scala&gt; val a2 = Array(3,4,5)</span><br><span class="line">a2: Array[Int] = Array(3, 4, 5)</span><br><span class="line"></span><br><span class="line">scala&gt; a1.union(a2)</span><br><span class="line">res9: Array[Int] = Array(1, 2, 3, 3, 4, 5)</span><br><span class="line">###删重</span><br><span class="line">scala&gt; a1.union(a2).distinct</span><br><span class="line">res13: Array[Int] = Array(1, 2, 3, 4, 5)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">scala&gt; a1.intersect(a2)</span><br><span class="line">res10: Array[Int] = Array(3)</span><br><span class="line"></span><br><span class="line">scala&gt; a1.diff(a2)</span><br><span class="line">res11: Array[Int] = Array(1, 2)</span><br><span class="line"></span><br><span class="line">scala&gt; a2.diff(a1)</span><br><span class="line">res12: Array[Int] = Array(4, 5)</span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/Scala(四)/" data-toggle="tooltip" data-placement="top" title="Scala(四)  ">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/Scala(二)/" data-toggle="tooltip" data-placement="top" title="Scala(二)  ">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#scala三"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">scala(&#x4E09;)</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Scala" title="Scala">Scala</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.baidu.com" target="_blank">study</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; jerry 2020 
+
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.csdn.net/wzj_wp/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://blog.csdn.net/wzj_wp/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

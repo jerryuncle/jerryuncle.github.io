@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Zookeeper 安装部署以及客户端使用  - jerry@wzj | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/article/Zookeeper 安装部署以及客户端使用/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
+                            
+                        </div>
+                        <h1>Zookeeper 安装部署以及客户端使用 </h1>
+                        <h2 class="subheading">Zookeeper</h2>
+                        <span class="meta">
+                            Posted by jerry on
+                            2018-06-03
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">jerry·Wang</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>==cdh中搜不到zookeeper的安装包，需要输入全路径即可下载==</p>
+<p><a href="https://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.16.2.tar.gz" target="_blank" rel="noopener">下载地址：https://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.16.2.tar.gz</a></p>
+<h4 id="standalone模式">standalone模式</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">解压：</span><br><span class="line">[wzj@hadoop001 software]$ tar -zxvf zookeeper-3.4.5-cdh5.16.2.tar.gz -C ~/app</span><br><span class="line"></span><br><span class="line">配置文件：修改datadir路径</span><br><span class="line">[wzj@hadoop001 conf]$ cat zoo.cfg </span><br><span class="line"># The number of milliseconds of each tick</span><br><span class="line">tickTime=2000</span><br><span class="line"># The number of ticks that the initial </span><br><span class="line"># synchronization phase can take</span><br><span class="line">initLimit=10</span><br><span class="line"># The number of ticks that can pass between </span><br><span class="line"># sending a request and getting an acknowledgement</span><br><span class="line">syncLimit=5</span><br><span class="line"># the directory where the snapshot is stored.</span><br><span class="line"># do not use /tmp for storage, /tmp here is just </span><br><span class="line"># example sakes.</span><br><span class="line">dataDir=/home/wzj/tmp/zookeeper</span><br><span class="line"># the port at which the clients will connect</span><br><span class="line">clientPort=2181</span><br><span class="line"># the maximum number of client connections.</span><br><span class="line"># increase this if you need to handle more clients</span><br><span class="line">#maxClientCnxns=60</span><br><span class="line">#</span><br><span class="line"># Be sure to read the maintenance section of the </span><br><span class="line"># administrator guide before turning on autopurge.</span><br><span class="line">#</span><br><span class="line"># http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance</span><br><span class="line">#</span><br><span class="line"># The number of snapshots to retain in dataDir</span><br><span class="line">#autopurge.snapRetainCount=3</span><br><span class="line"># Purge task interval in hours</span><br><span class="line"># Set to &quot;0&quot; to disable auto purge feature</span><br><span class="line">#autopurge.purgeInterval=1</span><br><span class="line"></span><br><span class="line">启动：</span><br><span class="line">[wzj@hadoop001 bin]$ ./zkServer.sh</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: /home/wzj/app/zookeeper/bin/../conf/zoo.cfg</span><br><span class="line">Usage: ./zkServer.sh &#123;start|start-foreground|stop|restart|status|upgrade|print-cmd&#125;</span><br><span class="line">[wzj@hadoop001 bin]$ ./zkServer.sh start</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: /home/wzj/app/zookeeper/bin/../conf/zoo.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br><span class="line">[wzj@hadoop001 bin]$ jps</span><br><span class="line">14592 Jps</span><br><span class="line">14575 QuorumPeerMain</span><br><span class="line">[wzj@hadoop001 bin]$</span><br></pre></td></tr></table></figure>
+<h4 id="数据结构">数据结构</h4>
+<p>zookeeper采用树状结构对数据进行存储，类似linux文件系统，是层次化的结构目录，核心称之为znode,都有唯一的路径标识,znode分为永久和临时两种</p>
+<h4 id="客户端使用">客户端使用</h4>
+<p>启动客户端：<br>
+[wzj@hadoop001 bin]$ ./zkCli.sh<br>
+Connecting to localhost:2181<br>
+[zk: localhost:2181(CONNECTED) 0] ls /<br>
+[zookeeper]</p>
+<ul>
+<li>创建新节点：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 3] create /test 123456</span><br><span class="line">Created /test</span><br><span class="line">[zk: localhost:2181(CONNECTED) 5] ls /</span><br><span class="line">[zookeeper, test]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建临时节点：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 6] create -e /test/tmp zxcvbnm</span><br><span class="line">Created /test/tmp</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建有序列的永久节点：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 17] create -s /test/seq seq</span><br><span class="line">Created /test/seq0000000001</span><br><span class="line">[zk: localhost:2181(CONNECTED) 18] create -s /test/seq seq</span><br><span class="line">Created /test/seq0000000002</span><br><span class="line">[zk: localhost:2181(CONNECTED) 19] create -s /test/seq seq</span><br><span class="line">Created /test/seq0000000003</span><br><span class="line">[zk: localhost:2181(CONNECTED) 20] create -s /test/seq seq</span><br><span class="line">Created /test/seq0000000004</span><br><span class="line">[zk: localhost:2181(CONNECTED) 22] ls /test</span><br><span class="line">[seq0000000003, seq0000000004, tmp, seq0000000001, seq0000000002]</span><br><span class="line">[zk: localhost:2181(CONNECTED) 23]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建有序列的临时节点：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 24] create -s -e /test/seq seq</span><br><span class="line">Created /test/seq0000000005</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取信息：get</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 13] get /test</span><br><span class="line">123456   #数据</span><br><span class="line">cZxid = 0x6  #编号</span><br><span class="line">ctime = Mon Mar 09 19:31:57 CST 2020</span><br><span class="line">mZxid = 0x6</span><br><span class="line">mtime = Mon Mar 09 19:31:57 CST 2020</span><br><span class="line">pZxid = 0x7 #最后更新的子节点id</span><br><span class="line">cversion = 1 #子节点版本号</span><br><span class="line">dataVersion = 0</span><br><span class="line">aclVersion = 0</span><br><span class="line">ephemeralOwner = 0x0 #标识符 0X0为永久</span><br><span class="line">dataLength = 6  #数据长度</span><br><span class="line">numChildren = 1 #子节点</span><br><span class="line">[zk: localhost:2181(CONNECTED) 14] get /test/tmp</span><br><span class="line">zxcvbnm</span><br><span class="line">cZxid = 0x7</span><br><span class="line">ctime = Mon Mar 09 19:33:36 CST 2020</span><br><span class="line">mZxid = 0x7</span><br><span class="line">mtime = Mon Mar 09 19:33:36 CST 2020</span><br><span class="line">pZxid = 0x7</span><br><span class="line">cversion = 0</span><br><span class="line">dataVersion = 0</span><br><span class="line">aclVersion = 0</span><br><span class="line">ephemeralOwner = 0x170bef2aba70001 #临时</span><br><span class="line">dataLength = 7</span><br><span class="line">numChildren = 0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改数据：set</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 15] set /test wzj</span><br><span class="line">cZxid = 0x6</span><br><span class="line">ctime = Mon Mar 09 19:31:57 CST 2020</span><br><span class="line">mZxid = 0x8</span><br><span class="line">mtime = Mon Mar 09 19:43:34 CST 2020</span><br><span class="line">pZxid = 0x7</span><br><span class="line">cversion = 1</span><br><span class="line">dataVersion = 1</span><br><span class="line">aclVersion = 0</span><br><span class="line">ephemeralOwner = 0x0</span><br><span class="line">dataLength = 3</span><br><span class="line">numChildren = 1</span><br><span class="line">[zk: localhost:2181(CONNECTED) 16] get /test</span><br><span class="line">wzj</span><br><span class="line">cZxid = 0x6</span><br><span class="line">ctime = Mon Mar 09 19:31:57 CST 2020</span><br><span class="line">mZxid = 0x8</span><br><span class="line">mtime = Mon Mar 09 19:43:34 CST 2020</span><br><span class="line">pZxid = 0x7</span><br><span class="line">cversion = 1</span><br><span class="line">dataVersion = 1</span><br><span class="line">aclVersion = 0</span><br><span class="line">ephemeralOwner = 0x0</span><br><span class="line">dataLength = 3</span><br><span class="line">numChildren = 1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除节点：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 26] delete /test/seq0000000005</span><br></pre></td></tr></table></figure>
+<ul>
+<li>监听：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">stat path [watch] 监听路径文件状态的变化</span><br><span class="line">ls path [watch]   监听父子节点文件的变化</span><br><span class="line">ls2 path [watch]</span><br><span class="line">get path [watch]  监听文件内容的变化</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">[zk: localhost:2181(CONNECTED) 32] ls /test1 watch</span><br><span class="line">[]</span><br><span class="line">[zk: localhost:2181(CONNECTED) 34] create /test1/ce asdf</span><br><span class="line"></span><br><span class="line">WATCHER::</span><br><span class="line"></span><br><span class="line">WatchedEvent state:SyncConnected type:NodeChildrenChanged path:/test1</span><br><span class="line">Created /test1/ce</span><br><span class="line">[zk: localhost:2181(CONNECTED) 35]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>四字命令：<br>
+stat conf envi等</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 app]$ echo stat |nc localhost 2181</span><br><span class="line"></span><br><span class="line">Zookeeper version: 3.4.5-cdh5.16.2--1, built on 06/03/2019 10:40 GMT</span><br><span class="line">Clients:</span><br><span class="line"> /127.0.0.1:60614[1](queued=0,recved=419,sent=420)</span><br><span class="line"> /0:0:0:0:0:0:0:1:51856[0](queued=0,recved=1,sent=0)</span><br><span class="line"></span><br><span class="line">Latency min/avg/max: 0/0/37</span><br><span class="line">Received: 424</span><br><span class="line">Sent: 424</span><br><span class="line">Connections: 2</span><br><span class="line">Outstanding: 0</span><br><span class="line">Zxid: 0x11</span><br><span class="line">Mode: standalone</span><br><span class="line">Node count: 12</span><br></pre></td></tr></table></figure>
+<h4 id="集群模式">集群模式</h4>
+<p>备注：本人在一台机器上通过改端口进行分布式的部署测试</p>
+<ul>
+<li>解压之后复制三份</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 app]$ ll</span><br><span class="line">drwxr-xr-x. 14 wzj wzj 4096 Mar  9 20:28 zookeeper1</span><br><span class="line">drwxr-xr-x. 14 wzj wzj 4096 Mar  9 20:32 zookeeper2</span><br><span class="line">drwxr-xr-x. 14 wzj wzj 4096 Mar  9 20:32 zookeeper3</span><br><span class="line"></span><br><span class="line">修改配置文件：</span><br><span class="line">[wzj@hadoop001 app]$ vi zookeeper1/conf/zoo.cfg </span><br><span class="line"></span><br><span class="line"># The number of milliseconds of each tick</span><br><span class="line">tickTime=2000</span><br><span class="line"># The number of ticks that the initial</span><br><span class="line"># synchronization phase can take</span><br><span class="line">initLimit=10</span><br><span class="line"># The number of ticks that can pass between</span><br><span class="line"># sending a request and getting an acknowledgement</span><br><span class="line">syncLimit=5</span><br><span class="line"># the directory where the snapshot is stored.</span><br><span class="line"># do not use /tmp for storage, /tmp here is just</span><br><span class="line"># example sakes.</span><br><span class="line">dataDir=/home/wzj/tmp/zookeeper1</span><br><span class="line"># the port at which the clients will connect</span><br><span class="line">server.1=localhost:2777:3777</span><br><span class="line">server.2=localhost:2778:3778</span><br><span class="line">server.3=localhost:2779:3779</span><br><span class="line"></span><br><span class="line">clientPort=2181</span><br><span class="line"># the maximum number of client connections.</span><br><span class="line"># increase this if you need to handle more clients</span><br><span class="line">#maxClientCnxns=60</span><br><span class="line">#</span><br><span class="line"># Be sure to read the maintenance section of the</span><br><span class="line"># administrator guide before turning on autopurge.</span><br><span class="line">#</span><br><span class="line"># http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance</span><br><span class="line">#</span><br><span class="line"># The number of snapshots to retain in dataDir</span><br><span class="line">&quot;zookeeper1/conf/zoo.cfg&quot; 32L, 1020C</span><br><span class="line"></span><br><span class="line">机器二：修改端口和进程相关文件路径即可</span><br><span class="line">dataDir=/home/wzj/tmp/zookeeper2</span><br><span class="line">clientPort=2182</span><br><span class="line"></span><br><span class="line">机器三：修改端口和进程相关文件路径即可</span><br><span class="line">dataDir=/home/wzj/tmp/zookeeper3</span><br><span class="line">clientPort=2183</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果是多台机器，则配置如下<br>
+server.1=hadoop001:2777:3777<br>
+server.2=hadoop002:2777:3777<br>
+server.3=hadoop003:2777:3777<br>
+clientPort=2181 #端口也不需要变，不会有冲突</p>
+</blockquote>
+<ul>
+<li>添加myid文件<br>
+在各自此配置路径下<br>
+dataDir=/home/wzj/tmp/zookeeper1分别添加myid文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[wzj@hadoop001 zookeeper1]$ pwd</span><br><span class="line">/home/wzj/tmp/zookeeper1</span><br><span class="line">[wzj@hadoop001 zookeeper1]$ cat myid</span><br><span class="line">1</span><br><span class="line">[wzj@hadoop001 zookeeper1]$ cd /home/wzj/tmp/zookeeper2</span><br><span class="line">[wzj@hadoop001 zookeeper2]$ cat myid</span><br><span class="line">2</span><br><span class="line">[wzj@hadoop001 zookeeper2]$ cd /home/wzj/tmp/zookeeper3</span><br><span class="line">[wzj@hadoop001 zookeeper3]$ cat myid</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>测试HA</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">各自分别启动客户端</span><br><span class="line">[wzj@hadoop001 bin]$ ./zkCli.sh -server localhost:2181,localhost:2182,localhost:2183</span><br><span class="line">[zk: localhost:2181(CONNECTED) 2] ls /</span><br><span class="line">[zookeeper]</span><br><span class="line">[zk: localhost:2182(CONNECTED) 0] ls /</span><br><span class="line">[zookeeper]</span><br><span class="line">[zk: localhost:2183(CONNECTED) 0] ls /</span><br><span class="line">[zookeeper]</span><br><span class="line"></span><br><span class="line">在2181上新建一个节点</span><br><span class="line">[zk: localhost:2181(CONNECTED) 3] create /HAtest 12345</span><br><span class="line">Created /HAtest</span><br><span class="line">[zk: localhost:2181(CONNECTED) 4] ls /</span><br><span class="line">[zookeeper, HAtest]</span><br><span class="line"></span><br><span class="line">[zk: localhost:2182(CONNECTED) 1] ls /</span><br><span class="line">[zookeeper, HAtest]</span><br><span class="line">[zk: localhost:2183(CONNECTED) 1] ls /</span><br><span class="line">[zookeeper, HAtest]</span><br><span class="line">其它两台机器都自动同步了</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">分别查看机器状态：</span><br><span class="line">2181：</span><br><span class="line">[wzj@hadoop001 bin]$ ./zkServer.sh status</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: /home/wzj/app/zookeeper1/bin/../conf/zoo.cfg</span><br><span class="line">Mode: follower</span><br><span class="line"></span><br><span class="line">2182：</span><br><span class="line">[wzj@hadoop001 bin]$ ./zkServer.sh status</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: /home/wzj/app/zookeeper2/bin/../conf/zoo.cfg</span><br><span class="line">Mode: leader</span><br><span class="line"></span><br><span class="line">2183：</span><br><span class="line">[wzj@hadoop001 bin]$ ./zkServer.sh status</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: /home/wzj/app/zookeeper3/bin/../conf/zoo.cfg</span><br><span class="line">Mode: follower</span><br><span class="line"></span><br><span class="line">发现2182为leader,杀掉2182的进程后，其他机器会自动顶替成为leader</span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/Zookeeper API/" data-toggle="tooltip" data-placement="top" title="Zookeeper API ">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/Azkaban 安装部署&常见错误/" data-toggle="tooltip" data-placement="top" title="Azkaban 安装部署&常见错误">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#standalone模式"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">standalone&#x6A21;&#x5F0F;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据结构"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x6570;&#x636E;&#x7ED3;&#x6784;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#客户端使用"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x5BA2;&#x6237;&#x7AEF;&#x4F7F;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#集群模式"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x96C6;&#x7FA4;&#x6A21;&#x5F0F;</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.baidu.com" target="_blank">study</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; jerry 2020 
+
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.csdn.net/wzj_wp/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://blog.csdn.net/wzj_wp/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
