@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Scala(五)   - jerry@wzj | Blog
+          jerry@wzj | Blog
         
     </title>
 
-    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/article/Scala(五)/">
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/archives/6/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -71,8 +71,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/article_header/article_header.png')
-            /*post*/
+            background-image: url('/img/header_img/ruozedatahead.png') 
+            /*config*/
         
     }
     
@@ -85,18 +85,10 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="post-heading">
-                        <div class="tags">
-                            
-                              <a class="tag" href="/tags/#Scala" title="Scala">Scala</a>
-                            
-                        </div>
-                        <h1>Scala(五)  </h1>
-                        <h2 class="subheading">Scala</h2>
-                        <span class="meta">
-                            Posted by jerry on
-                            2018-07-20
-                        </span>
+                    <div class="site-heading">
+                        <h1>jerry·Wang</h1>
+                        <!--<hr class="small">-->
+                        <span class="subheading"></span>
                     </div>
                 
 
@@ -199,201 +191,255 @@
 
 
     <!-- Main Content -->
-    <!-- Modify by Yu-Hsuan Yen -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-            <!-- Post Container -->
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
 
-                <p>scala<br>
-zip:进行拉链操作，返回的列表长度取决于较短的列表，只要有一个列表到达了末尾zip函数就停止了<br>
-两种写法：list zip list1或者list.zip(list1)</p>
-<p>scala&gt; val list =1 to 5<br>
-list: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)</p>
-<p>scala&gt; val list1 =6 to 10<br>
-list1: scala.collection.immutable.Range.Inclusive = Range(6, 7, 8, 9, 10)</p>
-<p>scala&gt; list zip list1<br>
-res0: scala.collection.immutable.IndexedSeq[(Int, Int)] = Vector((1,6), (2,7), (3,8), (4,9), (5,10))</p>
-<p>scala&gt; list.zip(list1)<br>
-res2: scala.collection.immutable.IndexedSeq[(Int, Int)] = Vector((1,6), (2,7), (3,8), (4,9), (5,10))</p>
-<p>map:map将一个函数应用于列表的每一个元素并且将其作为一个新的列表返回<br>
-相当于对每个元素遍历进行操作</p>
-<p>scala&gt; list<br>
-res3: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)</p>
-<p>scala&gt; list.map(x=&gt;x*x)<br>
-res5: scala.collection.immutable.IndexedSeq[Int] = Vector(1, 4, 9, 16, 25)</p>
-<p>fsArr.map(x=&gt;{x.getPath}).zip(num)</p>
 
-                
+<div class="post-preview">
 
-                <hr>
-                <!-- Pager -->
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/article/Scala 解析IP/" data-toggle="tooltip" data-placement="top" title="Scala 解析IP ">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/article/Scala(四)/" data-toggle="tooltip" data-placement="top" title="Scala(四)  ">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
+    <a href="/article/mysql Linux完整部署/">
+        <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
+                                 
+            mysql Linux完整部署
+        </h2>
+        <h3 class="post-subtitle">
+            mysql详细部署.
+        </h3>
+        <div class="post-content-preview">
+            
+1.cd /usr/local
+2.tar xzvf mysql-5.6.23-linux-glibc2.5-x86_64.tar.gz
+[root@hadoop001 local]# ll
+total 304468
+drwxr-xr-x.  2 root root         6 Nov  5  2016 bin
+drwxr-xr-x.  2 root root         6 ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-01-05
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#mysql" title="mysql">mysql</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/archives/5/">&larr; Newer Posts</a>
+        </li>
+    
+    
+</ul>
+
+
 
                 <br>
 
-                <!--打赏-->
-                
-                <!--打赏-->
-
-                <br>
-                <!--分享-->
-                
-                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
-                    <!--  css & js -->
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-                
-                <!--分享-->
-                <br>                       
-                
                 <!-- require APlayer -->
                 
 
-                <!-- duoshuo Share start -->
+                <!-- 如果开启评论功能 -->
                 
-                <!-- 多说 Share end-->
-
-                <!-- 多说评论框 start -->
-                
-                <!-- 多说评论框 end -->
-
-                <!-- disqus comment start -->
-                
-                <!-- disqus comment end -->
-
-                
-
             </div>
+
+          <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
             
-            <!-- Tabe of Content -->
-            <!-- Table of Contents -->
-
-  
-    
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
+            <a href="/tags/#Azkaban" title="Azkaban" rel="1">Azkaban</a>
+            
         
-          <ol class="nav">none</ol>
+            
+            <a href="/tags/#hadoop" title="hadoop" rel="8">hadoop</a>
+            
         
-        </div>
-      </aside>
-    
-
-                
-            <!-- Sidebar Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#Scala" title="Scala">Scala</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-
-                    
-                        <li><a href="http://www.baidu.com" target="_blank">study</a></li>
-                    
-                </ul>
-                
-            </div>
-        </div>
+            
+            <a href="/tags/#Git" title="Git" rel="1">Git</a>
+            
+        
+            
+            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
+            
+        
+            
+            <a href="/tags/#Hive" title="Hive" rel="8">Hive</a>
+            
+        
+            
+            <a href="/tags/#Linux" title="Linux" rel="7">Linux</a>
+            
+        
+            
+            <a href="/tags/#mysql" title="mysql" rel="2">mysql</a>
+            
+        
+            
+            <a href="/tags/#Nginx" title="Nginx" rel="1">Nginx</a>
+            
+        
+            
+            <a href="/tags/#python" title="python" rel="7">python</a>
+            
+        
+            
+            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
+            
+        
+            
+            <a href="/tags/#Spark" title="Spark" rel="1">Spark</a>
+            
+        
+            
+            <a href="/tags/#Sqoop" title="Sqoop" rel="3">Sqoop</a>
+            
+        
+            
+            <a href="/tags/#Zookeeper" title="Zookeeper" rel="3">Zookeeper</a>
+            
+        
+            
+            <a href="/tags/#Oracle" title="Oracle" rel="1">Oracle</a>
+            
+        
     </div>
-</article>
+</section>
 
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/about/">ABOUT ME</a></h5>
+    <div class="short-about">
 
+        
+            <img id = "avatar_pic" src="/img/avatar/wzj.jpg" />
+        
 
+        
+            <p>learning space</p>
+        
 
+        <!-- SNS Link -->
+        <ul class="list-inline">
+            
+            
+            
 
+            
 
+            
 
+            
+            
+            
+            
+        </ul>
+    </div>
+</section>
 
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'hover',
-          placement: 'left',
-          icon: 'rz'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
+        <hr>
+    
+        
+  <h5>RECENT POSTS</h3>
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/article/Nginx 安装部署/">Nginx 安装部署 </a>
+        </li>
+      
+        <li>
+          <a href="/article/Git常用命令/">Git 常用命令 </a>
+        </li>
+      
+        <li>
+          <a href="/article/日期维度表生成-Python/">日期维度表生成-Python</a>
+        </li>
+      
+        <li>
+          <a href="/article/Sqoop 导入&导出/">Sqoop 导入&amp;导出</a>
+        </li>
+      
+        <li>
+          <a href="/article/Sqoop mysql导入Hive 报错Caused by_ java.lang.ClassNotFoundException_ org.apache.h/">Sqoop mysql导入Hive 报错Caused by: java.lang.ClassNotFoundException: org.apache.hadoop.hive.shims.ShimLo</a>
+        </li>
+      
+    </ul>
+  </div>
 
+        <hr>
+    
+        <!-- Friends Blog -->
 
-<!-- chrome Firefox 中文锚点定位失效-->
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-<!-- smooth scroll behavior polyfill  -->
-<script type="text/javascript" src="/js/smoothscroll.js"></script>
-<script>
-        $('#toc').on('click','a',function(a){
-            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
-            // console.log(window.navigator.userAgent,isChrome)
-                // if(isChrome) {
-                    // console.log(a.currentTarget.outerHTML);
-                    // console.log($(a.currentTarget).attr("href"));
-                    //跳转到指定锚点
-                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
-                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
-                // }
-        })  
-</script>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+
+    
+        <li><a href="http://www.baidu.com" target="_blank">study</a></li>
+    
+</ul>
+
+        <hr>
+    
+        
+    <h5>ARCHIVES</h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
 
 
     <!-- Footer -->

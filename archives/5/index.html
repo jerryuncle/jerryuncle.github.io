@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -208,6 +208,53 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/HDFS副本放置策略和文件的读写流程/">
+        <h2 class="post-title">
+                                 
+            HDFS副本放置策略和文件的读写流程
+        </h2>
+        <h3 class="post-subtitle">
+            HDFS
+        </h3>
+        <div class="post-content-preview">
+            
+HDFS副本放置策略
+			* 文件读流程
+			* 文件写流程
+
+HDFS副本放置策略
+
+第一个副本:
+假如上传节点为DN节点，优先放置本节点；
+否则就随机挑选一台磁盘不太慢  CPU不太繁忙的节点；
+第二个副本:
+放置在于第一个副本的不同的机架的节点上
+第三个副本:
+放置于第二个副本相同机架的不同节点上
+其它副本
+随机挑选
+备注：
+CDH机架有一个默认机架 虚拟的概念；
+CDH一般不调......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-02-15
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -546,48 +593,6 @@ alias rm='rm -i......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/mysql Linux完整部署/">
-        <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
-                                 
-            mysql Linux完整部署
-        </h2>
-        <h3 class="post-subtitle">
-            mysql详细部署.
-        </h3>
-        <div class="post-content-preview">
-            
-1.cd /usr/local
-2.tar xzvf mysql-5.6.23-linux-glibc2.5-x86_64.tar.gz
-[root@hadoop001 local]# ll
-total 304468
-drwxr-xr-x.  2 root root         6 Nov  5  2016 bin
-drwxr-xr-x.  2 root root         6 ......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-01-05
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#mysql" title="mysql">mysql</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -598,6 +603,10 @@ drwxr-xr-x.  2 root root         6 ......
             <a href="/archives/4/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/archives/6/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -629,19 +638,19 @@ drwxr-xr-x.  2 root root         6 ......
     <div class="tags">
         
             
-            <a href="/tags/#hadoop" title="hadoop" rel="8">hadoop</a>
-            
-        
-            
             <a href="/tags/#Azkaban" title="Azkaban" rel="1">Azkaban</a>
             
         
             
-            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
+            <a href="/tags/#hadoop" title="hadoop" rel="8">hadoop</a>
             
         
             
             <a href="/tags/#Git" title="Git" rel="1">Git</a>
+            
+        
+            
+            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
             
         
             
@@ -666,6 +675,10 @@ drwxr-xr-x.  2 root root         6 ......
         
             
             <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
+            
+        
+            
+            <a href="/tags/#Spark" title="Spark" rel="1">Spark</a>
             
         
             
@@ -763,7 +776,7 @@ drwxr-xr-x.  2 root root         6 ......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
 
         <hr>
