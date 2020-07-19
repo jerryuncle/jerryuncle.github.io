@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/archives/6/">
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/page/2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,39 +211,366 @@
 
 <div class="post-preview">
 
-    <a href="/article/mysql Linux完整部署/">
+    <a href="/article/python excel多sheet保存，同sheet追加不覆盖/">
         <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
-            mysql Linux完整部署
+            python excel多sheet保存，同sheet追加不覆盖
         </h2>
         <h3 class="post-subtitle">
-            mysql详细部署.
+            xlrd openpyxl pandas
         </h3>
         <div class="post-content-preview">
-            
-1.cd /usr/local
-2.tar xzvf mysql-5.6.23-linux-glibc2.5-x86_64.tar.gz
-[root@hadoop001 local]# ll
-total 304468
-drwxr-xr-x.  2 root root         6 Nov  5  2016 bin
-drwxr-xr-x.  2 root root         6 ......
+            1.多sheet存储
+==1.1读取数据库并存入excel多个sheet==
+12345678910111213import cx_Oracleimport pandas as pdconn_oracle = cx_Oracle.connect(&apos;user&apos;,&apos;passwd&apos;,&apos;ip:port/db&apos;)cur_oracle = co......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-01-05
+            2019-11-29
         </p>
         <div class="tags">
             
-              <a href="/tags/#mysql" title="mysql">mysql</a>
+              <a href="/tags/#python" title="python">python</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/python数据库连接/">
+        <h2 class="post-title">
+                                 
+            python数据库连接
+        </h2>
+        <h3 class="post-subtitle">
+            db-connect
+        </h3>
+        <div class="post-content-preview">
+            1.mysql链接
+模块：pymysql
+==conn= pymysql.connect(“ip”,“user”,“passwd”,“db”)==
+方式一：pandas模块连接
+
+result = pd.read_sql(“sql”,conn)
+print(result.head())
+
+方式二：获取游标
+
+==cursor()方法获取游标==
+cursor = conn.cursor()
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2019-11-28
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#python" title="python">python</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/“在禁用 UAC 时，无法激活此应用”问题解决/">
+        <h2 class="post-title">
+                                 
+            “在禁用 UAC 时，无法激活此应用”问题解决
+        </h2>
+        <h3 class="post-subtitle">
+            uac.
+        </h3>
+        <div class="post-content-preview">
+            
+微信推送消息的脚本运行时报这个错误
+打开cmd窗口，输入以下命令：
+
+如图所示位置找到EnableLUA，双击
+
+
+==重启！！！==
+...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2019-11-26
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#python" title="python">python</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Python运行日志的留存/">
+        <h2 class="post-title">
+                                 
+            Python运行日志的留存
+        </h2>
+        <h3 class="post-subtitle">
+            python
+        </h3>
+        <div class="post-content-preview">
+            ==python定时任务运行过程的log留存==
+# -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+Created on Fri Jan 17 15:02:46 2020
+
+@author: wzj
+&quot;&quot;&quot;
+
+#log 测试
+import pandas as pd
+import pymysql
+import traceback......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2019-02-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#python" title="python">python</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/SparkCore/">
+        <h2 class="post-title">
+                                 
+            SparkCore
+        </h2>
+        <h3 class="post-subtitle">
+            Spark
+        </h3>
+        <div class="post-content-preview">
+            Spark Core
+RDD五大特性：
+
+A list of partitions：一系列的分区
+A function for computing each split：对每一个分片做计算
+A list of dependencies on other
+Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-08-11
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Spark" title="Spark">Spark</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/shell/">
+        <h2 class="post-title">
+                                 
+            shell 
+        </h2>
+        <h3 class="post-subtitle">
+            Linux
+        </h3>
+        <div class="post-content-preview">
+            执行命令
+第一行声明：
+#！/bin/bash
+执行命令：
+全路径/xx.sh
+当前路径：./xx.sh
+万能：sh xx.sh
+变量定义和引用
+静态：
+k=v k=“v”
+动态：
+k=v
+==等号前后不能有空格==
+引用：
+k=“xxx”
+${k}yyy
+参数引用
+$1 传入的第一个参数
+$* 参数以文本形式输出
+$# 参数个数
+$$ 获取当前PID
+1234567891011121314......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-07-29
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Linux" title="Linux">Linux</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Scala 解析IP/">
+        <h2 class="post-title">
+                                 
+            Scala 解析IP 
+        </h2>
+        <h3 class="post-subtitle">
+            Scala
+        </h3>
+        <div class="post-content-preview">
+            方式一：DbSearcher
+
+pom文件中加入
+
+12345&lt;dependency&gt;  &lt;groupId&gt;org.lionsoul&lt;/groupId&gt;  &lt;artifactId&gt;ip2region&lt;/artifactId&gt;  &lt;version&gt;1.7.2&lt;/version&gt;&lt;/dependency&g......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-07-28
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Scala(五)/">
+        <h2 class="post-title">
+                                 
+            Scala(五)  
+        </h2>
+        <h3 class="post-subtitle">
+            Scala
+        </h3>
+        <div class="post-content-preview">
+            scala
+zip:进行拉链操作，返回的列表长度取决于较短的列表，只要有一个列表到达了末尾zip函数就停止了
+两种写法：list zip list1或者list.zip(list1)
+scala&gt; val list =1 to 5
+list: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
+scala&......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-07-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Scala(四)/">
+        <h2 class="post-title">
+                                 
+            Scala(四)  
+        </h2>
+        <h3 class="post-subtitle">
+            Scala
+        </h3>
+        <div class="post-content-preview">
+            Scala(四)
+隐式转换
+类型：
+隐式参数 ：方法或者参数可以用implicit定义，会自动从上下文中去找符合类型的隐式参数
+1234567891011121314package wzjobject implicitAPP &#123;  def main(args: Array[String]): Unit = &#123;    //如果不定义则输出 hello:wzj,定义则输出he......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-07-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Scala(三)/">
+        <h2 class="post-title">
+                                 
+            Scala(三)  
+        </h2>
+        <h3 class="post-subtitle">
+            Scala
+        </h3>
+        <div class="post-content-preview">
+            scala(三)
+抽象类：
+在类中，一个方法或者多个方法只有定义没有实现：def xx()
+此时需要加abstract关键字
+12345678910package wzjobject abstractApp &#123;&#125;abstract class Test&#123;  def name()  val like:String&#125;
+抽象类需要通过子类去实现
+1234567......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-07-11
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
             
         </div>
     
@@ -258,9 +585,13 @@ drwxr-xr-x.  2 root root         6 ......
 <ul class="pager">
     
         <li class="previous">
-            <a href="/archives/5/">&larr; Newer Posts</a>
+            <a href="/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/page/3/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -300,11 +631,11 @@ drwxr-xr-x.  2 root root         6 ......
             
         
             
-            <a href="/tags/#Git" title="Git" rel="1">Git</a>
+            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
             
         
             
-            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
+            <a href="/tags/#Git" title="Git" rel="1">Git</a>
             
         
             
@@ -316,19 +647,19 @@ drwxr-xr-x.  2 root root         6 ......
             
         
             
-            <a href="/tags/#mysql" title="mysql" rel="2">mysql</a>
-            
-        
-            
             <a href="/tags/#Nginx" title="Nginx" rel="1">Nginx</a>
             
         
             
-            <a href="/tags/#python" title="python" rel="7">python</a>
+            <a href="/tags/#mysql" title="mysql" rel="2">mysql</a>
             
         
             
             <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
+            
+        
+            
+            <a href="/tags/#python" title="python" rel="7">python</a>
             
         
             

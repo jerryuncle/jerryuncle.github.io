@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/archives/3/">
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/page/6/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,350 +211,37 @@
 
 <div class="post-preview">
 
-    <a href="/article/Scala(一)/">
+    <a href="/article/Linux 常用命令(一)/">
         <h2 class="post-title">
                                  
-            Scala(一)  
+            Linux 常用命令（一）
         </h2>
         <h3 class="post-subtitle">
-            Scala
+            This is linux first.
         </h3>
         <div class="post-content-preview">
-            Scala(一)：
-Scala 运行在JVM之上，兼容java
-Scala 没有java中int double等这些原声数据类型，都是以大写开头的Int Double Float
-定义：
-val | var 名称[:数据类型] =xxx
-eg: val name:String = “wzj”
-Scala 中有类型推倒的功能  所以数据类型可以省略
-eg: val name = “wzj”
-F......
+            1.查看当前光标所在目录
+[jumproot@bi_new home]$ pwd
+/home
+2.切换目录
+[jumproot@bi_new /]$ cd home
+[jumproot@bi_new home]$ pwd
+/home
+3.回退家目录方式
+3.1 [root@bogon home]# cd
+[root@bogon ~]# pwd
+/root
+3.2 [root@bogon ho......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-06-26
+            2018-01-06
         </p>
         <div class="tags">
             
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Zookeeper实现持续监听/">
-        <h2 class="post-title">
-                                 
-            Zookeeper 实现持续监听 
-        </h2>
-        <h3 class="post-subtitle">
-            Zookeeper
-        </h3>
-        <div class="post-content-preview">
-            zookeeper默认监听触发一次就结束，所以需要重新实现WatchedEvent中的process方法，核心就是对watcher的循环调用
-WatchedEvent包含两方面重要信息：
-
-与zk服务器连接的状态信息
-
-
-可以调用watchedEvent.getState()方法获取与zk服务器连接的状态信息，状态信息取值主要包括==SyncConnected、Disconnected、Co......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-06-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Zookeeper API/">
-        <h2 class="post-title">
-                                 
-            Zookeeper API 
-        </h2>
-        <h3 class="post-subtitle">
-            Zookeeper
-        </h3>
-        <div class="post-content-preview">
-            Zookeeper API可以实现zookeeper客户端对节点的各种交互，所以我们只需要记住这一个zookeeper()入口即可，对每种方法提供了同步和异步两种方式
-
-同步：有返回值，且需要抛异常
-异步：无返回值，不需要关注异常，会通过返回状态码进行判断
-
-
-Result Code
-
-
-0 (ok) :接口调用成功
--4 (ConnectionLoss) :客户端和服务端连接断开
--110......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-06-11
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Zookeeper 安装部署以及客户端使用/">
-        <h2 class="post-title">
-                                 
-            Zookeeper 安装部署以及客户端使用 
-        </h2>
-        <h3 class="post-subtitle">
-            Zookeeper
-        </h3>
-        <div class="post-content-preview">
-            ==cdh中搜不到zookeeper的安装包，需要输入全路径即可下载==
-下载地址：https://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.16.2.tar.gz
-standalone模式
-123456789101112131415161718192021222324252627282930313233343536373839......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-06-03
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Azkaban 安装部署&常见错误/">
-        <h2 class="post-title">
-                                 
-            Azkaban 安装部署&常见错误
-        </h2>
-        <h3 class="post-subtitle">
-            Azkaban
-        </h3>
-        <div class="post-content-preview">
-            Solo Server
-源码下载/解压
-3.81.0地址
-1234567[wzj@hadoop001 software]$ tar -xzvf 3.81.0.tar.gz -C ~/app/[wzj@hadoop001 azkaban]$ lsaz-core       az-flow-trigger-dependency-plugin  az-intellij-style.xml  azk......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-05-27
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Azkaban" title="Azkaban">Azkaban</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala 安装&IDEA+Maven项目创建/">
-        <h2 class="post-title">
-                                 
-            Scala 安装&IDEA+Maven项目创建
-        </h2>
-        <h3 class="post-subtitle">
-            Scala IDEA
-        </h3>
-        <div class="post-content-preview">
-            下载
-地址:选择相应版本和安装包下载即可
-
-安装
-1234567解压[wzj@hadoop001 app]$ tar -zxvf scala-2.11.8.tgz -C ~/app配置环境变量export SCALA_HOME=/home/wzj/app/scalaexport PATH=$SCALA_HOME/bin:$PATH生效source
-IDEA+Maven项目创建
-
-
-在线安装
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-05-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Flume安装和简单使用/">
-        <h2 class="post-title">
-                                 
-            Flume安装和简单使用
-        </h2>
-        <h3 class="post-subtitle">
-            Flume
-        </h3>
-        <div class="post-content-preview">
-            @TOC
-Flume简介
-==来自官网==
-Flume is a ==distributed==, ==reliable==, and ==available== service for efficiently ==collecting==, ==aggregating==, and ==moving== large amounts of ==log data==. It has a sim......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-05-10
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Flume" title="Flume">Flume</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Failed to locate the winutils binary in the hadoop binary path/">
-        <h2 class="post-title">
-                                 
-            IDEA进行Hadoop-HDFS API编程报错:Failed to locate the winutils binary in the hadoop binary path
-        </h2>
-        <h3 class="post-subtitle">
-            Hadoop-HDFS API
-        </h3>
-        <div class="post-content-preview">
-            @[TOC](Hadoop-HDFS API编程报错)
-错误：
-12ERROR Shell: Failed to locate the winutils binary in the hadoop binary pathjava.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop bin......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-04-29
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/数据仓库分层/">
-        <h2 class="post-title">
-                                 
-            数据仓库分层
-        </h2>
-        <h3 class="post-subtitle">
-            Hive
-        </h3>
-        <div class="post-content-preview">
-            数据仓库&amp;数据集市
-
-数据仓库
-数据仓库，英文名称为Data Warehouse，可简写为DW或DWH。数据仓库，是为企业所有级别的决策制定过程，提供所有类型数据支持的战略集合。它是单个数据存储，出于分析性报告和决策支持目的而创建。 为需要业务智能的企业，提供指导业务流程改进、监视时间、成本、质量以及控制
-
-==简单来说就是一堆数据集合（log型和db型）的整合处理，，挖掘有效价值，......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-04-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hive" title="Hive">Hive</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/MySQL日期时间函数/">
-        <h2 class="post-title">
-                                 
-            MySQL日期时间函数
-        </h2>
-        <h3 class="post-subtitle">
-            mysql
-        </h3>
-        <div class="post-content-preview">
-            MySQL
-
-获取当前时间+时间：now(),sysdate()
-
-
-now()在执行开始就获取到时间，sysdate()动态的获取时间
-
-
-获取当前日期：curdate()
-获取当前时间：curtime()
-季度：quarter(date)
-年：year(date),月：month(date),日：day(date),周：week(date)
-一周第几天：dayofweek(date)
-1......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-04-02
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#mysql" title="mysql">mysql</a>
+              <a href="/tags/#Linux" title="Linux">Linux</a>
             
         </div>
     
@@ -569,13 +256,9 @@ now()在执行开始就获取到时间，sysdate()动态的获取时间
 <ul class="pager">
     
         <li class="previous">
-            <a href="/archives/2/">&larr; Newer Posts</a>
+            <a href="/page/5/">&larr; Newer Posts</a>
         </li>
     
-    
-        <li class="next">
-            <a href="/archives/4/">Older Posts &rarr;</a>
-        </li>
     
 </ul>
 
@@ -615,11 +298,11 @@ now()在执行开始就获取到时间，sysdate()动态的获取时间
             
         
             
-            <a href="/tags/#Git" title="Git" rel="1">Git</a>
+            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
             
         
             
-            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
+            <a href="/tags/#Git" title="Git" rel="1">Git</a>
             
         
             
@@ -631,19 +314,19 @@ now()在执行开始就获取到时间，sysdate()动态的获取时间
             
         
             
-            <a href="/tags/#mysql" title="mysql" rel="2">mysql</a>
-            
-        
-            
             <a href="/tags/#Nginx" title="Nginx" rel="1">Nginx</a>
             
         
             
-            <a href="/tags/#python" title="python" rel="7">python</a>
+            <a href="/tags/#mysql" title="mysql" rel="2">mysql</a>
             
         
             
             <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
+            
+        
+            
+            <a href="/tags/#python" title="python" rel="7">python</a>
             
         
             

@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/archives/2/">
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/page/3/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,344 +211,6 @@
 
 <div class="post-preview">
 
-    <a href="/article/python数据库连接/">
-        <h2 class="post-title">
-                                 
-            python数据库连接
-        </h2>
-        <h3 class="post-subtitle">
-            db-connect
-        </h3>
-        <div class="post-content-preview">
-            1.mysql链接
-模块：pymysql
-==conn= pymysql.connect(“ip”,“user”,“passwd”,“db”)==
-方式一：pandas模块连接
-
-result = pd.read_sql(“sql”,conn)
-print(result.head())
-
-方式二：获取游标
-
-==cursor()方法获取游标==
-cursor = conn.cursor()
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2019-11-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#python" title="python">python</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/“在禁用 UAC 时，无法激活此应用”问题解决/">
-        <h2 class="post-title">
-                                 
-            “在禁用 UAC 时，无法激活此应用”问题解决
-        </h2>
-        <h3 class="post-subtitle">
-            uac.
-        </h3>
-        <div class="post-content-preview">
-            
-微信推送消息的脚本运行时报这个错误
-打开cmd窗口，输入以下命令：
-
-如图所示位置找到EnableLUA，双击
-
-
-==重启！！！==
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2019-11-26
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#python" title="python">python</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Python运行日志的留存/">
-        <h2 class="post-title">
-                                 
-            Python运行日志的留存
-        </h2>
-        <h3 class="post-subtitle">
-            python
-        </h3>
-        <div class="post-content-preview">
-            ==python定时任务运行过程的log留存==
-# -*- coding: utf-8 -*-
-&quot;&quot;&quot;
-Created on Fri Jan 17 15:02:46 2020
-
-@author: wzj
-&quot;&quot;&quot;
-
-#log 测试
-import pandas as pd
-import pymysql
-import traceback......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2019-02-21
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#python" title="python">python</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/SparkCore/">
-        <h2 class="post-title">
-                                 
-            SparkCore
-        </h2>
-        <h3 class="post-subtitle">
-            Spark
-        </h3>
-        <div class="post-content-preview">
-            Spark Core
-RDD五大特性：
-
-A list of partitions：一系列的分区
-A function for computing each split：对每一个分片做计算
-A list of dependencies on other
-Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-08-11
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Spark" title="Spark">Spark</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/shell/">
-        <h2 class="post-title">
-                                 
-            shell 
-        </h2>
-        <h3 class="post-subtitle">
-            Linux
-        </h3>
-        <div class="post-content-preview">
-            执行命令
-第一行声明：
-#！/bin/bash
-执行命令：
-全路径/xx.sh
-当前路径：./xx.sh
-万能：sh xx.sh
-变量定义和引用
-静态：
-k=v k=“v”
-动态：
-k=v
-==等号前后不能有空格==
-引用：
-k=“xxx”
-${k}yyy
-参数引用
-$1 传入的第一个参数
-$* 参数以文本形式输出
-$# 参数个数
-$$ 获取当前PID
-1234567891011121314......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-29
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Linux" title="Linux">Linux</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala 解析IP/">
-        <h2 class="post-title">
-                                 
-            Scala 解析IP 
-        </h2>
-        <h3 class="post-subtitle">
-            Scala
-        </h3>
-        <div class="post-content-preview">
-            方式一：DbSearcher
-
-pom文件中加入
-
-12345&lt;dependency&gt;  &lt;groupId&gt;org.lionsoul&lt;/groupId&gt;  &lt;artifactId&gt;ip2region&lt;/artifactId&gt;  &lt;version&gt;1.7.2&lt;/version&gt;&lt;/dependency&g......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala(五)/">
-        <h2 class="post-title">
-                                 
-            Scala(五)  
-        </h2>
-        <h3 class="post-subtitle">
-            Scala
-        </h3>
-        <div class="post-content-preview">
-            scala
-zip:进行拉链操作，返回的列表长度取决于较短的列表，只要有一个列表到达了末尾zip函数就停止了
-两种写法：list zip list1或者list.zip(list1)
-scala&gt; val list =1 to 5
-list: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
-scala&......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala(四)/">
-        <h2 class="post-title">
-                                 
-            Scala(四)  
-        </h2>
-        <h3 class="post-subtitle">
-            Scala
-        </h3>
-        <div class="post-content-preview">
-            Scala(四)
-隐式转换
-类型：
-隐式参数 ：方法或者参数可以用implicit定义，会自动从上下文中去找符合类型的隐式参数
-1234567891011121314package wzjobject implicitAPP &#123;  def main(args: Array[String]): Unit = &#123;    //如果不定义则输出 hello:wzj,定义则输出he......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala(三)/">
-        <h2 class="post-title">
-                                 
-            Scala(三)  
-        </h2>
-        <h3 class="post-subtitle">
-            Scala
-        </h3>
-        <div class="post-content-preview">
-            scala(三)
-抽象类：
-在类中，一个方法或者多个方法只有定义没有实现：def xx()
-此时需要加abstract关键字
-12345678910package wzjobject abstractApp &#123;&#125;abstract class Test&#123;  def name()  val like:String&#125;
-抽象类需要通过子类去实现
-1234567......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-11
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/article/Scala(二)/">
         <h2 class="post-title">
                                  
@@ -579,6 +241,317 @@ to:左闭右闭
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/article/Scala(一)/">
+        <h2 class="post-title">
+                                 
+            Scala(一)  
+        </h2>
+        <h3 class="post-subtitle">
+            Scala
+        </h3>
+        <div class="post-content-preview">
+            Scala(一)：
+Scala 运行在JVM之上，兼容java
+Scala 没有java中int double等这些原声数据类型，都是以大写开头的Int Double Float
+定义：
+val | var 名称[:数据类型] =xxx
+eg: val name:String = “wzj”
+Scala 中有类型推倒的功能  所以数据类型可以省略
+eg: val name = “wzj”
+F......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-06-26
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Zookeeper实现持续监听/">
+        <h2 class="post-title">
+                                 
+            Zookeeper 实现持续监听 
+        </h2>
+        <h3 class="post-subtitle">
+            Zookeeper
+        </h3>
+        <div class="post-content-preview">
+            zookeeper默认监听触发一次就结束，所以需要重新实现WatchedEvent中的process方法，核心就是对watcher的循环调用
+WatchedEvent包含两方面重要信息：
+
+与zk服务器连接的状态信息
+
+
+可以调用watchedEvent.getState()方法获取与zk服务器连接的状态信息，状态信息取值主要包括==SyncConnected、Disconnected、Co......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-06-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Zookeeper API/">
+        <h2 class="post-title">
+                                 
+            Zookeeper API 
+        </h2>
+        <h3 class="post-subtitle">
+            Zookeeper
+        </h3>
+        <div class="post-content-preview">
+            Zookeeper API可以实现zookeeper客户端对节点的各种交互，所以我们只需要记住这一个zookeeper()入口即可，对每种方法提供了同步和异步两种方式
+
+同步：有返回值，且需要抛异常
+异步：无返回值，不需要关注异常，会通过返回状态码进行判断
+
+
+Result Code
+
+
+0 (ok) :接口调用成功
+-4 (ConnectionLoss) :客户端和服务端连接断开
+-110......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-06-11
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Zookeeper 安装部署以及客户端使用/">
+        <h2 class="post-title">
+                                 
+            Zookeeper 安装部署以及客户端使用 
+        </h2>
+        <h3 class="post-subtitle">
+            Zookeeper
+        </h3>
+        <div class="post-content-preview">
+            ==cdh中搜不到zookeeper的安装包，需要输入全路径即可下载==
+下载地址：https://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.16.2.tar.gz
+standalone模式
+123456789101112131415161718192021222324252627282930313233343536373839......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-06-03
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Azkaban 安装部署&常见错误/">
+        <h2 class="post-title">
+                                 
+            Azkaban 安装部署&常见错误
+        </h2>
+        <h3 class="post-subtitle">
+            Azkaban
+        </h3>
+        <div class="post-content-preview">
+            Solo Server
+源码下载/解压
+3.81.0地址
+1234567[wzj@hadoop001 software]$ tar -xzvf 3.81.0.tar.gz -C ~/app/[wzj@hadoop001 azkaban]$ lsaz-core       az-flow-trigger-dependency-plugin  az-intellij-style.xml  azk......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-05-27
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Azkaban" title="Azkaban">Azkaban</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Scala 安装&IDEA+Maven项目创建/">
+        <h2 class="post-title">
+                                 
+            Scala 安装&IDEA+Maven项目创建
+        </h2>
+        <h3 class="post-subtitle">
+            Scala IDEA
+        </h3>
+        <div class="post-content-preview">
+            下载
+地址:选择相应版本和安装包下载即可
+
+安装
+1234567解压[wzj@hadoop001 app]$ tar -zxvf scala-2.11.8.tgz -C ~/app配置环境变量export SCALA_HOME=/home/wzj/app/scalaexport PATH=$SCALA_HOME/bin:$PATH生效source
+IDEA+Maven项目创建
+
+
+在线安装
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-05-18
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Flume安装和简单使用/">
+        <h2 class="post-title">
+                                 
+            Flume安装和简单使用
+        </h2>
+        <h3 class="post-subtitle">
+            Flume
+        </h3>
+        <div class="post-content-preview">
+            @TOC
+Flume简介
+==来自官网==
+Flume is a ==distributed==, ==reliable==, and ==available== service for efficiently ==collecting==, ==aggregating==, and ==moving== large amounts of ==log data==. It has a sim......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-05-10
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Flume" title="Flume">Flume</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Failed to locate the winutils binary in the hadoop binary path/">
+        <h2 class="post-title">
+                                 
+            IDEA进行Hadoop-HDFS API编程报错:Failed to locate the winutils binary in the hadoop binary path
+        </h2>
+        <h3 class="post-subtitle">
+            Hadoop-HDFS API
+        </h3>
+        <div class="post-content-preview">
+            @[TOC](Hadoop-HDFS API编程报错)
+错误：
+12ERROR Shell: Failed to locate the winutils binary in the hadoop binary pathjava.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop bin......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-04-29
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/数据仓库分层/">
+        <h2 class="post-title">
+                                 
+            数据仓库分层
+        </h2>
+        <h3 class="post-subtitle">
+            Hive
+        </h3>
+        <div class="post-content-preview">
+            数据仓库&amp;数据集市
+
+数据仓库
+数据仓库，英文名称为Data Warehouse，可简写为DW或DWH。数据仓库，是为企业所有级别的决策制定过程，提供所有类型数据支持的战略集合。它是单个数据存储，出于分析性报告和决策支持目的而创建。 为需要业务智能的企业，提供指导业务流程改进、监视时间、成本、质量以及控制
+
+==简单来说就是一堆数据集合（log型和db型）的整合处理，，挖掘有效价值，......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-04-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -586,12 +559,12 @@ to:左闭右闭
 <ul class="pager">
     
         <li class="previous">
-            <a href="/">&larr; Newer Posts</a>
+            <a href="/page/2/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/archives/3/">Older Posts &rarr;</a>
+            <a href="/page/4/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -632,11 +605,11 @@ to:左闭右闭
             
         
             
-            <a href="/tags/#Git" title="Git" rel="1">Git</a>
+            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
             
         
             
-            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
+            <a href="/tags/#Git" title="Git" rel="1">Git</a>
             
         
             
@@ -648,19 +621,19 @@ to:左闭右闭
             
         
             
-            <a href="/tags/#mysql" title="mysql" rel="2">mysql</a>
-            
-        
-            
             <a href="/tags/#Nginx" title="Nginx" rel="1">Nginx</a>
             
         
             
-            <a href="/tags/#python" title="python" rel="7">python</a>
+            <a href="/tags/#mysql" title="mysql" rel="2">mysql</a>
             
         
             
             <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
+            
+        
+            
+            <a href="/tags/#python" title="python" rel="7">python</a>
             
         
             

@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/archives/4/">
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/page/5/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,340 +211,6 @@
 
 <div class="post-preview">
 
-    <a href="/article/Hive中文注释乱码--解决/">
-        <h2 class="post-title">
-                                 
-            Hive中文注释乱码--解决
-        </h2>
-        <h3 class="post-subtitle">
-            Hive
-        </h3>
-        <div class="post-content-preview">
-            my.cnf 文件配置
-
-切换mysql管理用户
-vi /etc/my.cnf   [mysqld]之后添加如下内容
-
-123456[mysqld]init_connect=&apos;SET collation_connection = utf8_unicode_ci&apos;init_connect=&apos;SET NAMES utf8&apos;character-set-ser......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-03-21
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hive" title="Hive">Hive</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Hive复杂数据类型/">
-        <h2 class="post-title">
-                                 
-            Hive复杂数据类型
-        </h2>
-        <h3 class="post-subtitle">
-            Hive
-        </h3>
-        <div class="post-content-preview">
-            array类型
-
-建表并加载数据
-创建表时候指定字段为array类型 location array
-指定array中每个的分隔符COLLECTION ITEMS TERMINATED BY ‘,’
-
-1234567891011hive (wzj)&gt; create table hive_array(          &gt; name string,          &gt; loa......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-03-15
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hive" title="Hive">Hive</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Hive 数据类型&DDL&DML/">
-        <h2 class="post-title">
-                                 
-            Hive 数据类型&DDL&DML
-        </h2>
-        <h3 class="post-subtitle">
-            DDL DML
-        </h3>
-        <div class="post-content-preview">
-            1. 数据类型
-官网文档：https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types
-
-
-
-Hive数据类型
-长度
-例子
-
-
-
-
-TINYINT
--128 to 127
-20
-
-
-SMALINT
--32,768 to 32,767
-20
-
-
-INT
--2,147,483,648 to 2,147,483,647
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-03-14
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hive" title="Hive">Hive</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Hive 静态分区&动态分区(含常见错误)/">
-        <h2 class="post-title">
-                                 
-            Hive 静态分区&动态分区（含常见错误）
-        </h2>
-        <h3 class="post-subtitle">
-            静态分区 动态分区
-        </h3>
-        <div class="post-content-preview">
-            静态分区
-1.创建分区表
-1234567891011121314hive (wzj)&gt; CREATE TABLE emp_partition(          &gt; empno int,          &gt; ename string,          &gt; job string,          &gt; mgr int,          &gt; hireda......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-03-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hive" title="Hive">Hive</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Hive之Beeline连接/">
-        <h2 class="post-title">
-                                 
-            Hive之Beeline连接
-        </h2>
-        <h3 class="post-subtitle">
-            Hive,HS2
-        </h3>
-        <div class="post-content-preview">
-            Beeline连接
-==WARNING: Hive CLI is deprecated and migration to Beeline is recommended.==
-贴心翻译：
-==警告：不建议使用Hive CLI，建议迁移到Beeline==
-小伙伴们启动hive的时候是不是经常会有上面那个警告，让人看着非常的不爽
-12345[wzj@hadoop001 ~]$ hivewhich......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-03-07
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hive" title="Hive">Hive</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Hive启动报错/">
-        <h2 class="post-title">
-                                 
-            Hive启动报错
-        </h2>
-        <h3 class="post-subtitle">
-            Hive
-        </h3>
-        <div class="post-content-preview">
-            报错一：
-
-==Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hdfs.server.namenode.SafeModeException): Cannot create directory /tmp/hive/wzj/1285d7ee-00f3-42a0-9161-03660fcb6a86. Name ......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-03-01
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hive" title="Hive">Hive</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Hive部署/">
-        <h2 class="post-title">
-                                 
-            Hive部署
-        </h2>
-        <h3 class="post-subtitle">
-            Hive
-        </h3>
-        <div class="post-content-preview">
-            1.获取安装包
-
-wget https://archive.cloudera.com/cdh5/cdh/5/hive-1.1.0-cdh5.16.2.tar.gz
-
-
-[wzj@hadoop001 software]$ ll
-total 549960
--rw-r–r--. 1 wzj wzj 434354462  hadoop-2.6.0-cdh5.16.2.tar.gz
--rw-r–r--......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-03-01
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hive" title="Hive">Hive</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Yarn调优&Yarn调度器/">
-        <h2 class="post-title">
-                                 
-            Yarn调优&Yarn调度器
-        </h2>
-        <h3 class="post-subtitle">
-            Yarn
-        </h3>
-        <div class="post-content-preview">
-            Yarn调优
-假设内存128G 16物理core
-
-装完CentOS，消耗内存1G
-系统预览15%-20%内存(包含1.1)，以防全部使用导致系统夯住 和 oom机制事件，或者给未来部署组件预览点空间(128*20%=25.6G==26G)
-假设只有DN NM节点，余下内存: 128-26=102G
-给DN进程(自身)2G，给NM进程(自身)4G，剩余102-2-4=96G
-
-
-contai......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-02-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/MR-on-yarn&切片数和map task&reduce task关系&wordcount流程理解&shuffle/">
-        <h2 class="post-title">
-                                 
-            MR-on-yarn&切片数和map task/reduce task关系&wordcount流程理解&shuffle
-        </h2>
-        <h3 class="post-subtitle">
-            MapReduce Yarn
-        </h3>
-        <div class="post-content-preview">
-            1 .MapReduce on yarn 流程
-MapReduce
-Map 映射   Reduce 聚合
-
-==mr on yarn的工作流程分为两步:==
-
-1.启动应用程序管理器，申请资源。
-2.运行任务，直到任务运行完成。
-
-mr on yarn的工作流程详细分为八步:
-
-1.用户向Yarn提交应用程序（job app application），jar文件、sql；
-其中包裹Appli......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-02-16
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/article/HDFS常用命令&安全模式&磁盘均衡/">
         <h2 class="post-title">
                                  
@@ -580,6 +246,350 @@ Usage: hadoop fs [generic options]
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/article/HDFS副本放置策略和文件的读写流程/">
+        <h2 class="post-title">
+                                 
+            HDFS副本放置策略和文件的读写流程
+        </h2>
+        <h3 class="post-subtitle">
+            HDFS
+        </h3>
+        <div class="post-content-preview">
+            
+HDFS副本放置策略
+			* 文件读流程
+			* 文件写流程
+
+HDFS副本放置策略
+
+第一个副本:
+假如上传节点为DN节点，优先放置本节点；
+否则就随机挑选一台磁盘不太慢  CPU不太繁忙的节点；
+第二个副本:
+放置在于第一个副本的不同的机架的节点上
+第三个副本:
+放置于第二个副本相同机架的不同节点上
+其它副本
+随机挑选
+备注：
+CDH机架有一个默认机架 虚拟的概念；
+CDH一般不调......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-02-15
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/jps命令&Linux的oom-kill&clean机制(含实践踩坑)/">
+        <h2 class="post-title">
+                                 
+            jps命令&Linux的oom-kill&clean机制(含实践踩坑)
+        </h2>
+        <h3 class="post-subtitle">
+            jps Linux机制
+        </h3>
+        <div class="post-content-preview">
+            jps(Java Virtual Machine Process Status Tool)是java提供的一个显示当前所有java进程pid的命令
+1.首先查询下jps的路径
+
+[root@hadoop001 /]# which jps
+/usr/java/jdk1.8.0_45/bin/jps
+==java路径下   所以需要先配置好jdk==
+
+2. jps
+抛出两个问题：
+1.root......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-02-12
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Linux" title="Linux">Linux</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/MapReduce之WordCount/">
+        <h2 class="post-title">
+                                 
+            MapReduce之WordCount
+        </h2>
+        <h3 class="post-subtitle">
+            hdfs,yarn,hadoop
+        </h3>
+        <div class="post-content-preview">
+            1.hadoop fs常用命令
+==根目录就是core-site.xml中配置的hdfs://hadoop001:9000/==
+
+hadoop fs -mkdir /
+hadoop fs -put
+hadoop fs -get
+hadoop fs -cat
+hadoop fs -rm
+hadoop fs -ls
+
+123456789101112131415[wzj@hadoop001 ~]......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-02-09
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/理解数据块、副本数、小文件的概念&HDFS架构&NN和SNN交互流程&改变hdfs存储目录/">
+        <h2 class="post-title">
+                                 
+            理解数据块、副本数、小文件的概念&HDFS架构&NN和SNN交互流程&改变hdfs存储目录
+        </h2>
+        <h3 class="post-subtitle">
+            hadoop HDFS block
+        </h3>
+        <div class="post-content-preview">
+            1.改变HDFS文件的存储目录
+
+官方默认配置为/tmp路径下   所以我们需要该路径只需要改变这个参数即可，修改配置文件之前，先将原来生成的文件移动一下
+
+[wzj@hadoop001 ~]$ pwd
+/home/wzj
+[wzj@hadoop001 hadoop-wzj]$ cd dfs
+[wzj@hadoop001 dfs]$ ll
+total 0
+drwx------. 3 wzj ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-02-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/hadoop伪分布式部署/">
+        <h2 class="post-title">
+                                 
+            hadoop 伪分布式部署
+        </h2>
+        <h3 class="post-subtitle">
+            hdfs,yarn,hadoop
+        </h3>
+        <div class="post-content-preview">
+            1.安装包准备
+==安装包：http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.6.0-cdh5.16.2.tar.gz==
+==jdk:链接：https://pan.baidu.com/s/11dt1k_hK17wv8ptCkeGfVg
+提取码：dair==
+2.环境准备
+2.1 创建用户/目录
+
+[root@hadoop001 ~]# user......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-01-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Linux 用户用户组权限/">
+        <h2 class="post-title">
+                                 
+            Linux 用户/用户组/权限
+        </h2>
+        <h3 class="post-subtitle">
+            chown/chomd/passwd
+        </h3>
+        <div class="post-content-preview">
+            1.用户和用户组
+
+用户相关文件：
+[root@hadoop001~]# ll /usr/sbin/user*
+-rwxr-x—. 1 root root 118192 Nov  6  2016 /usr/sbin/useradd
+-rwxr-x—. 1 root root  80360 Nov  6  2016 /usr/sbin/userdel
+-rwxr-x—. 1 root root......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-01-14
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Linux" title="Linux">Linux</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Linux 系统命令/">
+        <h2 class="post-title">
+                                 
+            Linux 系统命令
+        </h2>
+        <h3 class="post-subtitle">
+            top free df-h.
+        </h3>
+        <div class="post-content-preview">
+            1.磁盘
+==获取磁盘空间的使用情况==
+
+[root@bogon /]# df -h											
+Filesystem               			Size  Used Avail Use% Mounted on
+/dev/mapper/centos-root   	37G  993M   37G   3% /==系统盘==
+devtmpfs                ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-01-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Linux" title="Linux">Linux</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Linux 环境变量配置/">
+        <h2 class="post-title">
+                                 
+            Linux 环境变量配置
+        </h2>
+        <h3 class="post-subtitle">
+            个人变量和全局变量.
+        </h3>
+        <div class="post-content-preview">
+            全局环境变量&amp;个人环境变量
+which命令
+查找系统命令所在目录，并返回第一个
+[root@bogon ~]# echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+[root@bogon /]# which ls
+alias ls=‘ls --color=auto’    #别名
+	/usr/b......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-01-10
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Linux" title="Linux">Linux</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Linux 常用命令(二)/">
+        <h2 class="post-title">
+                                 
+            Linux 常用命令(二)
+        </h2>
+        <h3 class="post-subtitle">
+            常用的命令
+        </h3>
+        <div class="post-content-preview">
+            1.别名—简化操作
+alias
+
+[root@bogon ~]# cd /home/wzj/
+[root@bogon wzj]#
+
+
+[root@bogon wzj]# vi /root/.bashrc
+[root@bogon wzj]# cat /root/.bashrc
+.bashrc
+User specific aliases and functions
+alias rm='rm -i......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-01-07
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Linux" title="Linux">Linux</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -587,12 +597,12 @@ Usage: hadoop fs [generic options]
 <ul class="pager">
     
         <li class="previous">
-            <a href="/archives/3/">&larr; Newer Posts</a>
+            <a href="/page/4/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/archives/5/">Older Posts &rarr;</a>
+            <a href="/page/6/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -633,11 +643,11 @@ Usage: hadoop fs [generic options]
             
         
             
-            <a href="/tags/#Git" title="Git" rel="1">Git</a>
+            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
             
         
             
-            <a href="/tags/#Flume" title="Flume" rel="1">Flume</a>
+            <a href="/tags/#Git" title="Git" rel="1">Git</a>
             
         
             
@@ -649,19 +659,19 @@ Usage: hadoop fs [generic options]
             
         
             
-            <a href="/tags/#mysql" title="mysql" rel="2">mysql</a>
-            
-        
-            
             <a href="/tags/#Nginx" title="Nginx" rel="1">Nginx</a>
             
         
             
-            <a href="/tags/#python" title="python" rel="7">python</a>
+            <a href="/tags/#mysql" title="mysql" rel="2">mysql</a>
             
         
             
             <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
+            
+        
+            
+            <a href="/tags/#python" title="python" rel="7">python</a>
             
         
             
