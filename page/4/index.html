@@ -134,6 +134,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -142,13 +149,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,39 +211,29 @@
 
 <div class="post-preview">
 
-    <a href="/article/MySQL日期时间函数/">
+    <a href="/article/spark连接mysql/">
         <h2 class="post-title">
                                  
-            MySQL日期时间函数
+            spark连接mysql
         </h2>
         <h3 class="post-subtitle">
-            mysql
+            Spark
         </h3>
         <div class="post-content-preview">
-            MySQL
+            
+最原始的连接方式
 
-获取当前时间+时间：now(),sysdate()
-
-
-now()在执行开始就获取到时间，sysdate()动态的获取时间
-
-
-获取当前日期：curdate()
-获取当前时间：curtime()
-季度：quarter(date)
-年：year(date),月：month(date),日：day(date),周：week(date)
-一周第几天：dayofweek(date)
-1......
+123456789101112131415161718192021222324252627import java.sql.DriverManagerimport org.apache.spark.&#123;SparkConf, SparkContext&#125;object connectMysql &#123;  def main(args: Array[Stri......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-04-02
+            2018-09-07
         </p>
         <div class="tags">
             
-              <a href="/tags/#mysql" title="mysql">mysql</a>
+              <a href="/tags/#Spark" title="Spark">Spark</a>
             
         </div>
     
@@ -253,31 +243,35 @@ now()在执行开始就获取到时间，sysdate()动态的获取时间
 
 <div class="post-preview">
 
-    <a href="/article/Hive中文注释乱码--解决/">
+    <a href="/article/spark 监控/">
         <h2 class="post-title">
                                  
-            Hive中文注释乱码--解决
+            spark 监控
         </h2>
         <h3 class="post-subtitle">
-            Hive
+            Spark
         </h3>
         <div class="post-content-preview">
-            my.cnf 文件配置
+            http://spark.apache.org/docs/latest/monitoring.html
+==WEB UI 方式==
 
-切换mysql管理用户
-vi /etc/my.cnf   [mysqld]之后添加如下内容
+启动history server
 
-123456[mysqld]init_connect=&apos;SET collation_connection = utf8_unicode_ci&apos;init_connect=&apos;SET NAMES utf8&apos;character-set-ser......
+1./sbin/start-history-server.sh
+
+启动之前需要配置
+
+12345[wzj@hadoop001 conf]$ cat spark-env.sh#!/usr/bin/env bash# - SPA......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-03-21
+            2018-08-23
         </p>
         <div class="tags">
             
-              <a href="/tags/#Hive" title="Hive">Hive</a>
+              <a href="/tags/#Spark" title="Spark">Spark</a>
             
         </div>
     
@@ -287,32 +281,30 @@ vi /etc/my.cnf   [mysqld]之后添加如下内容
 
 <div class="post-preview">
 
-    <a href="/article/Hive复杂数据类型/">
+    <a href="/article/Sparksubmit提交任务&&Spark-on-Yarn/">
         <h2 class="post-title">
                                  
-            Hive复杂数据类型
+            Sparksubmit提交任务&&Spark-on-Yarn
         </h2>
         <h3 class="post-subtitle">
-            Hive
+            Spark
         </h3>
         <div class="post-content-preview">
-            array类型
+            Sparksubmit提交任务
 
-建表并加载数据
-创建表时候指定字段为array类型 location array
-指定array中每个的分隔符COLLECTION ITEMS TERMINATED BY ‘,’
+WC脚本
 
-1234567891011hive (wzj)&gt; create table hive_array(          &gt; name string,          &gt; loa......
+12345678910111213141516package sparkimport org.apache.spark.&#123;SparkConf, SparkContext&#125;object SparkWC &#123;  def main(args: Array[String]): Unit = &#123;    val conf......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-03-15
+            2018-08-17
         </p>
         <div class="tags">
             
-              <a href="/tags/#Hive" title="Hive">Hive</a>
+              <a href="/tags/#Spark" title="Spark">Spark</a>
             
         </div>
     
@@ -322,50 +314,30 @@ vi /etc/my.cnf   [mysqld]之后添加如下内容
 
 <div class="post-preview">
 
-    <a href="/article/Hive 数据类型&DDL&DML/">
+    <a href="/article/IDEA报错/">
         <h2 class="post-title">
                                  
-            Hive 数据类型&DDL&DML
+            IDEA报错
         </h2>
         <h3 class="post-subtitle">
-            DDL DML
+            Spark
         </h3>
         <div class="post-content-preview">
-            1. 数据类型
-官网文档：https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types
+            
+错误一：Exception in thread “main” java.lang.NoSuchMethodError: scala.Product.$init$(Lscala/Product;)V
 
-
-
-Hive数据类型
-长度
-例子
-
-
-
-
-TINYINT
--128 to 127
-20
-
-
-SMALINT
--32,768 to 32,767
-20
-
-
-INT
--2,147,483,648 to 2,147,483,647
-......
+idea版本不一致
+123456&lt;properties&gt;    &lt;scala.version&gt;2.11.8&lt;/scala.version&gt;    &lt;s......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-03-14
+            2018-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Hive" title="Hive">Hive</a>
+              <a href="/tags/#Spark" title="Spark">Spark</a>
             
         </div>
     
@@ -375,28 +347,32 @@ INT
 
 <div class="post-preview">
 
-    <a href="/article/Hive 静态分区&动态分区(含常见错误)/">
+    <a href="/article/SparkCore - 副本/">
         <h2 class="post-title">
                                  
-            Hive 静态分区&动态分区（含常见错误）
+            SparkCore
         </h2>
         <h3 class="post-subtitle">
-            静态分区 动态分区
+            Spark
         </h3>
         <div class="post-content-preview">
-            静态分区
-1.创建分区表
-1234567891011121314hive (wzj)&gt; CREATE TABLE emp_partition(          &gt; empno int,          &gt; ename string,          &gt; job string,          &gt; mgr int,          &gt; hireda......
+            Spark Core
+RDD五大特性：
+
+A list of partitions：一系列的分区
+A function for computing each split：对每一个分片做计算
+A list of dependencies on other
+Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-03-08
+            2018-08-11
         </p>
         <div class="tags">
             
-              <a href="/tags/#Hive" title="Hive">Hive</a>
+              <a href="/tags/#Spark" title="Spark">Spark</a>
             
         </div>
     
@@ -406,31 +382,32 @@ INT
 
 <div class="post-preview">
 
-    <a href="/article/Hive之Beeline连接/">
+    <a href="/article/SparkCore/">
         <h2 class="post-title">
                                  
-            Hive之Beeline连接
+            SparkCore
         </h2>
         <h3 class="post-subtitle">
-            Hive,HS2
+            Spark
         </h3>
         <div class="post-content-preview">
-            Beeline连接
-==WARNING: Hive CLI is deprecated and migration to Beeline is recommended.==
-贴心翻译：
-==警告：不建议使用Hive CLI，建议迁移到Beeline==
-小伙伴们启动hive的时候是不是经常会有上面那个警告，让人看着非常的不爽
-12345[wzj@hadoop001 ~]$ hivewhich......
+            Spark Core
+RDD五大特性：
+
+A list of partitions：一系列的分区
+A function for computing each split：对每一个分片做计算
+A list of dependencies on other
+Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-03-07
+            2018-08-11
         </p>
         <div class="tags">
             
-              <a href="/tags/#Hive" title="Hive">Hive</a>
+              <a href="/tags/#Spark" title="Spark">Spark</a>
             
         </div>
     
@@ -440,28 +417,47 @@ INT
 
 <div class="post-preview">
 
-    <a href="/article/Hive启动报错/">
+    <a href="/article/shell/">
         <h2 class="post-title">
                                  
-            Hive启动报错
+            shell 
         </h2>
         <h3 class="post-subtitle">
-            Hive
+            Linux
         </h3>
         <div class="post-content-preview">
-            报错一：
-
-==Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hdfs.server.namenode.SafeModeException): Cannot create directory /tmp/hive/wzj/1285d7ee-00f3-42a0-9161-03660fcb6a86. Name ......
+            执行命令
+第一行声明：
+#！/bin/bash
+执行命令：
+全路径/xx.sh
+当前路径：./xx.sh
+万能：sh xx.sh
+变量定义和引用
+静态：
+k=v k=“v”
+动态：
+k=v
+==等号前后不能有空格==
+引用：
+k=“xxx”
+${k}yyy
+参数引用
+$1 传入的第一个参数
+$* 参数以文本形式输出
+$# 参数个数
+$$ 获取当前PID
+1234567891011121314......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-03-01
+            2018-07-29
         </p>
         <div class="tags">
             
-              <a href="/tags/#Hive" title="Hive">Hive</a>
+              <a href="/tags/#Linux" title="Linux">Linux</a>
             
         </div>
     
@@ -471,34 +467,30 @@ INT
 
 <div class="post-preview">
 
-    <a href="/article/Hive部署/">
+    <a href="/article/Scala 解析IP/">
         <h2 class="post-title">
                                  
-            Hive部署
+            Scala 解析IP 
         </h2>
         <h3 class="post-subtitle">
-            Hive
+            Scala
         </h3>
         <div class="post-content-preview">
-            1.获取安装包
+            方式一：DbSearcher
 
-wget https://archive.cloudera.com/cdh5/cdh/5/hive-1.1.0-cdh5.16.2.tar.gz
+pom文件中加入
 
-
-[wzj@hadoop001 software]$ ll
-total 549960
--rw-r–r--. 1 wzj wzj 434354462  hadoop-2.6.0-cdh5.16.2.tar.gz
--rw-r–r--......
+12345&lt;dependency&gt;  &lt;groupId&gt;org.lionsoul&lt;/groupId&gt;  &lt;artifactId&gt;ip2region&lt;/artifactId&gt;  &lt;version&gt;1.7.2&lt;/version&gt;&lt;/dependency&g......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-03-01
+            2018-07-28
         </p>
         <div class="tags">
             
-              <a href="/tags/#Hive" title="Hive">Hive</a>
+              <a href="/tags/#Scala" title="Scala">Scala</a>
             
         </div>
     
@@ -508,35 +500,31 @@ total 549960
 
 <div class="post-preview">
 
-    <a href="/article/Yarn调优&Yarn调度器/">
+    <a href="/article/Scala(五)/">
         <h2 class="post-title">
                                  
-            Yarn调优&Yarn调度器
+            Scala(五)  
         </h2>
         <h3 class="post-subtitle">
-            Yarn
+            Scala
         </h3>
         <div class="post-content-preview">
-            Yarn调优
-假设内存128G 16物理core
-
-装完CentOS，消耗内存1G
-系统预览15%-20%内存(包含1.1)，以防全部使用导致系统夯住 和 oom机制事件，或者给未来部署组件预览点空间(128*20%=25.6G==26G)
-假设只有DN NM节点，余下内存: 128-26=102G
-给DN进程(自身)2G，给NM进程(自身)4G，剩余102-2-4=96G
-
-
-contai......
+            scala
+zip:进行拉链操作，返回的列表长度取决于较短的列表，只要有一个列表到达了末尾zip函数就停止了
+两种写法：list zip list1或者list.zip(list1)
+scala&gt; val list =1 to 5
+list: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
+scala&......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-02-22
+            2018-07-20
         </p>
         <div class="tags">
             
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
+              <a href="/tags/#Scala" title="Scala">Scala</a>
             
         </div>
     
@@ -546,38 +534,30 @@ contai......
 
 <div class="post-preview">
 
-    <a href="/article/MR-on-yarn&切片数和map task&reduce task关系&wordcount流程理解&shuffle/">
+    <a href="/article/Scala(四)/">
         <h2 class="post-title">
                                  
-            MR-on-yarn&切片数和map task/reduce task关系&wordcount流程理解&shuffle
+            Scala(四)  
         </h2>
         <h3 class="post-subtitle">
-            MapReduce Yarn
+            Scala
         </h3>
         <div class="post-content-preview">
-            1 .MapReduce on yarn 流程
-MapReduce
-Map 映射   Reduce 聚合
-
-==mr on yarn的工作流程分为两步:==
-
-1.启动应用程序管理器，申请资源。
-2.运行任务，直到任务运行完成。
-
-mr on yarn的工作流程详细分为八步:
-
-1.用户向Yarn提交应用程序（job app application），jar文件、sql；
-其中包裹Appli......
+            Scala(四)
+隐式转换
+类型：
+隐式参数 ：方法或者参数可以用implicit定义，会自动从上下文中去找符合类型的隐式参数
+1234567891011121314package wzjobject implicitAPP &#123;  def main(args: Array[String]): Unit = &#123;    //如果不定义则输出 hello:wzj,定义则输出he......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-02-16
+            2018-07-19
         </p>
         <div class="tags">
             
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
+              <a href="/tags/#Scala" title="Scala">Scala</a>
             
         </div>
     
@@ -646,7 +626,15 @@ mr on yarn的工作流程详细分为八步:
             
         
             
-            <a href="/tags/#Hive" title="Hive" rel="8">Hive</a>
+            <a href="/tags/#Hive" title="Hive" rel="9">Hive</a>
+            
+        
+            
+            <a href="/tags/#Spark" title="Spark" rel="16">Spark</a>
+            
+        
+            
+            <a href="/tags/#Kafka" title="Kafka" rel="5">Kafka</a>
             
         
             
@@ -662,15 +650,11 @@ mr on yarn的工作流程详细分为八步:
             
         
             
-            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
-            
-        
-            
             <a href="/tags/#python" title="python" rel="7">python</a>
             
         
             
-            <a href="/tags/#Spark" title="Spark" rel="1">Spark</a>
+            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
             
         
             
@@ -768,7 +752,7 @@ mr on yarn的工作流程详细分为八步:
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
 
         <hr>

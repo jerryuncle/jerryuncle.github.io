@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          SparkCore - jerry@wzj | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.csdn.net/wzj_wp/article/SparkCore - 副本/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Spark" title="Spark">Spark</a>
+                            
+                        </div>
+                        <h1>SparkCore</h1>
+                        <h2 class="subheading">Spark</h2>
+                        <span class="meta">
+                            Posted by jerry on
+                            2018-08-11
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">jerry·Wang</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>Spark Core</p>
+<p>RDD五大特性：</p>
+<ul>
+<li>A list of partitions：一系列的分区</li>
+<li>A function for computing each split：对每一个分片做计算</li>
+<li>A list of dependencies on other</li>
+<li>Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)</li>
+<li>Optionally, a list of preferred locations to compute each split on (e.g. block locations for an HDFS file)</li>
+</ul>
+<p>==一个Partitions对应一个Task==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val L = Array(1,2,3,4,5)</span><br><span class="line">L: Array[Int] = Array(1, 2, 3, 4, 5)</span><br><span class="line"></span><br><span class="line">scala&gt; sc.parallelize(L,3).collect</span><br><span class="line">res7: Array[Int] = Array(1, 2, 3, 4, 5)</span><br><span class="line"></span><br><span class="line">scala&gt; sc.parallelize(L,2).collect</span><br><span class="line">res8: Array[Int] = Array(1, 2, 3, 4, 5)</span><br></pre></td></tr></table></figure>
+<p>UI上面的job中tasks会分别显示3个task和2个task</p>
+<p>The first thing a Spark program must do is to create a ==SparkContext== object, which tells Spark how to access a cluster. To create a SparkContext you first need to build a ==SparkConf== object that contains information about your application.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> 服务器是不需要new sc的 已经自动定义了</span><br><span class="line"> 如果需要定义参数传递到spark中去，必须使用spark.开头</span><br><span class="line"> setAppName和setMaster底层已经写好了spark.</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">package spark</span><br><span class="line"></span><br><span class="line">import org.apache.spark.&#123;SparkConf, SparkContext&#125;</span><br><span class="line"></span><br><span class="line">object RDDApp &#123;</span><br><span class="line"></span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">    val conf = new SparkConf().setAppName(&quot;App01&quot;).setMaster(&quot;local&quot;)</span><br><span class="line">    val sc = new SparkContext(conf)</span><br><span class="line">    println(sc.appName)</span><br><span class="line">    println(sc.master)</span><br><span class="line">    sc.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>RDD的创建：</p>
+<p>1.sc.parallelize</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val L = Array(1,2,3,4,5)</span><br><span class="line">L: Array[Int] = Array(1, 2, 3, 4, 5)</span><br><span class="line"></span><br><span class="line">scala&gt; val rdd = sc.parallelize(L)</span><br><span class="line">rdd: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[1] at parallelize at &lt;console&gt;:26</span><br><span class="line"></span><br><span class="line">scala&gt; rdd.reduce(_+_)</span><br><span class="line">res1: Int = 15</span><br></pre></td></tr></table></figure>
+<p>2.External Datasets</p>
+<ul>
+<li>sc.textFile(path)  返回MappartitionsRDD</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; sc.textFile(&quot;/home/wzj/data/test.txt&quot;)</span><br><span class="line">res0: org.apache.spark.rdd.RDD[String] = /home/wzj/data/test.txt MapPartitionsRDD[1] at textFile at &lt;console&gt;:25</span><br><span class="line"></span><br><span class="line">scala&gt; sc.textFile(&quot;/home/wzj/data/test.txt&quot;).collect</span><br><span class="line">res1: Array[String] = Array(study,study,study, no,no, i)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>sc.wholeTextFile  返回路径+内容</li>
+</ul>
+<p>3.transformations/actions 通过算子计算一个RDD返回一个新的RDD</p>
+<p>==transformations特性：lazy 不会立刻执行，只有遇到第一个actions才会提交作业==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val a = sc.parallelize(List(1,2,3,4,5))</span><br><span class="line">a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[8] at parallelize at &lt;console&gt;:24</span><br><span class="line"></span><br><span class="line">scala&gt; val b = a.map(_*2)</span><br><span class="line">b: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[9] at map at &lt;console&gt;:25</span><br><span class="line"></span><br><span class="line">scala&gt; b.collect</span><br><span class="line">res5: Array[Int] = Array(2, 4, 6, 8, 10)</span><br></pre></td></tr></table></figure>
+<p>transformations算子：</p>
+<p>1.map/mapPartitions</p>
+<p>map 作用于每一个元素</p>
+<p>mapPartitions 作用于每一个分区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; b.mapPartitions(partition =&gt; partition.map(_*2)).collect</span><br><span class="line">res6: Array[Int] = Array(4, 8, 12, 16, 20)</span><br></pre></td></tr></table></figure>
+<p>2.filter 过滤</p>
+<p>rdd.filter(条件)</p>
+<p>3.zip 拉链</p>
+<p>rdd1.zip(rdd2)</p>
+<p>==分区，元素个数必须保持一致==</p>
+<p>4.sortby/sortbykey</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val rdd1 = sc.parallelize(Array((&quot;qwe&quot;,20),(&quot;asd&quot;,15),(&quot;zxc&quot;,35)))</span><br><span class="line">rdd1: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[0] at parallelize at &lt;console&gt;:24</span><br><span class="line"></span><br><span class="line">scala&gt; rdd1.sortBy(x =&gt;x._2).collect()</span><br><span class="line">res0: Array[(String, Int)] = Array((asd,15), (qwe,20), (zxc,35)) </span><br><span class="line"></span><br><span class="line">scala&gt; rdd1.map(x =&gt;(x._2,x._1)).sortByKey().map(x=&gt;(x._2,x._1)).collect()</span><br><span class="line">res2: Array[(String, Int)] = Array((asd,15), (qwe,20), (zxc,35))</span><br><span class="line"></span><br><span class="line">scala&gt; rdd1.map(x =&gt;(x._2,x._1)).sortByKey(false).map(x=&gt;(x._2,x._1)).collect()</span><br><span class="line">res3: Array[(String, Int)] = Array((zxc,35), (qwe,20), (asd,15))</span><br></pre></td></tr></table></figure>
+<p>5.reduceByKey/groupByKey</p>
+<p>==groupByKey进行shuffer的数据量远大于reduceByKey,reduceByKey有局部聚合的功能相当于mr中的Combine，所以优先选择reducebykey==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; rdd2.groupByKey()</span><br><span class="line">res4: org.apache.spark.rdd.RDD[(String, Iterable[Int])] = ShuffledRDD[13] at groupByKey at &lt;console&gt;:26</span><br><span class="line"></span><br><span class="line">scala&gt; rdd2.groupByKey().collect</span><br><span class="line">res5: Array[(String, Iterable[Int])] = Array((a,CompactBuffer(1, 99)), (b,CompactBuffer(2)), (c,CompactBuffer(23)))</span><br><span class="line"></span><br><span class="line">scala&gt; rdd2.groupByKey().map(x=&gt;(x._1,x._2.sum)).collect</span><br><span class="line">res7: Array[(String, Int)] = Array((a,100), (b,2), (c,23))</span><br><span class="line"></span><br><span class="line">scala&gt; rdd2.reduceByKey(_+_).collect</span><br><span class="line">res9: Array[(String, Int)] = Array((a,100), (b,2), (c,23))</span><br><span class="line"></span><br><span class="line">scala&gt; rdd2.reduceByKey((x,y)=&gt;x+y).collect</span><br><span class="line">res11: Array[(String, Int)] = Array((a,100), (b,2), (c,23))</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>join/leftOuterJoin/leftOuterJoin/fullOuterJoin</li>
+</ol>
+<p>rdd1.join(rdd2)</p>
+<p>排序：</p>
+<p>actions算子：</p>
+<p>1.collect 数据全部加载进内存，所以适用于测试小数据，数据过大会产生OOM</p>
+<p>2.first 返回第一个元素</p>
+<p>3.take(num) 取前num个元素</p>
+<p>4.count 返回元素个数</p>
+<p>5.top(num) 取排序后的前num个元素</p>
+<p>6.takeOrdered</p>
+<p>7.reduce</p>
+<p>8.countByKey</p>
+<p>9.lookup eg:rdd.lookup(“key”)</p>
+<p>写数据到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.spark.&#123;SparkConf, SparkContext&#125;</span><br><span class="line"></span><br><span class="line">object test &#123;</span><br><span class="line"></span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line"></span><br><span class="line">    val conf = new SparkConf().setAppName(&quot;app001&quot;).setMaster(&quot;local&quot;)</span><br><span class="line"></span><br><span class="line">    val sc = new SparkContext(conf)</span><br><span class="line">    saveTextFile(sc)</span><br><span class="line">    sc.stop()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def saveTextFile(sc:SparkContext): Unit =&#123;</span><br><span class="line"></span><br><span class="line">    val rdd1 = sc.parallelize(Array((&quot;qwe&quot;,10),(&quot;asd&quot;,123),(&quot;zxc&quot;,34)))</span><br><span class="line"></span><br><span class="line">    val out = &quot;out&quot;</span><br><span class="line">    rdd1.saveAsTextFile(out)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写数据到HDFS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.spark.&#123;SparkConf, SparkContext&#125;</span><br><span class="line"></span><br><span class="line">object test &#123;</span><br><span class="line"></span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line"></span><br><span class="line">    System.setProperty(&quot;HADOOP_USER_NAME&quot;,&quot;wzj&quot;)</span><br><span class="line">    val conf = new SparkConf().setAppName(&quot;app001&quot;).setMaster(&quot;local&quot;)</span><br><span class="line"></span><br><span class="line">    val sc = new SparkContext(conf)</span><br><span class="line">    saveTextFile(sc)</span><br><span class="line">    sc.stop()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def saveTextFile(sc:SparkContext): Unit =&#123;</span><br><span class="line"></span><br><span class="line">    val rdd1 = sc.parallelize(Array((&quot;qwe&quot;,10),(&quot;asd&quot;,123),(&quot;zxc&quot;,34)))</span><br><span class="line"></span><br><span class="line">    sc.hadoopConfiguration.set(&quot;fs.defaultFS&quot;,&quot;hdfs://hadoop001:9000&quot;)</span><br><span class="line">    sc.hadoopConfiguration.set(&quot;dfs.client.use.datanode.hostname&quot;,&quot;true&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    val out = &quot;hdfs://hadoop001:9000/test&quot;</span><br><span class="line">    rdd1.saveAsTextFile(out)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/IDEA报错/" data-toggle="tooltip" data-placement="top" title="IDEA报错">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/SparkCore/" data-toggle="tooltip" data-placement="top" title="SparkCore">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="nav">none</ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Spark" title="Spark">Spark</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.baidu.com" target="_blank">study</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; jerry 2020 
+
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.csdn.net/wzj_wp/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://blog.csdn.net/wzj_wp/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

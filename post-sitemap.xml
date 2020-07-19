@@ -7,6 +7,174 @@
     </url>
 
     <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/%E8%B0%83%E4%BC%98/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/segment/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/Kafka%20Producer%20--Java%20API/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/Kafka%E9%83%A8%E7%BD%B2/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/spark%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/state%E7%BB%B4%E6%8A%A4/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/SparkStreaming%20Demo/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/idea%20%E9%93%BE%E6%8E%A5hive/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/SparkSQL(%E4%B8%89)/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/SparkSQL(%E4%BA%8C)/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/SparkSQL(%E4%B8%80)/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/%E5%A4%9A%E7%9B%AE%E5%BD%95%E8%BE%93%E5%87%BA/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%EF%BC%9A%E5%B9%BF%E6%92%AD%E5%8F%98%E9%87%8F&%E8%AE%A1%E6%95%B0%E5%99%A8/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/spark-on-yarn%20Jar%E5%8C%85%E4%BC%98%E5%8C%96/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/spark%E8%BF%9E%E6%8E%A5mysql/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/spark%20%E7%9B%91%E6%8E%A7/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/Sparksubmit%E6%8F%90%E4%BA%A4%E4%BB%BB%E5%8A%A1&&Spark-on-Yarn/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/IDEA%E6%8A%A5%E9%94%99/</loc>
+        <lastmod>2020-07-18T23:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.csdn.net/wzj_wp/article/SparkCore%20-%20%E5%89%AF%E6%9C%AC/</loc>
+        <lastmod>2020-07-18T22:56:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.csdn.net/wzj_wp/article/SparkCore/</loc>
         <lastmod>2020-07-18T22:56:12.000Z</lastmod>
         <changefreq>weekly</changefreq>

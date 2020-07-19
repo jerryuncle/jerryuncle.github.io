@@ -134,6 +134,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -142,13 +149,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,378 +211,341 @@
 
 <div class="post-preview">
 
-    <a href="/article/HDFS常用命令&安全模式&磁盘均衡/">
+    <a href="/article/Scala(三)/">
         <h2 class="post-title">
                                  
-            HDFS常用命令&安全模式&磁盘均衡
+            Scala(三)  
         </h2>
         <h3 class="post-subtitle">
-            hadoop HDFS
+            Scala
         </h3>
         <div class="post-content-preview">
-            hdfs 常用命令
-
-[wzj@hadoop001 ~]$ hadoop fs
-Usage: hadoop fs [generic options]
-	[-appendToFile  … ]
-	[-cat [-ignoreCrc]  …]
-	[-checksum  …]
-	[-chgrp [-R] GROUP PATH…]
-	[-chmod [-R] &lt;MODE[,MODE]… | O......
+            scala(三)
+抽象类：
+在类中，一个方法或者多个方法只有定义没有实现：def xx()
+此时需要加abstract关键字
+12345678910package wzjobject abstractApp &#123;&#125;abstract class Test&#123;  def name()  val like:String&#125;
+抽象类需要通过子类去实现
+1234567......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-02-16
+            2018-07-11
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Scala(二)/">
+        <h2 class="post-title">
+                                 
+            Scala(二)  
+        </h2>
+        <h3 class="post-subtitle">
+            Scala
+        </h3>
+        <div class="post-content-preview">
+            Scala(二)：
+迭代：
+to:左闭右闭
+1234scala&gt; 1 to 10res0: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)scala&gt; 1.to(10)res1: scala.collection.immutable.Range.Inclusive ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-07-03
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Scala(一)/">
+        <h2 class="post-title">
+                                 
+            Scala(一)  
+        </h2>
+        <h3 class="post-subtitle">
+            Scala
+        </h3>
+        <div class="post-content-preview">
+            Scala(一)：
+Scala 运行在JVM之上，兼容java
+Scala 没有java中int double等这些原声数据类型，都是以大写开头的Int Double Float
+定义：
+val | var 名称[:数据类型] =xxx
+eg: val name:String = “wzj”
+Scala 中有类型推倒的功能  所以数据类型可以省略
+eg: val name = “wzj”
+F......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-06-26
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Zookeeper实现持续监听/">
+        <h2 class="post-title">
+                                 
+            Zookeeper 实现持续监听 
+        </h2>
+        <h3 class="post-subtitle">
+            Zookeeper
+        </h3>
+        <div class="post-content-preview">
+            zookeeper默认监听触发一次就结束，所以需要重新实现WatchedEvent中的process方法，核心就是对watcher的循环调用
+WatchedEvent包含两方面重要信息：
+
+与zk服务器连接的状态信息
+
+
+可以调用watchedEvent.getState()方法获取与zk服务器连接的状态信息，状态信息取值主要包括==SyncConnected、Disconnected、Co......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-06-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Zookeeper API/">
+        <h2 class="post-title">
+                                 
+            Zookeeper API 
+        </h2>
+        <h3 class="post-subtitle">
+            Zookeeper
+        </h3>
+        <div class="post-content-preview">
+            Zookeeper API可以实现zookeeper客户端对节点的各种交互，所以我们只需要记住这一个zookeeper()入口即可，对每种方法提供了同步和异步两种方式
+
+同步：有返回值，且需要抛异常
+异步：无返回值，不需要关注异常，会通过返回状态码进行判断
+
+
+Result Code
+
+
+0 (ok) :接口调用成功
+-4 (ConnectionLoss) :客户端和服务端连接断开
+-110......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-06-11
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Zookeeper 安装部署以及客户端使用/">
+        <h2 class="post-title">
+                                 
+            Zookeeper 安装部署以及客户端使用 
+        </h2>
+        <h3 class="post-subtitle">
+            Zookeeper
+        </h3>
+        <div class="post-content-preview">
+            ==cdh中搜不到zookeeper的安装包，需要输入全路径即可下载==
+下载地址：https://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.16.2.tar.gz
+standalone模式
+123456789101112131415161718192021222324252627282930313233343536373839......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-06-03
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Azkaban 安装部署&常见错误/">
+        <h2 class="post-title">
+                                 
+            Azkaban 安装部署&常见错误
+        </h2>
+        <h3 class="post-subtitle">
+            Azkaban
+        </h3>
+        <div class="post-content-preview">
+            Solo Server
+源码下载/解压
+3.81.0地址
+1234567[wzj@hadoop001 software]$ tar -xzvf 3.81.0.tar.gz -C ~/app/[wzj@hadoop001 azkaban]$ lsaz-core       az-flow-trigger-dependency-plugin  az-intellij-style.xml  azk......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-05-27
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Azkaban" title="Azkaban">Azkaban</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Scala 安装&IDEA+Maven项目创建/">
+        <h2 class="post-title">
+                                 
+            Scala 安装&IDEA+Maven项目创建
+        </h2>
+        <h3 class="post-subtitle">
+            Scala IDEA
+        </h3>
+        <div class="post-content-preview">
+            下载
+地址:选择相应版本和安装包下载即可
+
+安装
+1234567解压[wzj@hadoop001 app]$ tar -zxvf scala-2.11.8.tgz -C ~/app配置环境变量export SCALA_HOME=/home/wzj/app/scalaexport PATH=$SCALA_HOME/bin:$PATH生效source
+IDEA+Maven项目创建
+
+
+在线安装
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-05-18
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Scala" title="Scala">Scala</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Flume安装和简单使用/">
+        <h2 class="post-title">
+                                 
+            Flume安装和简单使用
+        </h2>
+        <h3 class="post-subtitle">
+            Flume
+        </h3>
+        <div class="post-content-preview">
+            @TOC
+Flume简介
+==来自官网==
+Flume is a ==distributed==, ==reliable==, and ==available== service for efficiently ==collecting==, ==aggregating==, and ==moving== large amounts of ==log data==. It has a sim......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-05-10
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Flume" title="Flume">Flume</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Failed to locate the winutils binary in the hadoop binary path/">
+        <h2 class="post-title">
+                                 
+            IDEA进行Hadoop-HDFS API编程报错:Failed to locate the winutils binary in the hadoop binary path
+        </h2>
+        <h3 class="post-subtitle">
+            Hadoop-HDFS API
+        </h3>
+        <div class="post-content-preview">
+            @[TOC](Hadoop-HDFS API编程报错)
+错误：
+12ERROR Shell: Failed to locate the winutils binary in the hadoop binary pathjava.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop bin......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-04-29
         </p>
         <div class="tags">
             
               <a href="/tags/#hadoop" title="hadoop">hadoop</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/HDFS副本放置策略和文件的读写流程/">
-        <h2 class="post-title">
-                                 
-            HDFS副本放置策略和文件的读写流程
-        </h2>
-        <h3 class="post-subtitle">
-            HDFS
-        </h3>
-        <div class="post-content-preview">
-            
-HDFS副本放置策略
-			* 文件读流程
-			* 文件写流程
-
-HDFS副本放置策略
-
-第一个副本:
-假如上传节点为DN节点，优先放置本节点；
-否则就随机挑选一台磁盘不太慢  CPU不太繁忙的节点；
-第二个副本:
-放置在于第一个副本的不同的机架的节点上
-第三个副本:
-放置于第二个副本相同机架的不同节点上
-其它副本
-随机挑选
-备注：
-CDH机架有一个默认机架 虚拟的概念；
-CDH一般不调......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-02-15
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/jps命令&Linux的oom-kill&clean机制(含实践踩坑)/">
-        <h2 class="post-title">
-                                 
-            jps命令&Linux的oom-kill&clean机制(含实践踩坑)
-        </h2>
-        <h3 class="post-subtitle">
-            jps Linux机制
-        </h3>
-        <div class="post-content-preview">
-            jps(Java Virtual Machine Process Status Tool)是java提供的一个显示当前所有java进程pid的命令
-1.首先查询下jps的路径
-
-[root@hadoop001 /]# which jps
-/usr/java/jdk1.8.0_45/bin/jps
-==java路径下   所以需要先配置好jdk==
-
-2. jps
-抛出两个问题：
-1.root......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-02-12
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Linux" title="Linux">Linux</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/MapReduce之WordCount/">
-        <h2 class="post-title">
-                                 
-            MapReduce之WordCount
-        </h2>
-        <h3 class="post-subtitle">
-            hdfs,yarn,hadoop
-        </h3>
-        <div class="post-content-preview">
-            1.hadoop fs常用命令
-==根目录就是core-site.xml中配置的hdfs://hadoop001:9000/==
-
-hadoop fs -mkdir /
-hadoop fs -put
-hadoop fs -get
-hadoop fs -cat
-hadoop fs -rm
-hadoop fs -ls
-
-123456789101112131415[wzj@hadoop001 ~]......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-02-09
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/理解数据块、副本数、小文件的概念&HDFS架构&NN和SNN交互流程&改变hdfs存储目录/">
-        <h2 class="post-title">
-                                 
-            理解数据块、副本数、小文件的概念&HDFS架构&NN和SNN交互流程&改变hdfs存储目录
-        </h2>
-        <h3 class="post-subtitle">
-            hadoop HDFS block
-        </h3>
-        <div class="post-content-preview">
-            1.改变HDFS文件的存储目录
-
-官方默认配置为/tmp路径下   所以我们需要该路径只需要改变这个参数即可，修改配置文件之前，先将原来生成的文件移动一下
-
-[wzj@hadoop001 ~]$ pwd
-/home/wzj
-[wzj@hadoop001 hadoop-wzj]$ cd dfs
-[wzj@hadoop001 dfs]$ ll
-total 0
-drwx------. 3 wzj ......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-02-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/hadoop伪分布式部署/">
-        <h2 class="post-title">
-                                 
-            hadoop 伪分布式部署
-        </h2>
-        <h3 class="post-subtitle">
-            hdfs,yarn,hadoop
-        </h3>
-        <div class="post-content-preview">
-            1.安装包准备
-==安装包：http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.6.0-cdh5.16.2.tar.gz==
-==jdk:链接：https://pan.baidu.com/s/11dt1k_hK17wv8ptCkeGfVg
-提取码：dair==
-2.环境准备
-2.1 创建用户/目录
-
-[root@hadoop001 ~]# user......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-01-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Linux 用户用户组权限/">
-        <h2 class="post-title">
-                                 
-            Linux 用户/用户组/权限
-        </h2>
-        <h3 class="post-subtitle">
-            chown/chomd/passwd
-        </h3>
-        <div class="post-content-preview">
-            1.用户和用户组
-
-用户相关文件：
-[root@hadoop001~]# ll /usr/sbin/user*
--rwxr-x—. 1 root root 118192 Nov  6  2016 /usr/sbin/useradd
--rwxr-x—. 1 root root  80360 Nov  6  2016 /usr/sbin/userdel
--rwxr-x—. 1 root root......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-01-14
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Linux" title="Linux">Linux</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Linux 系统命令/">
-        <h2 class="post-title">
-                                 
-            Linux 系统命令
-        </h2>
-        <h3 class="post-subtitle">
-            top free df-h.
-        </h3>
-        <div class="post-content-preview">
-            1.磁盘
-==获取磁盘空间的使用情况==
-
-[root@bogon /]# df -h											
-Filesystem               			Size  Used Avail Use% Mounted on
-/dev/mapper/centos-root   	37G  993M   37G   3% /==系统盘==
-devtmpfs                ......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-01-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Linux" title="Linux">Linux</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Linux 环境变量配置/">
-        <h2 class="post-title">
-                                 
-            Linux 环境变量配置
-        </h2>
-        <h3 class="post-subtitle">
-            个人变量和全局变量.
-        </h3>
-        <div class="post-content-preview">
-            全局环境变量&amp;个人环境变量
-which命令
-查找系统命令所在目录，并返回第一个
-[root@bogon ~]# echo $PATH
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
-[root@bogon /]# which ls
-alias ls=‘ls --color=auto’    #别名
-	/usr/b......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-01-10
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Linux" title="Linux">Linux</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Linux 常用命令(二)/">
-        <h2 class="post-title">
-                                 
-            Linux 常用命令(二)
-        </h2>
-        <h3 class="post-subtitle">
-            常用的命令
-        </h3>
-        <div class="post-content-preview">
-            1.别名—简化操作
-alias
-
-[root@bogon ~]# cd /home/wzj/
-[root@bogon wzj]#
-
-
-[root@bogon wzj]# vi /root/.bashrc
-[root@bogon wzj]# cat /root/.bashrc
-.bashrc
-User specific aliases and functions
-alias rm='rm -i......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-01-07
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Linux" title="Linux">Linux</a>
             
         </div>
     
@@ -651,7 +614,15 @@ alias rm='rm -i......
             
         
             
-            <a href="/tags/#Hive" title="Hive" rel="8">Hive</a>
+            <a href="/tags/#Hive" title="Hive" rel="9">Hive</a>
+            
+        
+            
+            <a href="/tags/#Spark" title="Spark" rel="16">Spark</a>
+            
+        
+            
+            <a href="/tags/#Kafka" title="Kafka" rel="5">Kafka</a>
             
         
             
@@ -667,15 +638,11 @@ alias rm='rm -i......
             
         
             
-            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
-            
-        
-            
             <a href="/tags/#python" title="python" rel="7">python</a>
             
         
             
-            <a href="/tags/#Spark" title="Spark" rel="1">Spark</a>
+            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
             
         
             
@@ -773,7 +740,7 @@ alias rm='rm -i......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
 
         <hr>

@@ -134,6 +134,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -142,13 +149,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -320,6 +320,137 @@ cursor = conn.cursor()
 
 <div class="post-preview">
 
+    <a href="/article/调优/">
+        <h2 class="post-title">
+                                 
+            调优
+        </h2>
+        <h3 class="post-subtitle">
+            Kafka
+        </h3>
+        <div class="post-content-preview">
+            1.kafka分区策略
+https://github.com/apache/kafka/blob/6cfed8ad0061cdb2c71df03001cbd485491d6dfa/clients/src/main/java/org/apache/kafka/clients/producer/internals/DefaultPartitioner.java
+https://github.co......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2019-04-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kafka" title="Kafka">Kafka</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/segment/">
+        <h2 class="post-title">
+                                 
+            segment
+        </h2>
+        <h3 class="post-subtitle">
+            Kafka
+        </h3>
+        <div class="post-content-preview">
+            
+如何根据offset快速查找对应的消息：
+1.二分查找
+&lt;=offset 的最大segment文件组
+2.去对应组的index文件查找&lt;=offset的最大offset获取对应的物理偏移量
+3.根据物理偏移量去log文件中获取对应的信息
+...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2019-04-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kafka" title="Kafka">Kafka</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Kafka Producer --Java API/">
+        <h2 class="post-title">
+                                 
+            Kafka Producer --Java API
+        </h2>
+        <h3 class="post-subtitle">
+            Kafka
+        </h3>
+        <div class="post-content-preview">
+            kafka-CDH版本：kafka_2.11-2.2.1-kafka-4.1.0
+pom文件
+12345&lt;dependency&gt;  &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;  &lt;artifactId&gt;kafka-clients&lt;/artifactId&gt;  &lt;version&gt;2.2.1-kaf......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2019-04-10
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kafka" title="Kafka">Kafka</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Kafka常用命令/">
+        <h2 class="post-title">
+                                 
+            Kafka常用命令
+        </h2>
+        <h3 class="post-subtitle">
+            Kafka
+        </h3>
+        <div class="post-content-preview">
+            
+topic：主题
+partition:每个partition是一个有序的队列
+
+创建topic
+123456./kafka-topics.sh \--create \--zookeeper localhost:2182,localhost:2183,localhost:2184/kafka \--partitions 3 \--replication-factor 3 \--topic b......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2019-04-05
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kafka" title="Kafka">Kafka</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/Python运行日志的留存/">
         <h2 class="post-title">
                                  
@@ -360,217 +491,68 @@ import traceback......
 
 <div class="post-preview">
 
-    <a href="/article/SparkCore/">
+    <a href="/article/Kafka部署/">
         <h2 class="post-title">
                                  
-            SparkCore
+            Kafka部署
+        </h2>
+        <h3 class="post-subtitle">
+            Kafka
+        </h3>
+        <div class="post-content-preview">
+            http://kafka.apache.org/
+http://archive.cloudera.com/kafka/kafka/4/kafka-2.2.1-kafka4.1.0.tar.gz
+==部署之前首先检查zookeeper是否正常启动==
+部署：
+1.解压
+2.修改配置文件server.properties
+1234567891011121314151617181920[wzj@h......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2019-01-07
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kafka" title="Kafka">Kafka</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/spark 源码编译/">
+        <h2 class="post-title">
+                                 
+            spark 源码编译
         </h2>
         <h3 class="post-subtitle">
             Spark
         </h3>
         <div class="post-content-preview">
-            Spark Core
-RDD五大特性：
-
-A list of partitions：一系列的分区
-A function for computing each split：对每一个分片做计算
-A list of dependencies on other
-Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD......
+            环境准备（配置环境变量）：
+1.JDK	验证：java -version
+2.maven	验证：mvn -v
+3.scala
+export MAVEN_OPTS=&quot;-Xmx2g -XX:ReservedCodeCacheSize=1g&quot;
+Specifying the Hadoop Version and Enabling YARN
+Apache Hadoop 2.6.X
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-08-11
+            2018-12-21
         </p>
         <div class="tags">
             
               <a href="/tags/#Spark" title="Spark">Spark</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/shell/">
-        <h2 class="post-title">
-                                 
-            shell 
-        </h2>
-        <h3 class="post-subtitle">
-            Linux
-        </h3>
-        <div class="post-content-preview">
-            执行命令
-第一行声明：
-#！/bin/bash
-执行命令：
-全路径/xx.sh
-当前路径：./xx.sh
-万能：sh xx.sh
-变量定义和引用
-静态：
-k=v k=“v”
-动态：
-k=v
-==等号前后不能有空格==
-引用：
-k=“xxx”
-${k}yyy
-参数引用
-$1 传入的第一个参数
-$* 参数以文本形式输出
-$# 参数个数
-$$ 获取当前PID
-1234567891011121314......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-29
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Linux" title="Linux">Linux</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala 解析IP/">
-        <h2 class="post-title">
-                                 
-            Scala 解析IP 
-        </h2>
-        <h3 class="post-subtitle">
-            Scala
-        </h3>
-        <div class="post-content-preview">
-            方式一：DbSearcher
-
-pom文件中加入
-
-12345&lt;dependency&gt;  &lt;groupId&gt;org.lionsoul&lt;/groupId&gt;  &lt;artifactId&gt;ip2region&lt;/artifactId&gt;  &lt;version&gt;1.7.2&lt;/version&gt;&lt;/dependency&g......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala(五)/">
-        <h2 class="post-title">
-                                 
-            Scala(五)  
-        </h2>
-        <h3 class="post-subtitle">
-            Scala
-        </h3>
-        <div class="post-content-preview">
-            scala
-zip:进行拉链操作，返回的列表长度取决于较短的列表，只要有一个列表到达了末尾zip函数就停止了
-两种写法：list zip list1或者list.zip(list1)
-scala&gt; val list =1 to 5
-list: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
-scala&......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala(四)/">
-        <h2 class="post-title">
-                                 
-            Scala(四)  
-        </h2>
-        <h3 class="post-subtitle">
-            Scala
-        </h3>
-        <div class="post-content-preview">
-            Scala(四)
-隐式转换
-类型：
-隐式参数 ：方法或者参数可以用implicit定义，会自动从上下文中去找符合类型的隐式参数
-1234567891011121314package wzjobject implicitAPP &#123;  def main(args: Array[String]): Unit = &#123;    //如果不定义则输出 hello:wzj,定义则输出he......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala(三)/">
-        <h2 class="post-title">
-                                 
-            Scala(三)  
-        </h2>
-        <h3 class="post-subtitle">
-            Scala
-        </h3>
-        <div class="post-content-preview">
-            scala(三)
-抽象类：
-在类中，一个方法或者多个方法只有定义没有实现：def xx()
-此时需要加abstract关键字
-12345678910package wzjobject abstractApp &#123;&#125;abstract class Test&#123;  def name()  val like:String&#125;
-抽象类需要通过子类去实现
-1234567......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-07-11
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
             
         </div>
     
@@ -639,7 +621,15 @@ scala&......
             
         
             
-            <a href="/tags/#Hive" title="Hive" rel="8">Hive</a>
+            <a href="/tags/#Hive" title="Hive" rel="9">Hive</a>
+            
+        
+            
+            <a href="/tags/#Spark" title="Spark" rel="16">Spark</a>
+            
+        
+            
+            <a href="/tags/#Kafka" title="Kafka" rel="5">Kafka</a>
             
         
             
@@ -655,15 +645,11 @@ scala&......
             
         
             
-            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
-            
-        
-            
             <a href="/tags/#python" title="python" rel="7">python</a>
             
         
             
-            <a href="/tags/#Spark" title="Spark" rel="1">Spark</a>
+            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
             
         
             
@@ -761,7 +747,7 @@ scala&......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
 
         <hr>

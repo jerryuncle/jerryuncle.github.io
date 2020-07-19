@@ -134,6 +134,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -142,13 +149,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,29 +211,29 @@
 
 <div class="post-preview">
 
-    <a href="/article/Scala(二)/">
+    <a href="/article/state维护/">
         <h2 class="post-title">
                                  
-            Scala(二)  
+            state维护
         </h2>
         <h3 class="post-subtitle">
-            Scala
+            Spark
         </h3>
         <div class="post-content-preview">
-            Scala(二)：
-迭代：
-to:左闭右闭
-1234scala&gt; 1 to 10res0: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)scala&gt; 1.to(10)res1: scala.collection.immutable.Range.Inclusive ......
+            上一篇SparkStreaming Demo中进行了流输出的简单演示，但是可以发现一个非常明显的缺点就是，每个批次只会输出当前批次的数据，所以在生产上没有什么用。
+我们常见的需求就是要累计输出，输出的数据是截至当前的汇总值。
+Checkpoint State
+123updateStateByKey(func)	Return a new &quot;state&quot; DStream wh......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-07-03
+            2018-12-10
         </p>
         <div class="tags">
             
-              <a href="/tags/#Scala" title="Scala">Scala</a>
+              <a href="/tags/#Spark" title="Spark">Spark</a>
             
         </div>
     
@@ -243,34 +243,28 @@ to:左闭右闭
 
 <div class="post-preview">
 
-    <a href="/article/Scala(一)/">
+    <a href="/article/SparkStreaming Demo/">
         <h2 class="post-title">
                                  
-            Scala(一)  
+            SparkStreaming Demo
         </h2>
         <h3 class="post-subtitle">
-            Scala
+            Spark
         </h3>
         <div class="post-content-preview">
-            Scala(一)：
-Scala 运行在JVM之上，兼容java
-Scala 没有java中int double等这些原声数据类型，都是以大写开头的Int Double Float
-定义：
-val | var 名称[:数据类型] =xxx
-eg: val name:String = “wzj”
-Scala 中有类型推倒的功能  所以数据类型可以省略
-eg: val name = “wzj”
-F......
+            配置
+官方提供依赖添加方式：
+123456&lt;dependency&gt;    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;    &lt;artifactId&gt;spark-streaming_2.12&lt;/artifactId&gt;    &lt;version&gt;2.4.6&lt;/version&gt;    &l......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-06-26
+            2018-12-03
         </p>
         <div class="tags">
             
-              <a href="/tags/#Scala" title="Scala">Scala</a>
+              <a href="/tags/#Spark" title="Spark">Spark</a>
             
         </div>
     
@@ -280,271 +274,249 @@ F......
 
 <div class="post-preview">
 
-    <a href="/article/Zookeeper实现持续监听/">
+    <a href="/article/idea 链接hive/">
         <h2 class="post-title">
                                  
-            Zookeeper 实现持续监听 
-        </h2>
-        <h3 class="post-subtitle">
-            Zookeeper
-        </h3>
-        <div class="post-content-preview">
-            zookeeper默认监听触发一次就结束，所以需要重新实现WatchedEvent中的process方法，核心就是对watcher的循环调用
-WatchedEvent包含两方面重要信息：
-
-与zk服务器连接的状态信息
-
-
-可以调用watchedEvent.getState()方法获取与zk服务器连接的状态信息，状态信息取值主要包括==SyncConnected、Disconnected、Co......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-06-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Zookeeper API/">
-        <h2 class="post-title">
-                                 
-            Zookeeper API 
-        </h2>
-        <h3 class="post-subtitle">
-            Zookeeper
-        </h3>
-        <div class="post-content-preview">
-            Zookeeper API可以实现zookeeper客户端对节点的各种交互，所以我们只需要记住这一个zookeeper()入口即可，对每种方法提供了同步和异步两种方式
-
-同步：有返回值，且需要抛异常
-异步：无返回值，不需要关注异常，会通过返回状态码进行判断
-
-
-Result Code
-
-
-0 (ok) :接口调用成功
--4 (ConnectionLoss) :客户端和服务端连接断开
--110......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-06-11
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Zookeeper 安装部署以及客户端使用/">
-        <h2 class="post-title">
-                                 
-            Zookeeper 安装部署以及客户端使用 
-        </h2>
-        <h3 class="post-subtitle">
-            Zookeeper
-        </h3>
-        <div class="post-content-preview">
-            ==cdh中搜不到zookeeper的安装包，需要输入全路径即可下载==
-下载地址：https://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.16.2.tar.gz
-standalone模式
-123456789101112131415161718192021222324252627282930313233343536373839......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-06-03
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Zookeeper" title="Zookeeper">Zookeeper</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Azkaban 安装部署&常见错误/">
-        <h2 class="post-title">
-                                 
-            Azkaban 安装部署&常见错误
-        </h2>
-        <h3 class="post-subtitle">
-            Azkaban
-        </h3>
-        <div class="post-content-preview">
-            Solo Server
-源码下载/解压
-3.81.0地址
-1234567[wzj@hadoop001 software]$ tar -xzvf 3.81.0.tar.gz -C ~/app/[wzj@hadoop001 azkaban]$ lsaz-core       az-flow-trigger-dependency-plugin  az-intellij-style.xml  azk......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-05-27
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Azkaban" title="Azkaban">Azkaban</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Scala 安装&IDEA+Maven项目创建/">
-        <h2 class="post-title">
-                                 
-            Scala 安装&IDEA+Maven项目创建
-        </h2>
-        <h3 class="post-subtitle">
-            Scala IDEA
-        </h3>
-        <div class="post-content-preview">
-            下载
-地址:选择相应版本和安装包下载即可
-
-安装
-1234567解压[wzj@hadoop001 app]$ tar -zxvf scala-2.11.8.tgz -C ~/app配置环境变量export SCALA_HOME=/home/wzj/app/scalaexport PATH=$SCALA_HOME/bin:$PATH生效source
-IDEA+Maven项目创建
-
-
-在线安装
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-05-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Scala" title="Scala">Scala</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Flume安装和简单使用/">
-        <h2 class="post-title">
-                                 
-            Flume安装和简单使用
-        </h2>
-        <h3 class="post-subtitle">
-            Flume
-        </h3>
-        <div class="post-content-preview">
-            @TOC
-Flume简介
-==来自官网==
-Flume is a ==distributed==, ==reliable==, and ==available== service for efficiently ==collecting==, ==aggregating==, and ==moving== large amounts of ==log data==. It has a sim......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-05-10
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Flume" title="Flume">Flume</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Failed to locate the winutils binary in the hadoop binary path/">
-        <h2 class="post-title">
-                                 
-            IDEA进行Hadoop-HDFS API编程报错:Failed to locate the winutils binary in the hadoop binary path
-        </h2>
-        <h3 class="post-subtitle">
-            Hadoop-HDFS API
-        </h3>
-        <div class="post-content-preview">
-            @[TOC](Hadoop-HDFS API编程报错)
-错误：
-12ERROR Shell: Failed to locate the winutils binary in the hadoop binary pathjava.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop bin......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by jerry on
-            2018-04-29
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/数据仓库分层/">
-        <h2 class="post-title">
-                                 
-            数据仓库分层
+            idea 链接hive
         </h2>
         <h3 class="post-subtitle">
             Hive
         </h3>
         <div class="post-content-preview">
-            数据仓库&amp;数据集市
-
-数据仓库
-数据仓库，英文名称为Data Warehouse，可简写为DW或DWH。数据仓库，是为企业所有级别的决策制定过程，提供所有类型数据支持的战略集合。它是单个数据存储，出于分析性报告和决策支持目的而创建。 为需要业务智能的企业，提供指导业务流程改进、监视时间、成本、质量以及控制
-
-==简单来说就是一堆数据集合（log型和db型）的整合处理，，挖掘有效价值，......
+            pom依赖添加
+1234567891011121314151617181920212223242526272829303132    &lt;dependencyManagement&gt;        &lt;dependencies&gt;                &lt;dependency&gt;                &lt;groupId&gt;org.apach......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-04-04
+            2018-11-20
         </p>
         <div class="tags">
             
               <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/SparkSQL(三)/">
+        <h2 class="post-title">
+                                 
+            SparkSQL(三)
+        </h2>
+        <h3 class="post-subtitle">
+            Spark
+        </h3>
+        <div class="post-content-preview">
+            http://spark.apache.org/docs/latest/sql-getting-started.html
+RDD转DataFrame/DataSet
+==处理文本格式必备==
+方式一：reflection(反射)
+1234567891011121314151617181920212223242526272829303132// RDD转DataFrameimport org.......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-11-16
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Spark" title="Spark">Spark</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/SparkSQL(二)/">
+        <h2 class="post-title">
+                                 
+            SparkSQL(二)
+        </h2>
+        <h3 class="post-subtitle">
+            Spark
+        </h3>
+        <div class="post-content-preview">
+            ==SparkCore编程模型是RDD==
+==SparkSQL编程模型是DataFrame/DataSet==
+==SparkSQL编程入口为SparkSession==
+select 三种写法
+
+df.select(“column1”,“column2”)
+df.select(df(“column1”),df(“column2”))
+import spark.implicits._
+va......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-10-31
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Spark" title="Spark">Spark</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/SparkSQL(一)/">
+        <h2 class="post-title">
+                                 
+            SparkSQL(一)
+        </h2>
+        <h3 class="post-subtitle">
+            Spark
+        </h3>
+        <div class="post-content-preview">
+            http://spark.apache.org/docs/latest/sql-getting-started.html
+1234567891011121314151617181920212223242526272829scala&gt;     val df = spark.read.json(&quot;file:///home/wzj/app/spark/examples/src/ma......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-10-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Spark" title="Spark">Spark</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/多目录输出/">
+        <h2 class="post-title">
+                                 
+            多目录输出
+        </h2>
+        <h3 class="post-subtitle">
+            Spark
+        </h3>
+        <div class="post-content-preview">
+            12345678910111213141516171819202122232425package com.ruozedata.spark.strengthenimport com.ruozedata.hadoop.FileUtilsimport org.apache.spark.&#123;SparkConf, SparkContext&#125;/** */object Work03App......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-10-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Spark" title="Spark">Spark</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/序列化/">
+        <h2 class="post-title">
+                                 
+            序列化
+        </h2>
+        <h3 class="post-subtitle">
+            Spark
+        </h3>
+        <div class="post-content-preview">
+            ==MEMORY_ONLY和MEMORY_ONLY_SER最为常用==
+1234567891011121314RDD PersistenceStorage Level	MeaningMEMORY_ONLY	Store RDD as deserialized Java objects in the JVM. If the RDD does not fit in memory, some par......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-10-10
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Spark" title="Spark">Spark</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/共享变量：广播变量&计数器/">
+        <h2 class="post-title">
+                                 
+            共享变量：广播变量&计数器
+        </h2>
+        <h3 class="post-subtitle">
+            Spark
+        </h3>
+        <div class="post-content-preview">
+            计数器：
+==val cnts = sc.longAccumulator(“cnts”)==
+直接定义val cnts = 0 是错误的
+123456789101112def main(args: Array[String]): Unit = &#123;  val sparkConf = new SparkConf().setMaster(&quot;local[2]&quot;).set......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-09-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Spark" title="Spark">Spark</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/spark-on-yarn Jar包优化/">
+        <h2 class="post-title">
+                                 
+            spark-on-yarn Jar包优化
+        </h2>
+        <h3 class="post-subtitle">
+            Spark
+        </h3>
+        <div class="post-content-preview">
+            spark-on-yarn jar包问题
+submit运行过程中会把spark的jar包上传到HDFS的/user/hadoop/.sparkStaging路径下面,运行完毕进行释放，上传的这个过程实际上比较耗费时间
+==WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-09-17
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Spark" title="Spark">Spark</a>
             
         </div>
     
@@ -613,7 +585,15 @@ Flume is a ==distributed==, ==reliable==, and ==available== service for efficien
             
         
             
-            <a href="/tags/#Hive" title="Hive" rel="8">Hive</a>
+            <a href="/tags/#Hive" title="Hive" rel="9">Hive</a>
+            
+        
+            
+            <a href="/tags/#Spark" title="Spark" rel="16">Spark</a>
+            
+        
+            
+            <a href="/tags/#Kafka" title="Kafka" rel="5">Kafka</a>
             
         
             
@@ -629,15 +609,11 @@ Flume is a ==distributed==, ==reliable==, and ==available== service for efficien
             
         
             
-            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
-            
-        
-            
             <a href="/tags/#python" title="python" rel="7">python</a>
             
         
             
-            <a href="/tags/#Spark" title="Spark" rel="1">Spark</a>
+            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
             
         
             
@@ -735,7 +711,7 @@ Flume is a ==distributed==, ==reliable==, and ==available== service for efficien
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
 
         <hr>

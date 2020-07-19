@@ -134,6 +134,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -142,13 +149,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,37 +211,366 @@
 
 <div class="post-preview">
 
-    <a href="/article/Linux 常用命令(一)/">
+    <a href="/article/数据仓库分层/">
         <h2 class="post-title">
                                  
-            Linux 常用命令（一）
+            数据仓库分层
         </h2>
         <h3 class="post-subtitle">
-            This is linux first.
+            Hive
         </h3>
         <div class="post-content-preview">
-            1.查看当前光标所在目录
-[jumproot@bi_new home]$ pwd
-/home
-2.切换目录
-[jumproot@bi_new /]$ cd home
-[jumproot@bi_new home]$ pwd
-/home
-3.回退家目录方式
-3.1 [root@bogon home]# cd
-[root@bogon ~]# pwd
-/root
-3.2 [root@bogon ho......
+            数据仓库&amp;数据集市
+
+数据仓库
+数据仓库，英文名称为Data Warehouse，可简写为DW或DWH。数据仓库，是为企业所有级别的决策制定过程，提供所有类型数据支持的战略集合。它是单个数据存储，出于分析性报告和决策支持目的而创建。 为需要业务智能的企业，提供指导业务流程改进、监视时间、成本、质量以及控制
+
+==简单来说就是一堆数据集合（log型和db型）的整合处理，，挖掘有效价值，......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by jerry on
-            2018-01-06
+            2018-04-04
         </p>
         <div class="tags">
             
-              <a href="/tags/#Linux" title="Linux">Linux</a>
+              <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/MySQL日期时间函数/">
+        <h2 class="post-title">
+                                 
+            MySQL日期时间函数
+        </h2>
+        <h3 class="post-subtitle">
+            mysql
+        </h3>
+        <div class="post-content-preview">
+            MySQL
+
+获取当前时间+时间：now(),sysdate()
+
+
+now()在执行开始就获取到时间，sysdate()动态的获取时间
+
+
+获取当前日期：curdate()
+获取当前时间：curtime()
+季度：quarter(date)
+年：year(date),月：month(date),日：day(date),周：week(date)
+一周第几天：dayofweek(date)
+1......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-04-02
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#mysql" title="mysql">mysql</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Hive中文注释乱码--解决/">
+        <h2 class="post-title">
+                                 
+            Hive中文注释乱码--解决
+        </h2>
+        <h3 class="post-subtitle">
+            Hive
+        </h3>
+        <div class="post-content-preview">
+            my.cnf 文件配置
+
+切换mysql管理用户
+vi /etc/my.cnf   [mysqld]之后添加如下内容
+
+123456[mysqld]init_connect=&apos;SET collation_connection = utf8_unicode_ci&apos;init_connect=&apos;SET NAMES utf8&apos;character-set-ser......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-03-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Hive复杂数据类型/">
+        <h2 class="post-title">
+                                 
+            Hive复杂数据类型
+        </h2>
+        <h3 class="post-subtitle">
+            Hive
+        </h3>
+        <div class="post-content-preview">
+            array类型
+
+建表并加载数据
+创建表时候指定字段为array类型 location array
+指定array中每个的分隔符COLLECTION ITEMS TERMINATED BY ‘,’
+
+1234567891011hive (wzj)&gt; create table hive_array(          &gt; name string,          &gt; loa......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-03-15
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Hive 数据类型&DDL&DML/">
+        <h2 class="post-title">
+                                 
+            Hive 数据类型&DDL&DML
+        </h2>
+        <h3 class="post-subtitle">
+            DDL DML
+        </h3>
+        <div class="post-content-preview">
+            1. 数据类型
+官网文档：https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types
+
+
+
+Hive数据类型
+长度
+例子
+
+
+
+
+TINYINT
+-128 to 127
+20
+
+
+SMALINT
+-32,768 to 32,767
+20
+
+
+INT
+-2,147,483,648 to 2,147,483,647
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-03-14
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Hive 静态分区&动态分区(含常见错误)/">
+        <h2 class="post-title">
+                                 
+            Hive 静态分区&动态分区（含常见错误）
+        </h2>
+        <h3 class="post-subtitle">
+            静态分区 动态分区
+        </h3>
+        <div class="post-content-preview">
+            静态分区
+1.创建分区表
+1234567891011121314hive (wzj)&gt; CREATE TABLE emp_partition(          &gt; empno int,          &gt; ename string,          &gt; job string,          &gt; mgr int,          &gt; hireda......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Hive之Beeline连接/">
+        <h2 class="post-title">
+                                 
+            Hive之Beeline连接
+        </h2>
+        <h3 class="post-subtitle">
+            Hive,HS2
+        </h3>
+        <div class="post-content-preview">
+            Beeline连接
+==WARNING: Hive CLI is deprecated and migration to Beeline is recommended.==
+贴心翻译：
+==警告：不建议使用Hive CLI，建议迁移到Beeline==
+小伙伴们启动hive的时候是不是经常会有上面那个警告，让人看着非常的不爽
+12345[wzj@hadoop001 ~]$ hivewhich......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-03-07
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Hive启动报错/">
+        <h2 class="post-title">
+                                 
+            Hive启动报错
+        </h2>
+        <h3 class="post-subtitle">
+            Hive
+        </h3>
+        <div class="post-content-preview">
+            报错一：
+
+==Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hdfs.server.namenode.SafeModeException): Cannot create directory /tmp/hive/wzj/1285d7ee-00f3-42a0-9161-03660fcb6a86. Name ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-03-01
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Hive部署/">
+        <h2 class="post-title">
+                                 
+            Hive部署
+        </h2>
+        <h3 class="post-subtitle">
+            Hive
+        </h3>
+        <div class="post-content-preview">
+            1.获取安装包
+
+wget https://archive.cloudera.com/cdh5/cdh/5/hive-1.1.0-cdh5.16.2.tar.gz
+
+
+[wzj@hadoop001 software]$ ll
+total 549960
+-rw-r–r--. 1 wzj wzj 434354462  hadoop-2.6.0-cdh5.16.2.tar.gz
+-rw-r–r--......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-03-01
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Hive" title="Hive">Hive</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Yarn调优&Yarn调度器/">
+        <h2 class="post-title">
+                                 
+            Yarn调优&Yarn调度器
+        </h2>
+        <h3 class="post-subtitle">
+            Yarn
+        </h3>
+        <div class="post-content-preview">
+            Yarn调优
+假设内存128G 16物理core
+
+装完CentOS，消耗内存1G
+系统预览15%-20%内存(包含1.1)，以防全部使用导致系统夯住 和 oom机制事件，或者给未来部署组件预览点空间(128*20%=25.6G==26G)
+假设只有DN NM节点，余下内存: 128-26=102G
+给DN进程(自身)2G，给NM进程(自身)4G，剩余102-2-4=96G
+
+
+contai......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by jerry on
+            2018-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#hadoop" title="hadoop">hadoop</a>
             
         </div>
     
@@ -259,6 +588,10 @@
             <a href="/page/5/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/page/7/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -306,7 +639,15 @@
             
         
             
-            <a href="/tags/#Hive" title="Hive" rel="8">Hive</a>
+            <a href="/tags/#Hive" title="Hive" rel="9">Hive</a>
+            
+        
+            
+            <a href="/tags/#Spark" title="Spark" rel="16">Spark</a>
+            
+        
+            
+            <a href="/tags/#Kafka" title="Kafka" rel="5">Kafka</a>
             
         
             
@@ -322,15 +663,11 @@
             
         
             
-            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
-            
-        
-            
             <a href="/tags/#python" title="python" rel="7">python</a>
             
         
             
-            <a href="/tags/#Spark" title="Spark" rel="1">Spark</a>
+            <a href="/tags/#Scala" title="Scala" rel="7">Scala</a>
             
         
             
@@ -428,7 +765,7 @@
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
 
         <hr>
